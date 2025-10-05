@@ -13,6 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
+    "typeface-roboto": "^1.1.13",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1"
   },

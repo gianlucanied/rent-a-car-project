@@ -1,9 +1,13 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
+<script setup></script>
 
 <template>
   <main>
-    <TheWelcome />
+    <div class="jumbotron"></div>
   </main>
 </template>
+
+<style lang="css">
+.jumbotron {
+  height: 100vh;
+}
+</style>

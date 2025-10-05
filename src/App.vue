@@ -3,15 +3,234 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/rates">Tariffe</RouterLink>
-      <RouterLink to="/contacts">Contatti</RouterLink>
+  <header class="app-header">
+    <img src="/src/assets/logo.jpg" alt="logo" />
+    <nav class="nav-links">
+      <RouterLink to="/" class="nav-item">HOME</RouterLink>
+      <RouterLink to="/rates" class="nav-item">TARIFFE</RouterLink>
+      <RouterLink to="/contacts" class="nav-item">CONTATTI</RouterLink>
     </nav>
   </header>
 
   <RouterView />
+
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Navigazione -->
+        <div class="footer-section">
+          <div>NAVIGAZIONE</div>
+          <nav class="footer-nav">
+            <RouterLink to="/" class="footer-link">Home</RouterLink>
+            <RouterLink to="/rates" class="footer-link">Tariffe</RouterLink>
+            <RouterLink to="/contacts" class="footer-link">Contatti</RouterLink>
+          </nav>
+        </div>
+
+        <!-- Orari di apertura -->
+        <div class="footer-section">
+          <div>ORARI DI APERTURA</div>
+          <div class="opening-hours">
+            <p>Lun - Ven: 9:00 - 18:00</p>
+            <p>Sabato: 9:00 - 13:00</p>
+            <p>Domenica: Chiuso</p>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-section">
+          <div>SEGUICI</div>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; Rent a Car Express © 2022 Tutti i diritti riservati</p>
+      </div>
+    </div>
+  </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app-footer {
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px -25px 50px -12px;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 2rem 1.5rem;
+  gap: 3rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-section div {
+  color: #1f4f80;
+  margin-bottom: 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.footer-link {
+  color: #1f4f80;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #ce4028;
+}
+
+.opening-hours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opening-hours p {
+  color: #1f4f80;
+  margin: 0.4rem 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-icon {
+  color: #1f4f80;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  color: #ce4028;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #1f4f80;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.app-header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  img {
+    max-width: 200px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+  color: #1f4f80;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.5s;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #ce4028;
+  transition: width 0.5s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-item:hover {
+  color: #ce4028;
+}
+
+.nav-item.router-link-active::after {
+  width: 100%;
+  background-color: #1f4f80;
+}
+</style>
