@@ -11,6 +11,13 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
 }
+
+// Link social media reali - sostituisci con i tuoi link
+const socialLinks = {
+  facebook: 'https://www.facebook.com/tuapagina',
+  instagram: 'https://www.instagram.com/tuoaccount',
+  whatsapp: 'https://wa.me/390701234567', // formato: https://wa.me/numerotelefono
+}
 </script>
 
 <template>
@@ -18,7 +25,7 @@ const closeMobileMenu = () => {
     <div class="header-top">
       <div class="header-top-content">
         <div class="contact-info">
-          <span class="info-item">
+          <a href="tel:+390701234567" class="info-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -33,7 +40,7 @@ const closeMobileMenu = () => {
               ></path>
             </svg>
             +39 070 123 4567
-          </span>
+          </a>
           <span class="info-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,19 +90,21 @@ const closeMobileMenu = () => {
 
         <div class="header-actions">
           <RouterLink to="/rates" class="cta-button">
-            Prenota Ora
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
+            <span class="cta-text">Prenota Ora</span>
+            <span class="cta-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </RouterLink>
         </div>
 
@@ -145,10 +154,20 @@ const closeMobileMenu = () => {
     <div class="footer-container">
       <div class="footer-main">
         <div class="footer-brand">
-          <img src="/src/assets/logo.jpg" alt="Rent a Car Express" class="footer-logo" />
-          <p class="footer-tagline">Il tuo partner di fiducia per il noleggio auto</p>
+          <img
+            src="/src/assets/logo-removebg-preview.png"
+            alt="Rent a Car Express"
+            class="footer-logo"
+          />
+          <p class="footer-tagline">Il tuo partner di fiducia per il noleggio auto in Sardegna</p>
           <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Facebook">
+            <a
+              :href="socialLinks.facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Facebook"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -161,7 +180,13 @@ const closeMobileMenu = () => {
                 />
               </svg>
             </a>
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a
+              :href="socialLinks.instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Instagram"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -174,7 +199,13 @@ const closeMobileMenu = () => {
                 />
               </svg>
             </a>
-            <a href="#" class="social-link" aria-label="WhatsApp">
+            <a
+              :href="socialLinks.whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="WhatsApp"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -217,7 +248,7 @@ const closeMobileMenu = () => {
                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                   ></path>
                 </svg>
-                +39 070 123 4567
+                <a href="tel:+390701234567">+39 070 123 4567</a>
               </li>
               <li>
                 <svg
@@ -234,7 +265,7 @@ const closeMobileMenu = () => {
                   ></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                info@rentacar.com
+                <a href="mailto:info@rentacar.com">info@rentacar.com</a>
               </li>
               <li>
                 <svg
@@ -294,7 +325,29 @@ const closeMobileMenu = () => {
   background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 100%);
   color: white;
   font-size: 0.85rem;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .header-top-content {
@@ -316,36 +369,73 @@ const closeMobileMenu = () => {
   align-items: center;
   gap: 0.5rem;
   opacity: 0.95;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+}
+
+.info-item:hover {
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .info-item svg {
   opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.info-item:hover svg {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .header-lang {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 .lang-btn-small {
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.lang-btn-small::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s,
+    height 0.4s;
+}
+
+.lang-btn-small:hover::before {
+  width: 100px;
+  height: 100px;
 }
 
 .lang-btn-small:hover {
   background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .lang-btn-small.active {
   background: #ce4028;
   border-color: #ce4028;
+  box-shadow: 0 2px 8px rgba(206, 64, 40, 0.4);
 }
 
 /* Header Main */
@@ -354,6 +444,16 @@ const closeMobileMenu = () => {
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .header-main {
@@ -379,11 +479,11 @@ const closeMobileMenu = () => {
   height: 55px;
   width: auto;
   display: block;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-container img:hover {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(-2deg);
 }
 
 /* Desktop Navigation */
@@ -405,12 +505,13 @@ const closeMobileMenu = () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-icon {
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
 }
 
 .nav-item::before {
@@ -423,7 +524,28 @@ const closeMobileMenu = () => {
   height: 3px;
   background: linear-gradient(90deg, #ce4028, #e6583f);
   border-radius: 2px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(206, 64, 40, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s,
+    height 0.4s;
+  z-index: -1;
+}
+
+.nav-item:hover::after {
+  width: 120px;
+  height: 120px;
 }
 
 .nav-item:hover {
@@ -431,7 +553,18 @@ const closeMobileMenu = () => {
 }
 
 .nav-item:hover .nav-icon {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.1);
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-4px) scale(1.1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.15);
+  }
 }
 
 .nav-item:hover::before {
@@ -446,6 +579,20 @@ const closeMobileMenu = () => {
   transform: translateX(-50%) scaleX(1);
 }
 
+.nav-item.router-link-active .nav-icon {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 /* Header CTA Button */
 .header-actions {
   display: flex;
@@ -453,7 +600,7 @@ const closeMobileMenu = () => {
 }
 
 .cta-button {
-  padding: 0.8rem 1.8rem;
+  padding: 0.9rem 2rem;
   background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);
   color: white;
   text-decoration: none;
@@ -462,7 +609,7 @@ const closeMobileMenu = () => {
   font-size: 0.95rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   box-shadow: 0 4px 15px rgba(206, 64, 40, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -484,17 +631,57 @@ const closeMobileMenu = () => {
   left: 100%;
 }
 
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(206, 64, 40, 0.4);
+.cta-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
 
-.cta-button svg {
+.cta-button:hover::after {
+  opacity: 1;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(206, 64, 40, 0.5);
+}
+
+.cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
   transition: transform 0.3s ease;
 }
 
-.cta-button:hover svg {
-  transform: translateX(3px);
+.cta-button:hover .cta-icon {
+  transform: translateX(5px);
+  animation: arrowBounce 0.8s ease infinite;
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
 }
 
 /* Mobile Menu Button */
@@ -516,8 +703,12 @@ const closeMobileMenu = () => {
   height: 3px;
   background-color: #1f4f80;
   border-radius: 3px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
+}
+
+.mobile-menu-btn:hover span {
+  background-color: #ce4028;
 }
 
 .mobile-menu-btn span.open:nth-child(1) {
@@ -527,6 +718,7 @@ const closeMobileMenu = () => {
 
 .mobile-menu-btn span.open:nth-child(2) {
   opacity: 0;
+  transform: translateX(-20px);
 }
 
 .mobile-menu-btn span.open:nth-child(3) {
@@ -545,7 +737,7 @@ const closeMobileMenu = () => {
   max-height: 0;
   overflow: hidden;
   transition:
-    max-height 0.4s ease,
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.4s ease;
   box-shadow: none;
 }
@@ -568,15 +760,33 @@ const closeMobileMenu = () => {
   font-weight: 600;
   font-size: 1.1rem;
   border-bottom: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 1rem;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(206, 64, 40, 0.1), transparent);
+  transition: width 0.3s ease;
+}
+
+.mobile-nav-item:hover::before {
+  width: 100%;
 }
 
 .mobile-icon {
   font-size: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
 .mobile-nav-item:hover {
@@ -585,8 +795,12 @@ const closeMobileMenu = () => {
   padding-left: 1.5rem;
 }
 
+.mobile-nav-item:hover .mobile-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
 .mobile-nav-item.router-link-active {
-  background: linear-gradient(90deg, rgba(206, 64, 40, 0.1) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(206, 64, 40, 0.15) 0%, transparent 100%);
   color: #ce4028;
   border-left: 4px solid #ce4028;
 }
@@ -599,19 +813,41 @@ const closeMobileMenu = () => {
 .mobile-cta-button {
   display: block;
   width: 100%;
-  padding: 1rem;
+  padding: 1.2rem;
   background: linear-gradient(135deg, #ce4028, #e6583f);
   color: white;
   text-decoration: none;
   text-align: center;
   font-weight: 700;
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.mobile-cta-button:active::before {
+  width: 300px;
+  height: 300px;
 }
 
 .mobile-cta-button:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(206, 64, 40, 0.3);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(206, 64, 40, 0.4);
 }
 
 /* Footer Styles */
@@ -627,7 +863,7 @@ const closeMobileMenu = () => {
   top: -1px;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 80px;
   overflow: hidden;
   color: white;
 }
@@ -636,12 +872,23 @@ const closeMobileMenu = () => {
   width: 100%;
   height: 100%;
   display: block;
+  transform-origin: center;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25px) scaleY(0.95);
+  }
 }
 
 .footer-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 2rem 2rem;
+  padding: 5rem 2rem 2rem;
 }
 
 .footer-main {
@@ -649,26 +896,44 @@ const closeMobileMenu = () => {
   grid-template-columns: 1.5fr 2fr;
   gap: 4rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .footer-logo {
   height: 60px;
-  width: auto;
+  width: fit-content;
   filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
 
 .footer-tagline {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
   line-height: 1.6;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .footer-social {
@@ -677,15 +942,16 @@ const closeMobileMenu = () => {
 }
 
 .social-link {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   color: white;
+  text-decoration: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -704,35 +970,105 @@ const closeMobileMenu = () => {
   transition:
     width 0.4s,
     height 0.4s;
+  z-index: 0;
 }
 
 .social-link:hover::before {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 
 .social-link:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.1);
   border-color: #ce4028;
+  box-shadow: 0 8px 20px rgba(206, 64, 40, 0.4);
+}
+
+.social-link:nth-child(1):hover {
+  animation: wiggle 0.5s ease;
+}
+
+.social-link:nth-child(2):hover {
+  animation: rotate360 0.6s ease;
+}
+
+.social-link:nth-child(3):hover {
+  animation: heartbeat 0.6s ease;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: translateY(-8px) rotate(0deg) scale(1.1);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-10deg) scale(1.1);
+  }
+  75% {
+    transform: translateY(-8px) rotate(10deg) scale(1.1);
+  }
+}
+
+@keyframes rotate360 {
+  from {
+    transform: translateY(-8px) rotate(0deg) scale(1.1);
+  }
+  to {
+    transform: translateY(-8px) rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: translateY(-8px) scale(1.1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.2);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.1);
+  }
+  75% {
+    transform: translateY(-8px) scale(1.15);
+  }
 }
 
 .social-link svg {
   position: relative;
   z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover svg {
+  transform: scale(1.1);
 }
 
 .footer-links {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
+  animation: fadeInRight 0.6s ease-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .footer-column h4 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
   position: relative;
   padding-bottom: 0.8rem;
+  letter-spacing: 0.5px;
 }
 
 .footer-column h4::after {
@@ -742,8 +1078,13 @@ const closeMobileMenu = () => {
   left: 0;
   width: 40px;
   height: 3px;
-  background: #ce4028;
+  background: linear-gradient(90deg, #ce4028, #e6583f);
   border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.footer-column:hover h4::after {
+  width: 60px;
 }
 
 .footer-column ul {
@@ -752,50 +1093,97 @@ const closeMobileMenu = () => {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
 .footer-column ul li a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.footer-column ul li a::before {
+  content: '→';
+  opacity: 0;
+  transform: translateX(-10px);
   transition: all 0.3s ease;
-  display: inline-block;
+}
+
+.footer-column ul li a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .footer-column ul li a:hover {
   color: white;
   transform: translateX(5px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .contact-list li {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.contact-list li:hover {
+  transform: translateX(5px);
+  color: white;
+}
+
+.contact-list li a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-list li a:hover {
+  color: #ce4028;
+  text-decoration: underline;
 }
 
 .contact-list svg {
   color: #ce4028;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.contact-list li:hover svg {
+  transform: scale(1.2) rotate(10deg);
 }
 
 .hours-list li {
   display: flex;
   justify-content: space-between;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.95rem;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
+  transition: all 0.3s ease;
+}
+
+.hours-list li:hover {
+  padding-left: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
 }
 
 .time {
-  font-weight: 600;
+  font-weight: 700;
   color: #ce4028;
+  text-shadow: 0 0 10px rgba(206, 64, 40, 0.3);
 }
 
 .time.closed {
   color: rgba(255, 255, 255, 0.5);
+  text-shadow: none;
 }
 
 .footer-bottom {
@@ -805,6 +1193,18 @@ const closeMobileMenu = () => {
   padding-top: 2rem;
   flex-wrap: wrap;
   gap: 1rem;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .footer-bottom p {
@@ -824,7 +1224,23 @@ const closeMobileMenu = () => {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.85rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-bottom-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #ce4028;
+  transition: width 0.3s ease;
+}
+
+.footer-bottom-links a:hover::after {
+  width: 100%;
 }
 
 .footer-bottom-links a:hover {
@@ -868,7 +1284,7 @@ const closeMobileMenu = () => {
 
   .footer-links {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
@@ -882,11 +1298,12 @@ const closeMobileMenu = () => {
   }
 
   .footer-container {
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 4rem 1.5rem 1.5rem;
   }
 
   .footer-links {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .footer-column {
@@ -912,7 +1329,7 @@ const closeMobileMenu = () => {
   }
 
   .footer-wave {
-    height: 40px;
+    height: 50px;
   }
 }
 
@@ -927,12 +1344,16 @@ const closeMobileMenu = () => {
   }
 
   .social-link {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   .footer-social {
     gap: 0.8rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
   }
 }
 </style>
