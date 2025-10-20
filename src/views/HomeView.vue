@@ -5,57 +5,50 @@ import { RouterLink } from 'vue-router'
 const services = [
   {
     icon: '🚗',
-    title: 'Ampia Selezione',
-    description: 'Scegli tra una vasta gamma di veicoli per ogni esigenza',
+    title: 'Consegna a Domicilio',
+    description:
+      "Consegna e ritiro dell'auto dove vuoi, senza supplementi anche fuori orario e nei festivi",
     color: '#ce4028',
   },
   {
-    icon: '💰',
-    title: 'Prezzi Competitivi',
-    description: 'Tariffe trasparenti e convenienti senza costi nascosti',
+    icon: '💳',
+    title: 'Pagamenti Facili',
+    description: 'Accettiamo tutte le principali carte di credito: Visa e MasterCard',
     color: '#1f4f80',
   },
   {
     icon: '🔧',
     title: 'Assistenza 24/7',
-    description: 'Supporto continuo per qualsiasi necessità durante il noleggio',
+    description: 'Supporto continuativo 7 giorni su 7, sempre al tuo servizio',
     color: '#e6583f',
-  },
-  {
-    icon: '✅',
-    title: 'Veicoli Controllati',
-    description: 'Tutti i nostri veicoli sono revisionati e assicurati',
-    color: '#2d5f8f',
   },
 ]
 
 const fleet = [
   {
-    name: 'Utilitarie',
-    description: 'Perfette per la città',
+    name: 'Auto e Utilitarie',
+    description: 'Marche premium del mercato',
     image: '🚙',
     price: 'da €25/giorno',
-    features: ['Economiche', 'Facili da parcheggiare', 'Basso consumo'],
+    features: ['Senza conducente', 'Consegna inclusa', 'Tutte le marche'],
   },
   {
-    name: 'Berline',
-    description: 'Comfort e spazio',
-    image: '🚘',
-    price: 'da €35/giorno',
-    features: ['Spaziose', 'Confortevoli', 'Eleganti'],
+    name: 'Monovolumi e Minibus',
+    description: 'Spazio per tutta la famiglia',
+    image: '🚐',
+    price: 'da €45/giorno',
+    features: ['Fino a 9 posti', 'Ideali per gruppi', 'Con o senza autista'],
   },
   {
-    name: 'SUV',
-    description: 'Per ogni avventura',
+    name: 'Camper',
+    description: 'La Sardegna in libertà',
     image: '🚙',
-    price: 'da €50/giorno',
-    features: ['Robuste', 'Versatili', '4x4 disponibili'],
+    price: 'Richiedi preventivo',
+    features: ['Completamente attrezzati', 'Assistenza dedicata', "Scopri l'isola"],
   },
 ]
 
 const stats = [
-  { number: '500+', label: 'Clienti Soddisfatti' },
-  { number: '50+', label: 'Veicoli Disponibili' },
   { number: '10+', label: 'Anni di Esperienza' },
   { number: '24/7', label: 'Assistenza' },
 ]
@@ -100,13 +93,13 @@ onMounted(() => {
         </div>
 
         <h1 class="hero-title">
-          <span class="title-line">Il Tuo Autonoleggio</span>
-          <span class="title-line gradient-text">di Fiducia</span>
+          <span class="title-line">Rent a Car Express</span>
+          <span class="title-line gradient-text">Alghero - Sardegna</span>
         </h1>
 
         <p class="hero-description">
-          Soluzioni di noleggio flessibili per ogni tua esigenza.<br />
-          Prenota oggi e parti domani!
+          Autonoleggio con o senza autista in tutta la Sardegna.<br />
+          Transfer aeroportuali, taxi e servizi per ogni occasione!
         </p>
 
         <div class="hero-buttons">
@@ -135,6 +128,93 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Sezione Chi Siamo -->
+    <section class="about-us observe">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">La Nostra Storia</span>
+          <h2>Chi Siamo</h2>
+          <p class="section-subtitle">Il partner ideale per il tuo viaggio in Sardegna</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text">
+            <div class="about-highlight">
+              <span class="highlight-icon">🏝️</span>
+              <div>
+                <h3>Rent a Car Express</h3>
+                <p class="highlight-subtitle">Il tuo autonoleggio di fiducia ad Alghero</p>
+              </div>
+            </div>
+
+            <p class="about-description">
+              Rent a Car Express è un'azienda di autonoleggio che opera in
+              <strong>Sardegna</strong> e in particolare ad <strong>Alghero</strong>. Offriamo
+              servizi di noleggio auto senza autista.
+            </p>
+
+            <div class="about-features">
+              <div class="about-feature-item">
+                <span class="feature-number">01</span>
+                <div class="feature-content">
+                  <h4>Noleggio Professionale</h4>
+                  <p>
+                    Autovetture senza conducente delle migliori marche presenti nel mercato
+                    nazionale, con assistenza di personale altamente specializzato
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-feature-item">
+                <span class="feature-number">02</span>
+                <div class="feature-content">
+                  <h4>Consegna Flessibile</h4>
+                  <p>
+                    La consegna e la ripresa dell'autovettura vengono eseguite a domicilio senza
+                    ulteriori supplementi, anche fuori orario di ufficio e nei giorni festivi
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-feature-item">
+                <span class="feature-number">03</span>
+                <div class="feature-content">
+                  <h4>Pagamenti Sicuri</h4>
+                  <p>
+                    Convenzione con le maggiori carte di credito: Visa e MasterCard per la tua
+                    massima comodità
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-feature-item">
+                <span class="feature-number">04</span>
+                <div class="feature-content">
+                  <h4>Sempre Disponibili</h4>
+                  <p>
+                    Assistenza continuativa 24 ore su 24, 7 giorni su 7 per garantirti tranquillità
+                    durante tutto il noleggio
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <div class="image-decoration decoration-1"></div>
+            <div class="image-decoration decoration-2"></div>
+            <div class="image-card">
+              <div class="image-icon">🚗</div>
+              <div class="image-content">
+                <h4>Esperienza e Affidabilità</h4>
+                <p>Il tuo partner per scoprire la Sardegna</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Sezione Perché Sceglierci -->
     <section class="why-us observe">
       <div class="container">
@@ -158,47 +238,6 @@ onMounted(() => {
             <h3>{{ service.title }}</h3>
             <p>{{ service.description }}</p>
             <div class="card-corner"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sezione Flotta -->
-    <section class="fleet observe">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Veicoli Moderni</span>
-          <h2>La Nostra Flotta</h2>
-          <p class="section-subtitle">
-            Scegli il veicolo perfetto per te tra la nostra selezione premium
-          </p>
-        </div>
-
-        <div class="fleet-grid">
-          <div
-            v-for="(vehicle, index) in fleet"
-            :key="vehicle.name"
-            class="fleet-card"
-            :style="{ '--delay': index * 0.15 + 's' }"
-          >
-            <div class="fleet-badge">Popolare</div>
-            <div class="vehicle-icon">{{ vehicle.image }}</div>
-            <h3>{{ vehicle.name }}</h3>
-            <p class="vehicle-description">{{ vehicle.description }}</p>
-
-            <div class="features-list">
-              <span v-for="feature in vehicle.features" :key="feature" class="feature-tag">
-                {{ feature }}
-              </span>
-            </div>
-
-            <div class="price-section">
-              <p class="price">{{ vehicle.price }}</p>
-              <RouterLink to="/rates" class="btn-outline">
-                <span>Prenota Ora</span>
-                <span class="arrow">→</span>
-              </RouterLink>
-            </div>
           </div>
         </div>
       </div>
@@ -251,56 +290,13 @@ onMounted(() => {
         </div>
       </div>
     </section>
-
-    <!-- Sezione CTA (Call to Action) -->
-    <section class="cta observe">
-      <div class="cta-background">
-        <div class="cta-shape shape-1"></div>
-        <div class="cta-shape shape-2"></div>
-        <div class="cta-shape shape-3"></div>
-      </div>
-
-      <div class="container">
-        <div class="cta-content">
-          <div class="cta-icon">🎉</div>
-          <h2>Pronto a Partire?</h2>
-          <p>
-            Prenota ora e approfitta delle nostre offerte speciali.<br />Tariffe competitive e
-            servizio eccellente ti aspettano!
-          </p>
-
-          <RouterLink to="/rates" class="btn-primary-large">
-            <span class="btn-glow"></span>
-            <span class="btn-content">
-              <span>Richiedi Preventivo Gratuito</span>
-              <span class="btn-arrow">→</span>
-            </span>
-          </RouterLink>
-
-          <div class="cta-features">
-            <div class="cta-feature">
-              <span class="feature-icon">✓</span>
-              <span>Nessun costo nascosto</span>
-            </div>
-            <div class="cta-feature">
-              <span class="feature-icon">✓</span>
-              <span>Cancellazione gratuita</span>
-            </div>
-            <div class="cta-feature">
-              <span class="feature-icon">✓</span>
-              <span>Assistenza 24/7</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 </template>
 
 <style scoped>
 /* Hero Section */
 .jumbotron {
-  min-height: 90vh;
+  min-height: 130vh;
   background: linear-gradient(135deg, #1f4f80 0%, #3a6fa0 50%, #2d5f8f 100%);
   display: flex;
   align-items: center;
@@ -724,6 +720,236 @@ h2 {
 .observe.animate-in {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Chi Siamo */
+.about-us {
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-us::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.03) 0%, rgba(206, 64, 40, 0.03) 100%);
+  pointer-events: none;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-highlight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05) 0%, rgba(206, 64, 40, 0.05) 100%);
+  border-radius: 20px;
+  border-left: 4px solid #ce4028;
+}
+
+.highlight-icon {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.about-highlight h3 {
+  color: #1f4f80;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.highlight-subtitle {
+  color: #ce4028;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #444;
+  margin: 0;
+}
+
+.about-description strong {
+  color: #1f4f80;
+  font-weight: 700;
+}
+
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.about-feature-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  border: 2px solid #f0f0f0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #ce4028, #e6583f);
+  transform: scaleY(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-feature-item:hover::before {
+  transform: scaleY(1);
+}
+
+.about-feature-item:hover {
+  border-color: #ce4028;
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(206, 64, 40, 0.15);
+}
+
+.feature-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ce4028;
+  opacity: 0.3;
+  line-height: 1;
+  min-width: 50px;
+  transition: all 0.3s ease;
+}
+
+.about-feature-item:hover .feature-number {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-content h4 {
+  color: #1f4f80;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.feature-content p {
+  color: #666;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.about-image {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-decoration {
+  position: absolute;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #1f4f80, #3a6fa0);
+  opacity: 0.1;
+}
+
+.decoration-1 {
+  width: 80%;
+  height: 80%;
+  top: 0;
+  right: 0;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decoration-2 {
+  width: 70%;
+  height: 70%;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(135deg, #ce4028, #e6583f);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.image-card {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 350px;
+  border: 2px solid #f0f0f0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 80px rgba(206, 64, 40, 0.2);
+  border-color: #ce4028;
+}
+
+.image-icon {
+  font-size: 6rem;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+.image-content h4 {
+  color: #1f4f80;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.image-content p {
+  color: #ce4028;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* Perché Sceglierci */
@@ -1384,6 +1610,15 @@ h2 {
   .cta h2 {
     font-size: 2.8rem;
   }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .about-image {
+    min-height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1456,6 +1691,23 @@ h2 {
 
   .floating-car {
     font-size: 3rem;
+  }
+
+  .about-content {
+    gap: 3rem;
+  }
+
+  .about-highlight {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image {
+    min-height: 350px;
+  }
+
+  .image-card {
+    max-width: 100%;
   }
 }
 

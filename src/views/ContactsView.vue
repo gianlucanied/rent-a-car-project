@@ -1,30 +1,22 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-const formData = ref({
-  name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  message: '',
-})
-
 const contactMethods = [
   {
     icon: '📞',
     title: 'Telefono',
-    value: '+39 070 123 4567',
+    value: '+39 079 123 4567',
     description: 'Lun-Sab: 9:00-18:00',
-    link: 'tel:+390701234567',
+    link: 'tel:+390791234567',
     gradient: 'from-blue-500 via-blue-600 to-indigo-600',
     iconBg: 'bg-blue-50',
   },
   {
     icon: '📧',
     title: 'Email',
-    value: 'info@rentacar.com',
+    value: 'info@rentacarexpress.it',
     description: 'Risposta entro 24h',
-    link: 'mailto:info@rentacar.com',
+    link: 'mailto:info@rentacarexpress.it',
     gradient: 'from-red-500 via-red-600 to-rose-600',
     iconBg: 'bg-red-50',
   },
@@ -37,73 +29,38 @@ const contactMethods = [
     gradient: 'from-green-500 via-emerald-600 to-teal-600',
     iconBg: 'bg-green-50',
   },
-  {
-    icon: '📍',
-    title: 'Sede',
-    value: 'Via Roma 123, Cagliari',
-    description: 'Sardegna, Italia',
-    link: '#map',
-    gradient: 'from-purple-500 via-violet-600 to-purple-700',
-    iconBg: 'bg-purple-50',
-  },
 ]
 
-const faqItems = [
+const privacyData = [
   {
-    question: 'Quali documenti servono per noleggiare?',
-    answer:
-      "Patente di guida valida, carta d'identità o passaporto e carta di credito intestata al conducente.",
-    icon: '📄',
-    color: 'blue',
+    icon: '📋',
+    title: 'Quali dati raccogliamo',
+    items: [
+      'Nome e Cognome',
+      "Nome dell'azienda (se specificata)",
+      'Numero di telefono (se specificato)',
+      'Indirizzo email',
+      'Informazioni inserite come richiesta',
+    ],
+    color: '#1f4f80',
   },
   {
-    question: 'Posso modificare o cancellare la prenotazione?',
-    answer: 'Sì, puoi modificare o cancellare gratuitamente fino a 24 ore prima del ritiro.',
-    icon: '📅',
-    color: 'purple',
+    icon: '⏱️',
+    title: 'Modalità e durata del trattamento',
+    description:
+      "Il trattamento viene effettuato mediante raccolta, elaborazione e raffronto dei dati attraverso strumenti informatici o telematici con misure di sicurezza idonee a garantirne la riservatezza. I dati rimangono in nostro possesso per il tempo strettamente necessario allo svolgimento delle attività aziendali e all'eventuale gestione di dispute legali, nel rispetto delle normative vigenti.",
+    color: '#ce4028',
   },
   {
-    question: "È possibile riconsegnare l'auto in un'altra sede?",
-    answer: 'Sì, offriamo il servizio one-way con un supplemento che varia in base alla distanza.',
-    icon: '🔄',
-    color: 'green',
+    icon: '🔒',
+    title: "Diritti dell'interessato",
+    description:
+      "È possibile far valere i diritti previsti dall'art.7 del D.Lgs n°196/03 e dal GDPR, tra cui l'accesso, la cancellazione, l'aggiornamento, la rettifica o l'integrazione dei dati scrivendo all'indirizzo della nostra sede o via email.",
+    color: '#2d5f8f',
   },
 ]
 
 const isVisible = ref(false)
-const isSubmitting = ref(false)
-const showSuccess = ref(false)
-
-const handleSubmit = () => {
-  if (
-    !formData.value.name ||
-    !formData.value.email ||
-    !formData.value.subject ||
-    !formData.value.message
-  ) {
-    alert('Per favore, compila tutti i campi obbligatori.')
-    return
-  }
-
-  isSubmitting.value = true
-
-  setTimeout(() => {
-    isSubmitting.value = false
-    showSuccess.value = true
-
-    formData.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    }
-
-    setTimeout(() => {
-      showSuccess.value = false
-    }, 5000)
-  }, 1500)
-}
 
 onMounted(() => {
   setTimeout(() => {
@@ -128,7 +85,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="contacts-page bg-gradient-to-br from-slate-50 via-white to-blue-50">
+  <main class="contacts-page">
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-bg">
@@ -192,138 +149,49 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Form and Map Section -->
-    <section class="form-section observe">
+    <!-- Map Section -->
+    <section class="map-section observe" id="map">
       <div class="container">
-        <div class="form-map-wrapper">
-          <!-- Form Container -->
-          <div class="form-container">
-            <div class="form-header">
-              <div class="header-line"></div>
-              <h2 class="form-title">✉️ Inviaci un Messaggio</h2>
-              <p class="form-subtitle">Compila il form, ti risponderemo al più presto</p>
-            </div>
+        <div class="section-header">
+          <span class="section-tag">Dove Siamo</span>
+          <h2 class="section-title">📍 La Nostra Sede</h2>
+          <p class="section-subtitle">Vieni a trovarci ad Alghero, Sardegna</p>
+        </div>
 
-            <div class="contact-form">
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label">Nome e Cognome *</label>
-                  <input
-                    type="text"
-                    v-model="formData.name"
-                    placeholder="Mario Rossi"
-                    class="form-input"
-                  />
-                </div>
-
-                <div class="form-field">
-                  <label class="form-label">Email *</label>
-                  <input
-                    type="email"
-                    v-model="formData.email"
-                    placeholder="mario@email.com"
-                    class="form-input"
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label">Telefono</label>
-                  <input
-                    type="tel"
-                    v-model="formData.phone"
-                    placeholder="+39 333 123 4567"
-                    class="form-input"
-                  />
-                </div>
-
-                <div class="form-field">
-                  <label class="form-label">Oggetto *</label>
-                  <select v-model="formData.subject" class="form-input">
-                    <option value="">Seleziona...</option>
-                    <option value="info">Richiesta informazioni</option>
-                    <option value="quote">Preventivo personalizzato</option>
-                    <option value="booking">Prenotazione</option>
-                    <option value="support">Assistenza</option>
-                    <option value="other">Altro</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-field">
-                <label class="form-label">Messaggio *</label>
-                <textarea
-                  v-model="formData.message"
-                  rows="5"
-                  placeholder="Scrivi qui il tuo messaggio..."
-                  class="form-input form-textarea"
-                ></textarea>
-              </div>
-
-              <button @click="handleSubmit" class="submit-btn" :disabled="isSubmitting">
-                <span class="btn-bg"></span>
-                <span class="btn-content">
-                  <span v-if="!isSubmitting">Invia Messaggio</span>
-                  <span v-else class="flex items-center gap-2">
-                    <span class="spinner"></span>
-                    Invio in corso...
-                  </span>
-                  <span class="btn-icon">✈️</span>
-                </span>
-              </button>
-
-              <transition name="success-fade">
-                <div v-if="showSuccess" class="success-alert">
-                  <span class="success-icon">✓</span>
-                  <span>Messaggio inviato con successo!</span>
-                </div>
-              </transition>
-            </div>
+        <div class="map-wrapper">
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.7890234567!2d8.315!3d40.556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d73b5e5c3e8e9d%3A0x123456789abcdef!2sVia%20Sebastiano%20Satta%2C%2052%2C%2007041%20Alghero%20SS!5e0!3m2!1sit!2sit!4v1234567890123!5m2!1sit!2sit"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+            ></iframe>
           </div>
 
-          <!-- Map Container -->
-          <div class="map-container" id="map">
-            <div class="map-header">
-              <div class="header-line"></div>
-              <h2 class="map-title">📍 Dove Siamo</h2>
-              <p class="map-subtitle">Vieni a trovarci nella nostra sede</p>
+          <div class="location-info">
+            <div class="info-card">
+              <div class="info-icon">📍</div>
+              <div>
+                <strong>Indirizzo Completo</strong>
+                <p>Via Sebastiano Satta, 52<br />07041 Alghero (SS) - Sardegna, Italia</p>
+              </div>
             </div>
 
-            <div class="map-frame">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093745!2d9.108989315318255!3d39.21631997952286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e734157e5c2b85%3A0x5e7b8c4e5c3e5e8e!2sCagliari%2C%20CA%2C%20Italia!5e0!3m2!1sit!2sit!4v1234567890123!5m2!1sit!2sit"
-                width="100%"
-                height="100%"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-              ></iframe>
+            <div class="info-card">
+              <div class="info-icon">🕒</div>
+              <div>
+                <strong>Orari di Apertura</strong>
+                <p>Lunedì - Sabato: 9:00 - 18:00<br />Domenica: Chiuso</p>
+              </div>
             </div>
 
-            <div class="location-cards">
-              <div class="info-card">
-                <div class="info-icon">📍</div>
-                <div>
-                  <strong>Indirizzo</strong>
-                  <p>Via Roma 123, 09100 Cagliari (CA)</p>
-                </div>
-              </div>
-
-              <div class="info-card">
-                <div class="info-icon">🕒</div>
-                <div>
-                  <strong>Orari di Apertura</strong>
-                  <p>Lun-Sab 9:00-18:00 | Dom: Chiuso</p>
-                </div>
-              </div>
-
-              <div class="info-card">
-                <div class="info-icon">🚗</div>
-                <div>
-                  <strong>Parcheggio</strong>
-                  <p>Disponibile in loco</p>
-                </div>
+            <div class="info-card">
+              <div class="info-icon">🚗</div>
+              <div>
+                <strong>Servizi</strong>
+                <p>Consegna e ritiro a domicilio<br />Parcheggio disponibile</p>
               </div>
             </div>
           </div>
@@ -331,22 +199,114 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section observe">
+    <!-- Privacy Section -->
+    <section class="privacy-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">FAQ</span>
-          <h2 class="section-title">Domande Frequenti</h2>
-          <p class="section-subtitle">Le risposte alle domande più comuni</p>
+          <span class="section-tag">Tutela della Privacy</span>
+          <h2 class="section-title">🔒 Privacy e Trattamento Dati</h2>
+          <p class="section-subtitle">
+            La tua privacy è importante per noi. Ecco come trattiamo i tuoi dati personali
+          </p>
         </div>
 
-        <div class="faq-grid">
-          <div v-for="(faq, index) in faqItems" :key="index" class="faq-card">
-            <div class="faq-icon-box">
-              <span class="faq-icon">{{ faq.icon }}</span>
+        <div class="privacy-intro">
+          <div class="privacy-highlight">
+            <div class="highlight-icon">🛡️</div>
+            <div class="highlight-content">
+              <h3>Garanzia di Privacy</h3>
+              <p>
+                Rent a Car Express garantisce che il trattamento dei dati, che dovessero pervenire
+                via posta elettronica o moduli elettronici, è conforme a quanto previsto dal
+                <strong>Codice sulla Privacy</strong> (D.Lgs n°196/03) e dal
+                <strong>General Data Protection Regulation (GDPR)</strong> europeo.
+              </p>
+              <p class="highlight-note">
+                ℹ️ Il sito non utilizza sistemi di tracciatura delle abitudini di navigazione
+                (cookies) degli utenti.
+              </p>
             </div>
-            <h3 class="faq-question">{{ faq.question }}</h3>
-            <p class="faq-answer">{{ faq.answer }}</p>
+          </div>
+        </div>
+
+        <div class="privacy-grid">
+          <div
+            v-for="(item, index) in privacyData"
+            :key="index"
+            class="privacy-card"
+            :style="{ '--card-delay': index * 0.1 + 's' }"
+          >
+            <div class="privacy-card-header">
+              <div class="privacy-icon" :style="{ background: item.color }">
+                <span>{{ item.icon }}</span>
+              </div>
+              <h3>{{ item.title }}</h3>
+            </div>
+
+            <div class="privacy-card-content">
+              <ul v-if="item.items" class="privacy-list">
+                <li v-for="(listItem, i) in item.items" :key="i">
+                  <span class="list-icon">✓</span>
+                  {{ listItem }}
+                </li>
+              </ul>
+              <p v-else class="privacy-description">{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-footer">
+          <div class="footer-card">
+            <div class="footer-icon">📝</div>
+            <div class="footer-content">
+              <h3>Nota Informativa sulla Privacy</h3>
+              <p>
+                Rent a Car Express svolge alcune attività di trattamento dei dati personali inviati
+                via posta elettronica o moduli elettronici. Tali attività sono necessarie per
+                soddisfare richieste, suggerimenti e per tutti i fini commerciali, fiscali,
+                amministrativi e informativi inerenti la nostra attività.
+              </p>
+              <p>
+                Il titolare del trattamento dei dati personali è
+                <strong>Rent a Car Express</strong>. Le attività sono svolte attraverso procedure
+                automatizzate e informatizzate, esclusivamente presso i nostri sistemi di
+                elaborazione dati.
+              </p>
+            </div>
+          </div>
+
+          <div class="footer-card">
+            <div class="footer-icon">💬</div>
+            <div class="footer-content">
+              <h3>Comunicazione Dati</h3>
+              <p>
+                Nell'ambito del trattamento i dati personali potranno essere utilizzati ai
+                <strong>soli fini istituzionali e gestionali</strong> dei servizi resi. I dati non
+                verranno mai ceduti a terzi per finalità commerciali o di marketing senza il tuo
+                esplicito consenso.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-privacy-card">
+            <div class="contact-privacy-icon">📧</div>
+            <div class="contact-privacy-content">
+              <h3>Esercita i Tuoi Diritti</h3>
+              <p>
+                Per esercitare i tuoi diritti (accesso, cancellazione, aggiornamento, rettifica o
+                integrazione dei dati) puoi scrivere a:
+              </p>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <strong>Rent a Car Express</strong>
+                  <p>Via S. Satta, 52<br />07041 Alghero (SS) - Italia</p>
+                </div>
+                <div class="detail-item">
+                  <strong>Email:</strong>
+                  <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -367,17 +327,18 @@ onMounted(() => {
 
 .contacts-page {
   min-height: 100vh;
+  background: linear-gradient(to-br, #f8f9fa 0%, #ffffff 50%, #f0f4f8 100%);
 }
 
 /* Hero Section */
 .hero-section {
   position: relative;
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 50%, #3a6fa0 100%);
   color: white;
 }
 
@@ -391,14 +352,14 @@ onMounted(() => {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.2;
   animation: float 8s ease-in-out infinite;
 }
 
 .blob-1 {
   width: 500px;
   height: 500px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #ce4028, #e6583f);
   top: -100px;
   right: -100px;
 }
@@ -406,7 +367,7 @@ onMounted(() => {
 .blob-2 {
   width: 400px;
   height: 400px;
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
+  background: linear-gradient(135deg, #ffd93d, #ce4028);
   bottom: -100px;
   left: -100px;
   animation-delay: 2s;
@@ -415,7 +376,7 @@ onMounted(() => {
 .blob-3 {
   width: 350px;
   height: 350px;
-  background: linear-gradient(135deg, #10b981, #06b6d4);
+  background: linear-gradient(135deg, #ffffff, #3a6fa0);
   top: 50%;
   left: 50%;
   animation-delay: 4s;
@@ -463,11 +424,11 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   padding: 1rem 2rem;
   border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
@@ -509,7 +470,7 @@ onMounted(() => {
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 900;
   letter-spacing: -0.05em;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ef4444 100%);
+  background: linear-gradient(135deg, #ffd93d 0%, #ce4028 50%, #e6583f 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -529,7 +490,7 @@ onMounted(() => {
 .hero-description {
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   line-height: 1.8;
-  opacity: 0.9;
+  opacity: 0.95;
   font-weight: 300;
 }
 
@@ -544,7 +505,7 @@ onMounted(() => {
 .scroll-mouse {
   width: 30px;
   height: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
   display: flex;
   align-items: flex-start;
@@ -555,7 +516,7 @@ onMounted(() => {
 .scroll-wheel {
   width: 4px;
   height: 12px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 2px;
   animation: scroll 1.5s ease-in-out infinite;
 }
@@ -586,7 +547,7 @@ onMounted(() => {
 
 .section-tag {
   display: inline-block;
-  color: #ef4444;
+  color: #ce4028;
   font-size: 0.875rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -597,16 +558,17 @@ onMounted(() => {
 .section-title {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 900;
-  color: #0f172a;
+  color: #1f4f80;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: #64748b;
+  color: #666;
   max-width: 600px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
 /* Observe Animation */
@@ -624,7 +586,7 @@ onMounted(() => {
 /* Methods Section */
 .methods-section {
   padding: 7rem 0;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
 }
 
 .methods-grid {
@@ -649,8 +611,8 @@ onMounted(() => {
 
 .method-card:hover {
   transform: translateY(-16px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  border-color: #e2e8f0;
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.2);
+  border-color: #1f4f80;
 }
 
 .card-shine {
@@ -676,6 +638,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.1), rgba(206, 64, 40, 0.1));
 }
 
 .method-card:hover .method-icon-wrapper {
@@ -689,20 +652,20 @@ onMounted(() => {
 .method-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1f4f80;
   margin-bottom: 0.75rem;
 }
 
 .method-value {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #3b82f6;
+  color: #ce4028;
   margin-bottom: 0.5rem;
 }
 
 .method-desc {
   font-size: 0.9375rem;
-  color: #64748b;
+  color: #666;
 }
 
 .card-arrow {
@@ -711,7 +674,7 @@ onMounted(() => {
   right: 2rem;
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -728,191 +691,161 @@ onMounted(() => {
   transform: translate(0, 0);
 }
 
-/* Form Section */
-.form-section {
+/* Map Section */
+.map-section {
   padding: 7rem 0;
   background: white;
 }
 
-.form-map-wrapper {
+.map-wrapper {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
   align-items: start;
 }
 
-.form-header,
-.map-header {
-  margin-bottom: 2.5rem;
-}
-
-.header-line {
-  width: 70px;
-  height: 6px;
-  background: linear-gradient(90deg, #ef4444, #f59e0b);
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-}
-
-.form-title,
-.map-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 0.75rem;
-}
-
-.form-subtitle,
-.map-subtitle {
-  font-size: 1.0625rem;
-  color: #64748b;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem;
-}
-
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-.form-label {
-  font-weight: 700;
-  font-size: 0.9375rem;
-  color: #0f172a;
-}
-
-.form-input {
-  padding: 1.125rem 1.5rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 16px;
-  font-size: 1rem;
-  font-family: inherit;
-  background: white;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #ef4444;
-  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
-  transform: translateY(-2px);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 150px;
-}
-
-.submit-btn {
-  position: relative;
-  padding: 1.5rem 3rem;
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: 1.125rem;
-  cursor: pointer;
+.map-frame {
+  height: 500px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+  border: 3px solid #f0f0f0;
+}
+
+.map-frame:hover {
+  transform: scale(1.02);
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 20px;
+  border: 2px solid #e5e7eb;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(239, 68, 68, 0.4);
+.info-card:hover {
+  transform: translateX(10px);
+  border-color: #ce4028;
+  box-shadow: 0 10px 30px rgba(206, 64, 40, 0.15);
 }
 
-.submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.btn-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-
-.submit-btn:hover .btn-bg {
-  transform: translateX(100%);
-}
-
-.btn-content {
-  position: relative;
+.info-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(31, 79, 128, 0.3);
 }
 
-.btn-icon {
-  font-size: 1.25rem;
-  transition: transform 0.3s;
-}
-
-.submit-btn:hover .btn-icon {
-  transform: translateX(5px) rotate(15deg);
-}
-
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.success-alert {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  border-radius: 20px;
+.info-card strong {
+  display: block;
+  color: #1f4f80;
   font-weight: 700;
-  font-size: 1.0625rem;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
 }
 
-.success-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+.info-card p {
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+/* Privacy Section */
+.privacy-section {
+  padding: 7rem 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.privacy-intro {
+  margin-bottom: 4rem;
+}
+
+.privacy-highlight {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05), rgba(206, 64, 40, 0.05));
+  border-radius: 24px;
+  border-left: 6px solid #ce4028;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-icon {
+  font-size: 4rem;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-.success-fade-enter-active {
-  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+.highlight-content h3 {
+  color: #1f4f80;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
 }
 
-.success-fade-leave-active {
-  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) reverse;
+.highlight-content p {
+  color: #444;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-content strong {
+  color: #1f4f80;
+  font-weight: 700;
+}
+
+.highlight-note {
+  background: rgba(31, 79, 128, 0.1);
+  padding: 1.25rem;
+  border-radius: 16px;
+  border-left: 4px solid #1f4f80;
+  font-weight: 600;
+  color: #1f4f80;
+  margin-top: 1.5rem !important;
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.privacy-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeInUp 0.8s ease-out calc(var(--card-delay)) both;
 }
 
 @keyframes fadeInUp {
@@ -926,149 +859,303 @@ onMounted(() => {
   }
 }
 
-/* Map Container */
-.map-container {
-  position: sticky;
-  top: 2rem;
-}
-
-.map-frame {
-  height: 350px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 2rem 0;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease;
-}
-
-.map-frame:hover {
-  transform: scale(1.02);
-}
-
-.location-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.info-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #f8fafc, #ffffff);
-  border-radius: 18px;
-  border: 2px solid #e2e8f0;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.info-card:hover {
-  transform: translateX(8px);
-  border-color: #ef4444;
-  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.1);
-}
-
-.info-icon {
-  width: 55px;
-  height: 55px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-}
-
-.info-card strong {
-  display: block;
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 1.0625rem;
-  margin-bottom: 0.375rem;
-}
-
-.info-card p {
-  color: #64748b;
-  line-height: 1.6;
-  margin: 0;
-  font-size: 0.9375rem;
-}
-
-/* FAQ Section */
-.faq-section {
-  padding: 7rem 0;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2.5rem;
-}
-
-.faq-card {
-  background: white;
-  padding: 3rem 2.5rem;
-  border-radius: 24px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border: 2px solid transparent;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.faq-card:hover {
+.privacy-card:hover {
   transform: translateY(-12px);
-  border-color: #e2e8f0;
+  border-color: #e5e7eb;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-.faq-icon-box {
-  margin-bottom: 1.75rem;
+.privacy-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.faq-icon {
-  display: inline-flex;
+.privacy-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  font-size: 2rem;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.faq-card:hover .faq-icon {
-  transform: scale(1.15) rotate(-8deg);
+.privacy-card:hover .privacy-icon {
+  transform: scale(1.15) rotate(-5deg);
 }
 
-.faq-question {
-  font-size: 1.375rem;
+.privacy-card-header h3 {
+  color: #1f4f80;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 1.125rem;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
-.faq-answer {
-  font-size: 1.0625rem;
-  color: #64748b;
-  line-height: 1.75;
+.privacy-card-content {
+  color: #666;
+  line-height: 1.8;
+}
+
+.privacy-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.privacy-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(31, 79, 128, 0.03);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.privacy-list li:hover {
+  background: rgba(31, 79, 128, 0.08);
+  transform: translateX(8px);
+}
+
+.list-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.privacy-description {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.privacy-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.footer-card {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  padding: 3rem;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e5e7eb;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  border-color: #1f4f80;
+}
+
+.footer-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.1), rgba(206, 64, 40, 0.1));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.footer-card:hover .footer-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.footer-content {
+  flex: 1;
+}
+
+.footer-content h3 {
+  color: #1f4f80;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.footer-content p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+  margin-bottom: 1rem;
+}
+
+.footer-content p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-content strong {
+  color: #1f4f80;
+  font-weight: 700;
+}
+
+.contact-privacy-card {
+  padding: 3.5rem;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  color: white;
+  border-radius: 24px;
+  box-shadow: 0 15px 50px rgba(31, 79, 128, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-privacy-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-privacy-icon {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-privacy-content {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-privacy-content h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.contact-privacy-content p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: 2rem;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.detail-item {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.detail-item strong {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffd93d;
+}
+
+.detail-item p {
+  font-size: 1rem;
+  opacity: 0.95;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.detail-item a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.detail-item a:hover {
+  color: #ffd93d;
+  text-decoration: underline;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .form-map-wrapper {
+  .map-wrapper {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3rem;
   }
 
-  .map-container {
-    position: relative;
-    top: 0;
+  .map-frame {
+    height: 400px;
+  }
+
+  .privacy-highlight {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .highlight-icon {
+    margin: 0 auto;
+  }
+
+  .footer-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-icon {
+    margin: 0 auto;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1091,12 +1178,7 @@ onMounted(() => {
     gap: 2rem;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .faq-grid {
+  .privacy-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -1106,13 +1188,37 @@ onMounted(() => {
   }
 
   .methods-section,
-  .form-section,
-  .faq-section {
+  .map-section,
+  .privacy-section {
     padding: 4rem 0;
   }
 
   .container {
     padding: 0 1.5rem;
+  }
+
+  .privacy-highlight {
+    padding: 2rem;
+  }
+
+  .footer-card {
+    padding: 2rem;
+  }
+
+  .contact-privacy-card {
+    padding: 2.5rem;
+  }
+
+  .highlight-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .footer-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-privacy-content h3 {
+    font-size: 1.5rem;
   }
 }
 
@@ -1131,19 +1237,54 @@ onMounted(() => {
     font-size: 2rem;
   }
 
-  .form-title,
-  .map-title {
+  .method-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .privacy-card {
+    padding: 2rem;
+  }
+
+  .privacy-card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .highlight-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+  }
+
+  .privacy-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+
+  .footer-icon,
+  .contact-privacy-icon {
+    width: 70px;
+    height: 70px;
     font-size: 2rem;
   }
 
-  .submit-btn {
-    padding: 1.25rem 2rem;
-    font-size: 1rem;
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .hero-section,
+  .scroll-indicator,
+  .card-arrow,
+  .method-card:hover {
+    display: none;
   }
 
-  .method-card,
-  .faq-card {
-    padding: 2rem 1.5rem;
+  .privacy-section {
+    page-break-inside: avoid;
   }
 }
 </style>
