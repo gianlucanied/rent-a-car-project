@@ -190,9 +190,222 @@ onMounted(() => {
             <div class="info-card">
               <div class="info-icon">🚗</div>
               <div>
-                <strong>Servizi</strong>
-                <p>Consegna e ritiro a domicilio<br />Parcheggio disponibile</p>
+                <strong>Servizi Premium</strong>
+                <p>Consegna e ritiro gratuiti<br />Assistenza 24/7 in Sardegna</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Condizioni di Noleggio Section -->
+    <section class="conditions-section observe">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Informazioni Utili</span>
+          <h2 class="section-title">📋 Condizioni di Noleggio</h2>
+          <p class="section-subtitle">
+            Tutto ciò che devi sapere per noleggiare con noi in modo semplice e trasparente
+          </p>
+        </div>
+
+        <div class="conditions-grid">
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #1f4f80">
+                <span>💳</span>
+              </div>
+              <h3>Pagamento</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                Il pagamento del servizio di noleggio viene effettuato alla consegna
+                dell'autovettura. Vengono accettate le principali carte di credito (Visa e
+                MasterCard) oppure contanti.
+              </p>
+              <div class="highlight-box">
+                <strong>💰 Deposito Cauzionale:</strong> In caso di pagamento in contanti si dovrà
+                versare un deposito cauzionale di <strong>€ 500,00</strong>
+              </div>
+              <p class="note-text">
+                La tariffa applicata viene garantita, per noleggi continuativi, sino alla data di
+                previsto rientro presente nella lettera di noleggio.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #ce4028">
+                <span>📊</span>
+              </div>
+              <h3>Tasse</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                Tutti i prezzi indicati sono da intendersi
+                <strong>comprensivi di IVA 22%</strong> se non diversamente specificato.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #2d5f8f">
+                <span>⛽</span>
+              </div>
+              <h3>Carburante</h3>
+            </div>
+            <div class="condition-content">
+              <p>Il costo del carburante è da intendersi a carico del cliente.</p>
+              <div class="highlight-box warning">
+                <strong>⚠️ Attenzione:</strong> Se il veicolo viene affidato con il pieno di
+                carburante e riconsegnato senza lo stesso, verrà conteggiato in aumento oltre
+                l'importo dei litri mancanti, il costo di servizio di rifornimento pari a
+                <strong>€ 15,00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #e6583f">
+                <span>🎂</span>
+              </div>
+              <h3>Età Minima</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                <strong>21 anni</strong> con patente di cat. B in corso di validità ed emessa da
+                almeno <strong>1 anno</strong>.
+              </p>
+              <p class="note-text">
+                Non è possibile noleggiare l'autovettura ai clienti al di sotto dei 21 anni.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #1f4f80">
+                <span>🛡️</span>
+              </div>
+              <h3>Super CDW (SCDW)</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                La copertura opzionale Super CDW costituisce l'esonero da ogni responsabilità per
+                danni al veicolo con conseguente eliminazione della penalità risarcitoria
+                (franchigia).
+              </p>
+              <div class="pricing-box">
+                <div class="price-item">
+                  <span class="price-label">Gruppi A-B-C-E</span>
+                  <span class="price-value">€ 18,00</span>
+                </div>
+                <div class="price-item">
+                  <span class="price-label">Gruppi F-G</span>
+                  <span class="price-value">€ 19,00</span>
+                </div>
+              </div>
+              <p class="note-text">
+                ⚠️ L'assicurazione Super Kasko non copre i danni alle ruote, al sotto scocca e agli
+                interni dell'autovettura.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #ce4028">
+                <span>🚗</span>
+              </div>
+              <h3>Consegna e Ritiro</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                <strong>Gratuita in città</strong> - La consegna e la ripresa dell'autovettura sono
+                incluse nel prezzo entro i limiti della città di Alghero.
+              </p>
+              <p class="note-text">
+                Per consegne in altre località della Sardegna, si prega di contattarci per un
+                preventivo personalizzato.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #2d5f8f">
+                <span>📅</span>
+              </div>
+              <h3>Estensione del Noleggio</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                Se il Cliente volesse prolungare il noleggio oltre i termini prefissati ne deve dare
+                <strong>immediata comunicazione</strong> alla stazione di noleggio onde permettere
+                l'estensione della copertura assicurativa.
+              </p>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #e6583f">
+                <span>🔑</span>
+              </div>
+              <h3>Smarrimento Documenti e Chiavi</h3>
+            </div>
+            <div class="condition-content">
+              <div class="penalty-list">
+                <div class="penalty-item">
+                  <span class="penalty-icon">📄</span>
+                  <div>
+                    <strong>Smarrimento documenti autovettura</strong>
+                    <p>Penale di <strong>€ 300,00</strong></p>
+                  </div>
+                </div>
+                <div class="penalty-item">
+                  <span class="penalty-icon">🔑</span>
+                  <div>
+                    <strong>Smarrimento, rottura o furto chiavi</strong>
+                    <p>Penale di <strong>€ 220,00</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #1f4f80">
+                <span>👶</span>
+              </div>
+              <h3>Seggiolino per Bambini</h3>
+            </div>
+            <div class="condition-content">
+              <p>
+                Il costo per tutto il periodo di noleggio è di <strong>€ 4,00 al giorno</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="conditions-footer">
+          <div class="footer-notice">
+            <div class="notice-icon">ℹ️</div>
+            <div class="notice-content">
+              <h4>Hai bisogno di chiarimenti?</h4>
+              <p>
+                Per ulteriori informazioni sulle condizioni di noleggio, non esitare a contattarci.
+                Il nostro staff è a tua disposizione per rispondere a tutte le tue domande.
+              </p>
+              <a href="tel:+390791234567" class="notice-button">
+                <span>📞</span>
+                Chiamaci ora
+              </a>
             </div>
           </div>
         </div>
@@ -768,6 +981,291 @@ onMounted(() => {
   font-size: 0.9375rem;
 }
 
+/* Condizioni di Noleggio Section */
+.conditions-section {
+  padding: 7rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.condition-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.condition-card:hover {
+  transform: translateY(-12px);
+  border-color: #e5e7eb;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.condition-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05), rgba(206, 64, 40, 0.05));
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.condition-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.condition-card:hover .condition-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.condition-header h3 {
+  color: #1f4f80;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.condition-content {
+  padding: 2rem;
+}
+
+.condition-content p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.condition-content p:last-child {
+  margin-bottom: 0;
+}
+
+.condition-content strong {
+  color: #1f4f80;
+  font-weight: 700;
+}
+
+.highlight-box {
+  background: linear-gradient(135deg, rgba(31, 79, 128, 0.08), rgba(206, 64, 40, 0.08));
+  padding: 1.25rem;
+  border-radius: 12px;
+  border-left: 4px solid #1f4f80;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.highlight-box.warning {
+  background: linear-gradient(135deg, rgba(206, 64, 40, 0.08), rgba(230, 88, 63, 0.08));
+  border-left-color: #ce4028;
+}
+
+.highlight-box strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1f4f80;
+}
+
+.note-text {
+  font-size: 0.9rem !important;
+  color: #888 !important;
+  font-style: italic;
+  margin-top: 1rem !important;
+}
+
+.pricing-box {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.price-item:hover {
+  border-color: #1f4f80;
+  transform: translateX(5px);
+}
+
+.price-label {
+  color: #666;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.price-value {
+  color: #ce4028;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.penalty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.penalty-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.penalty-item:hover {
+  background: white;
+  border-color: #ce4028;
+  transform: translateX(5px);
+}
+
+.penalty-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.penalty-item strong {
+  display: block;
+  color: #1f4f80;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.penalty-item p {
+  margin: 0;
+  color: #ce4028;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.conditions-footer {
+  margin-top: 4rem;
+}
+
+.footer-notice {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  padding: 3rem;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  border-radius: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-notice::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.notice-icon {
+  font-size: 4rem;
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.notice-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.notice-content h4 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.notice-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: 1.5rem;
+}
+
+.notice-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: #1f4f80;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.notice-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.notice-button span {
+  font-size: 1.25rem;
+}
+
 /* Privacy Section */
 .privacy-section {
   padding: 7rem 0;
@@ -1034,15 +1532,6 @@ onMounted(() => {
   animation: rotate 10s linear infinite;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .contact-privacy-icon {
   width: 90px;
   height: 90px;
@@ -1183,12 +1672,28 @@ onMounted(() => {
     gap: 2rem;
   }
 
+  .conditions-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-notice {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem;
+  }
+
+  .notice-icon {
+    margin: 0 auto;
+  }
+
   .hero-section {
     min-height: 70vh;
   }
 
   .methods-section,
   .map-section,
+  .conditions-section,
   .privacy-section {
     padding: 4rem 0;
   }

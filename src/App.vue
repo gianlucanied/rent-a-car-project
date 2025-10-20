@@ -14,9 +14,9 @@ const closeMobileMenu = () => {
 
 // Link social media reali - sostituisci con i tuoi link
 const socialLinks = {
-  facebook: 'https://www.facebook.com/tuapagina',
-  instagram: 'https://www.instagram.com/tuoaccount',
-  whatsapp: 'https://wa.me/390701234567', // formato: https://wa.me/numerotelefono
+  facebook: 'https://www.facebook.com/rentacarexpress',
+  instagram: 'https://www.instagram.com/rentacarexpress',
+  whatsapp: 'https://wa.me/393331234567',
 }
 </script>
 
@@ -25,7 +25,7 @@ const socialLinks = {
     <div class="header-top">
       <div class="header-top-content">
         <div class="contact-info">
-          <a href="tel:+390701234567" class="info-item">
+          <a href="tel:+390791234567" class="info-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -39,7 +39,7 @@ const socialLinks = {
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
               ></path>
             </svg>
-            +39 070 123 4567
+            +39 079 123 4567
           </a>
           <span class="info-item">
             <svg
@@ -56,6 +56,23 @@ const socialLinks = {
             </svg>
             Lun-Sab: 9:00-18:00
           </span>
+          <a href="mailto:info@rentacarexpress.it" class="info-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            info@rentacarexpress.it
+          </a>
         </div>
         <div class="header-lang">
           <button class="lang-btn-small active">IT</button>
@@ -159,7 +176,10 @@ const socialLinks = {
             alt="Rent a Car Express"
             class="footer-logo"
           />
-          <p class="footer-tagline">Il tuo partner di fiducia per il noleggio auto in Sardegna</p>
+          <p class="footer-tagline">
+            Il tuo partner di fiducia per il noleggio auto in Sardegna. Servizi professionali ad
+            Alghero e in tutta la regione.
+          </p>
           <div class="footer-social">
             <a
               :href="socialLinks.facebook"
@@ -248,7 +268,7 @@ const socialLinks = {
                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                   ></path>
                 </svg>
-                <a href="tel:+390701234567">+39 070 123 4567</a>
+                <a href="tel:+390791234567">+39 079 123 4567</a>
               </li>
               <li>
                 <svg
@@ -265,7 +285,7 @@ const socialLinks = {
                   ></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <a href="mailto:info@rentacar.com">info@rentacar.com</a>
+                <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
               </li>
               <li>
                 <svg
@@ -280,7 +300,7 @@ const socialLinks = {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                Cagliari, Sardegna
+                Via S. Satta, 52 - Alghero (SS)
               </li>
             </ul>
           </div>
@@ -294,7 +314,7 @@ const socialLinks = {
               </li>
               <li>
                 <span>Sabato</span>
-                <span class="time">9:00 - 13:00</span>
+                <span class="time">9:00 - 18:00</span>
               </li>
               <li>
                 <span>Domenica</span>
@@ -308,11 +328,11 @@ const socialLinks = {
       <div class="footer-bottom">
         <p>&copy; 2025 Rent a Car Express - Tutti i diritti riservati</p>
         <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
+          <RouterLink to="/contacts">Privacy Policy</RouterLink>
           <span>•</span>
-          <a href="#">Cookie Policy</a>
+          <RouterLink to="/contacts">Cookie Policy</RouterLink>
           <span>•</span>
-          <a href="#">Termini e Condizioni</a>
+          <RouterLink to="/contacts">Termini e Condizioni</RouterLink>
         </div>
       </div>
     </div>
@@ -362,6 +382,7 @@ const socialLinks = {
 .contact-info {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .info-item {
@@ -875,16 +896,6 @@ const socialLinks = {
   transform-origin: center;
 }
 
-@keyframes wave {
-  0%,
-  100% {
-    transform: translateX(0) scaleY(1);
-  }
-  50% {
-    transform: translateX(-25px) scaleY(0.95);
-  }
-}
-
 .footer-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -1331,6 +1342,10 @@ const socialLinks = {
   .footer-wave {
     height: 50px;
   }
+
+  .contact-info {
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1341,6 +1356,7 @@ const socialLinks = {
   .contact-info {
     flex-direction: column;
     gap: 0.5rem;
+    font-size: 0.8rem;
   }
 
   .social-link {
