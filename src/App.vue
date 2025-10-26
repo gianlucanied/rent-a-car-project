@@ -937,6 +937,7 @@ const socialLinks = {
 .footer-logo {
   height: 60px;
   width: fit-content;
+  max-width: 200px;
   filter: brightness(0) invert(1);
   transition: all 0.3s ease;
 }
@@ -1384,6 +1385,11 @@ const socialLinks = {
     height: 50px;
   }
 
+  .footer-logo {
+    max-width: 150px;
+    height: 50px;
+  }
+
   .contact-info {
     gap: 1rem;
   }
@@ -1430,6 +1436,15 @@ const socialLinks = {
 
   .footer-tagline {
     font-size: 0.9rem;
+  }
+
+  .footer-logo {
+    max-width: 120px;
+    height: 45px;
+  }
+
+  .footer-brand {
+    text-align: center;
   }
 }
 </style>
