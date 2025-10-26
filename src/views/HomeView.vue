@@ -4,13 +4,6 @@ import { RouterLink } from 'vue-router'
 
 const services = [
   {
-    icon: '🚗',
-    title: 'Consegna a Domicilio',
-    description:
-      "Consegna e ritiro dell'auto dove vuoi, senza supplementi anche fuori orario e nei festivi",
-    color: '#ce4028',
-  },
-  {
     icon: '💳',
     title: 'Pagamenti Facili',
     description: 'Accettiamo tutte le principali carte di credito: Visa e MasterCard',
@@ -38,13 +31,6 @@ const fleet = [
     image: '🚐',
     price: 'da €45/giorno',
     features: ['Fino a 9 posti', 'Ideali per gruppi', 'Con o senza autista'],
-  },
-  {
-    name: 'Camper',
-    description: 'La Sardegna in libertà',
-    image: '🚙',
-    price: 'Richiedi preventivo',
-    features: ['Completamente attrezzati', 'Assistenza dedicata', "Scopri l'isola"],
   },
 ]
 
@@ -87,20 +73,10 @@ onMounted(() => {
       </div>
 
       <div class="hero-content" :class="{ visible: isVisible }">
-        <div class="hero-badge">
-          <span class="badge-icon">⭐</span>
-          <span>Il #1 per il Noleggio Auto in Sardegna</span>
-        </div>
-
         <h1 class="hero-title">
           <span class="title-line">Rent a Car Express</span>
           <span class="title-line gradient-text">Alghero - Sardegna</span>
         </h1>
-
-        <p class="hero-description">
-          Autonoleggio con o senza autista in tutta la Sardegna.<br />
-          Transfer aeroportuali, taxi e servizi per ogni occasione!
-        </p>
 
         <div class="hero-buttons">
           <RouterLink to="/rates" class="btn-primary">

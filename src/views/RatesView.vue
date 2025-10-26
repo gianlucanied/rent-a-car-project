@@ -257,56 +257,6 @@ onMounted(() => {
               <span class="price-amount">€{{ extra.price }}</span>
               <span class="price-period">/giorno</span>
             </div>
-
-            <button class="add-button">
-              <span>Aggiungi</span>
-              <span class="plus-icon">+</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Long Term Rates -->
-    <section class="long-term-section observe">
-      <div class="long-term-background">
-        <div class="bg-shape shape-1"></div>
-        <div class="bg-shape shape-2"></div>
-        <div class="bg-shape shape-3"></div>
-      </div>
-
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label light">Offerte Speciali</span>
-          <h2>Noleggi a Lungo Termine</h2>
-          <p class="section-subtitle">
-            Risparmia di più con noleggi prolungati. Più a lungo noleggi, più risparmi!
-          </p>
-        </div>
-
-        <div class="long-term-grid">
-          <div
-            v-for="(rate, index) in longTermRates"
-            :key="rate.period"
-            class="term-card"
-            :style="{ '--delay': index * 0.15 + 's' }"
-          >
-            <div class="term-icon">{{ rate.icon }}</div>
-            <span class="term-badge">{{ rate.badge }}</span>
-            <h3>{{ rate.period }}</h3>
-
-            <div class="discount-badge">
-              <div class="discount-circle">
-                <span class="discount-value">{{ rate.discount }}</span>
-              </div>
-              <span class="discount-label">di sconto</span>
-            </div>
-
-            <div class="term-features">
-              <span class="term-feature">✓ Prezzo bloccato</span>
-              <span class="term-feature">✓ Assistenza dedicata</span>
-              <span class="term-feature">✓ Km illimitati</span>
-            </div>
           </div>
         </div>
       </div>
@@ -335,25 +285,6 @@ onMounted(() => {
                 <span class="btn-icon">📧</span>
               </span>
             </RouterLink>
-
-            <a href="tel:+390701234567" class="cta-secondary">
-              <span class="btn-content">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  ></path>
-                </svg>
-                <span>Chiamaci Ora</span>
-              </span>
-            </a>
           </div>
 
           <div class="cta-trust">

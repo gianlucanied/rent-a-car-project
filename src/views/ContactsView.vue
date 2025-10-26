@@ -149,6 +149,38 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- QR Code WhatsApp Section -->
+    <section class="qrcode-section observe">
+      <div class="container">
+        <div class="qrcode-card">
+          <div class="qrcode-decoration">
+            <div class="qrcode-blob qrcode-blob-1"></div>
+            <div class="qrcode-blob qrcode-blob-2"></div>
+          </div>
+
+          <div class="qrcode-content">
+            <div class="qrcode-text">
+              <div class="qrcode-icon">💬</div>
+              <h2 class="qrcode-title">Scansiona e Chatta su WhatsApp</h2>
+              <p class="qrcode-description">
+                Inquadra il QR code con la fotocamera del tuo smartphone per iniziare una
+                conversazione immediata con noi su WhatsApp!
+              </p>
+            </div>
+
+            <div class="qrcode-image-wrapper">
+              <div class="qrcode-frame">
+                <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qrcode-img" />
+              </div>
+              <div class="qrcode-badge">
+                <span>📱 Scansiona Ora</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Map Section -->
     <section class="map-section observe" id="map">
       <div class="container">
@@ -319,18 +351,32 @@ onMounted(() => {
           <div class="condition-card">
             <div class="condition-header">
               <div class="condition-icon" style="background: #ce4028">
-                <span>🚗</span>
+                <span>🚨</span>
               </div>
-              <h3>Consegna e Ritiro</h3>
+              <h3>Penalità risarcitorie (Franchigie)</h3>
             </div>
             <div class="condition-content">
-              <p>
-                <strong>Gratuita in città</strong> - La consegna e la ripresa dell'autovettura sono
-                incluse nel prezzo entro i limiti della città di Alghero.
-              </p>
+              <p>In caso di danni o furto si applicano le seguenti franchigie:</p>
+              <div class="pricing-box">
+                <div class="price-item">
+                  <span class="price-label">Gruppi A-B</span>
+                  <span class="price-value">€ 700,00</span>
+                </div>
+                <div class="price-item">
+                  <span class="price-label">Gruppo C-E</span>
+                  <span class="price-value">€ 800,00</span>
+                </div>
+                <div class="price-item">
+                  <span class="price-label">Gruppo F</span>
+                  <span class="price-value">€ 900,00</span>
+                </div>
+                <div class="price-item">
+                  <span class="price-label">Gruppo G</span>
+                  <span class="price-value">€ 1.400,00</span>
+                </div>
+              </div>
               <p class="note-text">
-                Per consegne in altre località della Sardegna, si prega di contattarci per un
-                preventivo personalizzato.
+                Le franchigie si applicano per ogni singolo evento dannoso o furto.
               </p>
             </div>
           </div>
@@ -338,15 +384,20 @@ onMounted(() => {
           <div class="condition-card">
             <div class="condition-header">
               <div class="condition-icon" style="background: #2d5f8f">
-                <span>📅</span>
+                <span>👤</span>
               </div>
-              <h3>Estensione del Noleggio</h3>
+              <h3>Conducenti Aggiuntivi</h3>
             </div>
             <div class="condition-content">
-              <p>
-                Se il Cliente volesse prolungare il noleggio oltre i termini prefissati ne deve dare
-                <strong>immediata comunicazione</strong> alla stazione di noleggio onde permettere
-                l'estensione della copertura assicurativa.
+              <p>È possibile aggiungere conducenti extra al contratto di noleggio.</p>
+              <div class="pricing-box">
+                <div class="price-item">
+                  <span class="price-label">Costo giornaliero</span>
+                  <span class="price-value">€ 5,00</span>
+                </div>
+              </div>
+              <p class="note-text">
+                Ogni conducente aggiuntivo deve soddisfare i requisiti di età e patente.
               </p>
             </div>
           </div>
@@ -354,26 +405,18 @@ onMounted(() => {
           <div class="condition-card">
             <div class="condition-header">
               <div class="condition-icon" style="background: #e6583f">
-                <span>🔑</span>
+                <span>🌍</span>
               </div>
-              <h3>Smarrimento Documenti e Chiavi</h3>
+              <h3>Limiti Territoriali</h3>
             </div>
             <div class="condition-content">
-              <div class="penalty-list">
-                <div class="penalty-item">
-                  <span class="penalty-icon">📄</span>
-                  <div>
-                    <strong>Smarrimento documenti autovettura</strong>
-                    <p>Penale di <strong>€ 300,00</strong></p>
-                  </div>
-                </div>
-                <div class="penalty-item">
-                  <span class="penalty-icon">🔑</span>
-                  <div>
-                    <strong>Smarrimento, rottura o furto chiavi</strong>
-                    <p>Penale di <strong>€ 220,00</strong></p>
-                  </div>
-                </div>
+              <p>
+                È espressamente vietato l'utilizzo del veicolo al di fuori del territorio della
+                Regione Sardegna.
+              </p>
+              <div class="highlight-box warning">
+                <strong>⚠️ Importante:</strong> La violazione di questo limite comporta la decadenza
+                di tutte le coperture assicurative ed eventuali sanzioni.
               </div>
             </div>
           </div>
@@ -381,31 +424,38 @@ onMounted(() => {
           <div class="condition-card">
             <div class="condition-header">
               <div class="condition-icon" style="background: #1f4f80">
-                <span>👶</span>
+                <span>🔧</span>
               </div>
-              <h3>Seggiolino per Bambini</h3>
+              <h3>Manutenzione e Danni</h3>
             </div>
             <div class="condition-content">
               <p>
-                Il costo per tutto il periodo di noleggio è di <strong>€ 4,00 al giorno</strong>.
+                Il cliente è responsabile della manutenzione ordinaria durante il noleggio
+                (controllo livelli olio, acqua, pressione pneumatici).
               </p>
+              <div class="highlight-box">
+                <strong>💡 Servizio Assistenza:</strong> In caso di problemi tecnici, contattare
+                immediatamente il nostro servizio assistenza disponibile 24/7.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="conditions-footer">
-          <div class="footer-notice">
-            <div class="notice-icon">ℹ️</div>
-            <div class="notice-content">
-              <h4>Hai bisogno di chiarimenti?</h4>
+          <div class="condition-card">
+            <div class="condition-header">
+              <div class="condition-icon" style="background: #ce4028">
+                <span>📅</span>
+              </div>
+              <h3>Cancellazione e Modifiche</h3>
+            </div>
+            <div class="condition-content">
               <p>
-                Per ulteriori informazioni sulle condizioni di noleggio, non esitare a contattarci.
-                Il nostro staff è a tua disposizione per rispondere a tutte le tue domande.
+                È possibile cancellare o modificare la prenotazione gratuitamente fino a
+                <strong>48 ore</strong> prima dell'inizio del noleggio.
               </p>
-              <a href="tel:+390791234567" class="notice-button">
-                <span>📞</span>
-                Chiamaci ora
-              </a>
+              <div class="highlight-box warning">
+                <strong>⚠️ Penali:</strong> Cancellazioni o modifiche entro 48 ore dall'inizio del
+                noleggio potrebbero essere soggette a penali.
+              </div>
             </div>
           </div>
         </div>
@@ -416,39 +466,29 @@ onMounted(() => {
     <section class="privacy-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Tutela della Privacy</span>
-          <h2 class="section-title">🔒 Privacy e Trattamento Dati</h2>
+          <span class="section-tag">Informativa Privacy</span>
+          <h2 class="section-title">🔐 La Tua Privacy è Importante</h2>
           <p class="section-subtitle">
-            La tua privacy è importante per noi. Ecco come trattiamo i tuoi dati personali
+            Come trattiamo i tuoi dati personali in conformità con il GDPR
           </p>
         </div>
 
-        <div class="privacy-intro">
-          <div class="privacy-highlight">
-            <div class="highlight-icon">🛡️</div>
-            <div class="highlight-content">
-              <h3>Garanzia di Privacy</h3>
-              <p>
-                Rent a Car Express garantisce che il trattamento dei dati, che dovessero pervenire
-                via posta elettronica o moduli elettronici, è conforme a quanto previsto dal
-                <strong>Codice sulla Privacy</strong> (D.Lgs n°196/03) e dal
-                <strong>General Data Protection Regulation (GDPR)</strong> europeo.
-              </p>
-              <p class="highlight-note">
-                ℹ️ Il sito non utilizza sistemi di tracciatura delle abitudini di navigazione
-                (cookies) degli utenti.
-              </p>
-            </div>
+        <div class="privacy-highlight">
+          <div class="highlight-icon">
+            <span>🛡️</span>
+          </div>
+          <div class="highlight-content">
+            <h3>Protezione Totale dei Tuoi Dati</h3>
+            <p>
+              Trattiamo i tuoi dati personali con la massima cura e sicurezza, in piena conformità
+              con il Regolamento Generale sulla Protezione dei Dati (GDPR) e il D.Lgs n°196/03. La
+              tua privacy è la nostra priorità.
+            </p>
           </div>
         </div>
 
         <div class="privacy-grid">
-          <div
-            v-for="(item, index) in privacyData"
-            :key="index"
-            class="privacy-card"
-            :style="{ '--card-delay': index * 0.1 + 's' }"
-          >
+          <div v-for="(item, index) in privacyData" :key="index" class="privacy-card">
             <div class="privacy-card-header">
               <div class="privacy-icon" :style="{ background: item.color }">
                 <span>{{ item.icon }}</span>
@@ -459,8 +499,8 @@ onMounted(() => {
             <div class="privacy-card-content">
               <ul v-if="item.items" class="privacy-list">
                 <li v-for="(listItem, i) in item.items" :key="i">
-                  <span class="list-icon">✓</span>
-                  {{ listItem }}
+                  <span class="list-bullet">✓</span>
+                  <span>{{ listItem }}</span>
                 </li>
               </ul>
               <p v-else class="privacy-description">{{ item.description }}</p>
@@ -468,55 +508,62 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="privacy-footer">
+        <div class="footer-cards">
           <div class="footer-card">
-            <div class="footer-icon">📝</div>
+            <div class="footer-icon">
+              <span>🎯</span>
+            </div>
             <div class="footer-content">
-              <h3>Nota Informativa sulla Privacy</h3>
+              <h3>Finalità del Trattamento</h3>
               <p>
-                Rent a Car Express svolge alcune attività di trattamento dei dati personali inviati
-                via posta elettronica o moduli elettronici. Tali attività sono necessarie per
-                soddisfare richieste, suggerimenti e per tutti i fini commerciali, fiscali,
-                amministrativi e informativi inerenti la nostra attività.
-              </p>
-              <p>
-                Il titolare del trattamento dei dati personali è
-                <strong>Rent a Car Express</strong>. Le attività sono svolte attraverso procedure
-                automatizzate e informatizzate, esclusivamente presso i nostri sistemi di
-                elaborazione dati.
+                I dati raccolti vengono utilizzati esclusivamente per:
+                <strong
+                  >gestire le prenotazioni, fornire assistenza clienti, migliorare i nostri servizi
+                  e adempiere agli obblighi contrattuali e legali</strong
+                >. Non condividiamo mai i tuoi dati con terze parti senza il tuo esplicito consenso.
               </p>
             </div>
           </div>
 
           <div class="footer-card">
-            <div class="footer-icon">💬</div>
+            <div class="footer-icon">
+              <span>🔐</span>
+            </div>
             <div class="footer-content">
-              <h3>Comunicazione Dati</h3>
+              <h3>Sicurezza dei Dati</h3>
               <p>
-                Nell'ambito del trattamento i dati personali potranno essere utilizzati ai
-                <strong>soli fini istituzionali e gestionali</strong> dei servizi resi. I dati non
-                verranno mai ceduti a terzi per finalità commerciali o di marketing senza il tuo
-                esplicito consenso.
+                Utilizziamo <strong>tecnologie di crittografia avanzate</strong> e misure di
+                sicurezza all'avanguardia per proteggere i tuoi dati da accessi non autorizzati,
+                perdita o alterazione. I nostri sistemi sono costantemente monitorati e aggiornati.
               </p>
             </div>
           </div>
 
           <div class="contact-privacy-card">
-            <div class="contact-privacy-icon">📧</div>
+            <div class="contact-privacy-icon">
+              <span>📞</span>
+            </div>
             <div class="contact-privacy-content">
-              <h3>Esercita i Tuoi Diritti</h3>
+              <h3>Hai Domande sulla Privacy?</h3>
               <p>
-                Per esercitare i tuoi diritti (accesso, cancellazione, aggiornamento, rettifica o
-                integrazione dei dati) puoi scrivere a:
+                Per qualsiasi informazione riguardante il trattamento dei tuoi dati personali, per
+                esercitare i tuoi diritti o per richiedere chiarimenti sulla nostra informativa
+                privacy, non esitare a contattarci.
               </p>
               <div class="contact-details">
                 <div class="detail-item">
-                  <strong>Rent a Car Express</strong>
-                  <p>Via S. Satta, 52<br />07041 Alghero (SS) - Italia</p>
+                  <strong>📧 Email</strong>
+                  <p>
+                    <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
+                  </p>
                 </div>
                 <div class="detail-item">
-                  <strong>Email:</strong>
-                  <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
+                  <strong>📞 Telefono</strong>
+                  <p>+39 079 123 4567</p>
+                </div>
+                <div class="detail-item">
+                  <strong>📍 Sede Legale</strong>
+                  <p>Via Sebastiano Satta, 52<br />07041 Alghero (SS)</p>
                 </div>
               </div>
             </div>
@@ -528,19 +575,22 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
+/* Global Styles */
 * {
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .contacts-page {
-  min-height: 100vh;
-  background: linear-gradient(to-br, #f8f9fa 0%, #ffffff 50%, #f0f4f8 100%);
+  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 /* Hero Section */
@@ -551,13 +601,15 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 50%, #3a6fa0 100%);
-  color: white;
+  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 50%, #3a6f9e 100%);
 }
 
 .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
 }
 
@@ -565,34 +617,48 @@ onMounted(() => {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.2;
-  animation: float 8s ease-in-out infinite;
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
 }
 
 .blob-1 {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(135deg, #ce4028, #e6583f);
-  top: -100px;
-  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(45deg, #ffd93d, #ff6b9d);
+  top: -200px;
+  left: -200px;
+  animation-delay: 0s;
 }
 
 .blob-2 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, #ffd93d, #ce4028);
-  bottom: -100px;
-  left: -100px;
-  animation-delay: 2s;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 5s;
 }
 
 .blob-3 {
-  width: 350px;
-  height: 350px;
-  background: linear-gradient(135deg, #ffffff, #3a6fa0);
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(225deg, #f093fb, #f5576c);
   top: 50%;
   left: 50%;
-  animation-delay: 4s;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+.grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 @keyframes float {
@@ -608,24 +674,15 @@ onMounted(() => {
   }
 }
 
-.grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   text-align: center;
   max-width: 900px;
-  padding: 0 2rem;
+  padding: 4rem 2rem;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .hero-content.visible {
@@ -637,74 +694,65 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  padding: 1rem 2rem;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
-  padding: 1rem 2rem;
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  margin-bottom: 2rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .badge-icon {
   font-size: 1.5rem;
-  animation: bounce 2s ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
+@keyframes pulse {
   0%,
   100% {
-    transform: translateY(0);
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    transform: scale(1.1);
   }
-}
-
-.badge-text {
-  font-weight: 700;
-  font-size: 1rem;
 }
 
 .hero-title {
   margin-bottom: 2rem;
 }
 
-.title-main {
+.title-main,
+.title-gradient {
   display: block;
-  font-size: clamp(3rem, 8vw, 5rem);
+  font-size: 4rem;
   font-weight: 900;
-  letter-spacing: -0.05em;
-  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.title-main {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .title-gradient {
-  display: block;
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  background: linear-gradient(135deg, #ffd93d 0%, #ce4028 50%, #e6583f 100%);
-  background-size: 200% auto;
+  background: linear-gradient(135deg, #ffd93d 0%, #ff6b9d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  margin-top: 0.5rem;
 }
 
 .hero-description {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.375rem;
   line-height: 1.8;
-  opacity: 0.95;
-  font-weight: 300;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .scroll-indicator {
@@ -712,47 +760,50 @@ onMounted(() => {
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2s ease-in-out infinite;
 }
 
 .scroll-mouse {
   width: 30px;
   height: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 20px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 8px 0;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  position: relative;
 }
 
 .scroll-wheel {
   width: 4px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.7);
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 2px;
-  animation: scroll 1.5s ease-in-out infinite;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll 2s ease-in-out infinite;
 }
 
 @keyframes scroll {
-  0% {
-    transform: translateY(0);
+  0%,
+  100% {
+    top: 8px;
     opacity: 1;
   }
-  100% {
-    transform: translateY(15px);
-    opacity: 0;
+  50% {
+    top: 20px;
+    opacity: 0.5;
   }
 }
 
-/* Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* Common Section Styles */
+.methods-section,
+.qrcode-section,
+.map-section,
+.conditions-section,
+.privacy-section {
+  padding: 6rem 0;
+  position: relative;
 }
 
-/* Section Headers */
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -760,35 +811,37 @@ onMounted(() => {
 
 .section-tag {
   display: inline-block;
-  color: #ce4028;
-  font-size: 0.875rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(31, 79, 128, 0.3);
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 800;
   color: #1f4f80;
-  letter-spacing: -0.03em;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .section-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #666;
-  max-width: 600px;
+  line-height: 1.6;
+  max-width: 700px;
   margin: 0 auto;
-  line-height: 1.7;
 }
 
 /* Observe Animation */
 .observe {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .observe.animate-in {
@@ -796,62 +849,72 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-/* Methods Section */
-.methods-section {
-  padding: 7rem 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-}
-
+/* Contact Methods Grid */
 .methods-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
+  margin-top: 3rem;
 }
 
 .method-card {
   position: relative;
+  padding: 3rem 2.5rem;
   background: white;
-  padding: 3rem 2rem;
   border-radius: 24px;
-  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 2px solid transparent;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid transparent;
 }
 
-.method-card:hover {
-  transform: translateY(-16px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.2);
-  border-color: #1f4f80;
+.method-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #1f4f80, #2d5f8f, #3a6f9e);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.method-card:hover::before {
+  opacity: 1;
 }
 
 .card-shine {
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  transition: left 0.6s;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
 }
 
 .method-card:hover .card-shine {
   left: 100%;
 }
 
+.method-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.2);
+  border-color: rgba(31, 79, 128, 0.2);
+}
+
 .method-icon-wrapper {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 1.5rem;
+  width: 80px;
+  height: 80px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.1), rgba(206, 64, 40, 0.1));
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s ease;
 }
 
 .method-card:hover .method-icon-wrapper {
@@ -859,26 +922,27 @@ onMounted(() => {
 }
 
 .method-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .method-title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #1f4f80;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .method-value {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #ce4028;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.75rem;
 }
 
 .method-desc {
-  font-size: 0.9375rem;
   color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .card-arrow {
@@ -895,8 +959,8 @@ onMounted(() => {
   color: white;
   font-size: 1.5rem;
   opacity: 0;
-  transform: translate(20px, 20px);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translate(10px, 10px);
+  transition: all 0.4s ease;
 }
 
 .method-card:hover .card-arrow {
@@ -904,118 +968,245 @@ onMounted(() => {
   transform: translate(0, 0);
 }
 
+/* QR Code Section Styles */
+.qrcode-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #e8f4f8 100%);
+}
+
+.qrcode-card {
+  position: relative;
+  background: white;
+  border-radius: 32px;
+  padding: 4rem;
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
+  overflow: hidden;
+}
+
+.qrcode-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.qrcode-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.qrcode-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  top: -100px;
+  right: -100px;
+  animation: float 15s ease-in-out infinite;
+}
+
+.qrcode-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #25d366, #34e89e);
+  bottom: -80px;
+  left: -80px;
+  animation: float 20s ease-in-out infinite reverse;
+}
+
+.qrcode-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.qrcode-text {
+  text-align: left;
+}
+
+.qrcode-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.qrcode-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1f4f80;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.qrcode-description {
+  font-size: 1.125rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.qrcode-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qrcode-frame {
+  position: relative;
+  padding: 2rem;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  border: 3px solid #25d366;
+  transition: all 0.4s ease;
+}
+
+.qrcode-frame:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(37, 211, 102, 0.3);
+}
+
+.qrcode-img {
+  display: block;
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.qrcode-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
 /* Map Section */
 .map-section {
-  padding: 7rem 0;
   background: white;
 }
 
 .map-wrapper {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 3rem;
   align-items: start;
 }
 
 .map-frame {
-  height: 500px;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease;
-  border: 3px solid #f0f0f0;
-}
-
-.map-frame:hover {
-  transform: scale(1.02);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  height: 500px;
 }
 
 .location-info {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .info-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
   border-radius: 20px;
-  border: 2px solid #e5e7eb;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(31, 79, 128, 0.1);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
 }
 
 .info-card:hover {
   transform: translateX(10px);
-  border-color: #ce4028;
-  box-shadow: 0 10px 30px rgba(206, 64, 40, 0.15);
+  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.15);
+  border-color: rgba(31, 79, 128, 0.3);
 }
 
 .info-icon {
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 18px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.75rem;
   flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(31, 79, 128, 0.3);
+  box-shadow: 0 8px 20px rgba(31, 79, 128, 0.25);
 }
 
 .info-card strong {
   display: block;
+  font-size: 1.25rem;
   color: #1f4f80;
+  margin-bottom: 0.75rem;
   font-weight: 700;
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
 }
 
 .info-card p {
   color: #666;
-  line-height: 1.7;
-  margin: 0;
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* Condizioni di Noleggio Section */
+/* Conditions Section */
 .conditions-section {
-  padding: 7rem 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
 }
 
 .conditions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .conditions-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .condition-card {
   background: white;
   border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   border: 2px solid transparent;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #333;
 }
 
 .condition-card:hover {
-  transform: translateY(-12px);
-  border-color: #e5e7eb;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
+  border-color: rgba(31, 79, 128, 0.2);
 }
 
 .condition-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05), rgba(206, 64, 40, 0.05));
-  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 2rem;
 }
 
 .condition-icon {
@@ -1026,341 +1217,158 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.condition-card:hover .condition-icon {
-  transform: scale(1.15) rotate(-5deg);
 }
 
 .condition-header h3 {
-  color: #1f4f80;
-  font-size: 1.5rem;
+  font-size: 1.625rem;
   font-weight: 700;
-  line-height: 1.3;
+  color: #1f4f80;
 }
 
 .condition-content {
-  padding: 2rem;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.0625rem;
 }
 
 .condition-content p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  color: #333;
 }
 
 .condition-content p:last-child {
   margin-bottom: 0;
 }
 
-.condition-content strong {
+.highlight-box {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #e8f4f8, #f0f9ff);
+  border-left: 4px solid #1f4f80;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  color: #333;
+}
+
+.highlight-box strong {
   color: #1f4f80;
   font-weight: 700;
 }
 
-.highlight-box {
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.08), rgba(206, 64, 40, 0.08));
-  padding: 1.25rem;
-  border-radius: 12px;
-  border-left: 4px solid #1f4f80;
-  margin: 1.5rem 0;
-  font-size: 0.95rem;
-}
-
 .highlight-box.warning {
-  background: linear-gradient(135deg, rgba(206, 64, 40, 0.08), rgba(230, 88, 63, 0.08));
+  background: linear-gradient(135deg, #fff4e6, #ffe8cc);
   border-left-color: #ce4028;
+  color: #333;
 }
 
-.highlight-box strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #1f4f80;
+.highlight-box.warning strong {
+  color: #ce4028;
 }
 
 .note-text {
-  font-size: 0.9rem !important;
-  color: #888 !important;
+  font-size: 0.9375rem;
+  color: #777;
   font-style: italic;
-  margin-top: 1rem !important;
+  margin-top: 1rem;
 }
 
 .pricing-box {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin: 1.5rem 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  color: #333;
 }
 
 .price-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   background: white;
   border-radius: 8px;
-  border: 2px solid #e5e7eb;
-  transition: all 0.3s ease;
-}
-
-.price-item:hover {
-  border-color: #1f4f80;
-  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .price-label {
-  color: #666;
   font-weight: 600;
-  font-size: 0.95rem;
+  color: #333;
+  font-size: 1rem;
 }
 
 .price-value {
-  color: #ce4028;
-  font-weight: 800;
+  font-weight: 700;
+  color: #1f4f80;
   font-size: 1.25rem;
 }
 
-.penalty-list {
+/* Privacy Section */
+.privacy-section {
+  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+}
+
+.privacy-highlight {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.penalty-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.25rem;
-  background: #f8f9fa;
-  border-radius: 12px;
-  border: 2px solid #e5e7eb;
-  transition: all 0.3s ease;
-}
-
-.penalty-item:hover {
-  background: white;
-  border-color: #ce4028;
-  transform: translateX(5px);
-}
-
-.penalty-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.penalty-item strong {
-  display: block;
-  color: #1f4f80;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.penalty-item p {
-  margin: 0;
-  color: #ce4028;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.conditions-footer {
-  margin-top: 4rem;
-}
-
-.footer-notice {
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
+  align-items: center;
+  gap: 3rem;
   padding: 3rem;
   background: linear-gradient(135deg, #1f4f80, #2d5f8f);
   border-radius: 24px;
   color: white;
-  position: relative;
-  overflow: hidden;
+  margin-bottom: 4rem;
+  box-shadow: 0 15px 50px rgba(31, 79, 128, 0.3);
 }
 
-.footer-notice::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: rotate 10s linear infinite;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.notice-icon {
-  font-size: 4rem;
-  flex-shrink: 0;
-  width: 90px;
-  height: 90px;
+.highlight-icon {
+  width: 100px;
+  height: 100px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 1;
-}
-
-.notice-content {
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-.notice-content h4 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.notice-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  opacity: 0.95;
-  margin-bottom: 1.5rem;
-}
-
-.notice-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: white;
-  color: #1f4f80;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.notice-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-}
-
-.notice-button span {
-  font-size: 1.25rem;
-}
-
-/* Privacy Section */
-.privacy-section {
-  padding: 7rem 0;
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-}
-
-.privacy-intro {
-  margin-bottom: 4rem;
-}
-
-.privacy-highlight {
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
-  padding: 3rem;
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05), rgba(206, 64, 40, 0.05));
-  border-radius: 24px;
-  border-left: 6px solid #ce4028;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-}
-
-.highlight-icon {
-  font-size: 4rem;
+  font-size: 3.5rem;
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .highlight-content h3 {
-  color: #1f4f80;
   font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 1.25rem;
-}
-
-.highlight-content p {
-  color: #444;
-  line-height: 1.8;
-  font-size: 1.0625rem;
   margin-bottom: 1rem;
 }
 
-.highlight-content strong {
-  color: #1f4f80;
-  font-weight: 700;
-}
-
-.highlight-note {
-  background: rgba(31, 79, 128, 0.1);
-  padding: 1.25rem;
-  border-radius: 16px;
-  border-left: 4px solid #1f4f80;
-  font-weight: 600;
-  color: #1f4f80;
-  margin-top: 1.5rem !important;
+.highlight-content p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  opacity: 0.95;
 }
 
 .privacy-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2.5rem;
   margin-bottom: 4rem;
 }
 
 .privacy-card {
   background: white;
-  padding: 2.5rem;
   border-radius: 24px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   border: 2px solid transparent;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: fadeInUp 0.8s ease-out calc(var(--card-delay)) both;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .privacy-card:hover {
-  transform: translateY(-12px);
-  border-color: #e5e7eb;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
+  border-color: rgba(31, 79, 128, 0.2);
 }
 
 .privacy-card-header {
@@ -1380,103 +1388,120 @@ onMounted(() => {
   font-size: 2rem;
   color: white;
   flex-shrink: 0;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.privacy-card:hover .privacy-icon {
-  transform: scale(1.15) rotate(-5deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .privacy-card-header h3 {
-  color: #1f4f80;
-  font-size: 1.5rem;
+  font-size: 1.625rem;
   font-weight: 700;
+  color: #1f4f80;
   line-height: 1.3;
-}
-
-.privacy-card-content {
-  color: #666;
-  line-height: 1.8;
 }
 
 .privacy-list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .privacy-list li {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: rgba(31, 79, 128, 0.03);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.1);
+  color: #555;
+  font-size: 1.0625rem;
 }
 
-.privacy-list li:hover {
-  background: rgba(31, 79, 128, 0.08);
-  transform: translateX(8px);
+.privacy-list li:last-child {
+  border-bottom: none;
 }
 
-.list-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  color: white;
-  border-radius: 50%;
-  font-size: 0.75rem;
+.list-bullet {
+  color: #25d366;
   font-weight: 700;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
 .privacy-description {
-  font-size: 1rem;
-  margin: 0;
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.0625rem;
 }
 
-.privacy-footer {
+.footer-cards {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-.footer-card {
+.footer-notice {
   display: flex;
+  align-items: center;
   gap: 2.5rem;
-  align-items: flex-start;
   padding: 3rem;
-  background: white;
+  background: linear-gradient(135deg, #f8fafc, #e8f4f8);
   border-radius: 24px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border: 2px solid #e5e7eb;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(31, 79, 128, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.footer-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
-  border-color: #1f4f80;
-}
-
-.footer-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.1), rgba(206, 64, 40, 0.1));
+.notice-icon {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 3rem;
   flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.3);
+}
+
+.notice-content h4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f4f80;
+  margin-bottom: 1rem;
+}
+
+.notice-content p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+.footer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 3rem;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+
+.footer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
+  border-color: rgba(31, 79, 128, 0.2);
+}
+
+.footer-icon {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.3);
   transition: transform 0.4s ease;
 }
 
@@ -1557,6 +1582,7 @@ onMounted(() => {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
+  color: white;
 }
 
 .contact-privacy-content p {
@@ -1564,6 +1590,7 @@ onMounted(() => {
   line-height: 1.8;
   opacity: 0.95;
   margin-bottom: 2rem;
+  color: white;
 }
 
 .contact-details {
@@ -1575,15 +1602,15 @@ onMounted(() => {
 
 .detail-item {
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   transition: all 0.3s ease;
 }
 
 .detail-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-5px);
 }
 
@@ -1597,9 +1624,10 @@ onMounted(() => {
 
 .detail-item p {
   font-size: 1rem;
-  opacity: 0.95;
+  opacity: 1;
   margin: 0;
   line-height: 1.6;
+  color: white;
 }
 
 .detail-item a {
@@ -1623,6 +1651,21 @@ onMounted(() => {
 
   .map-frame {
     height: 400px;
+  }
+
+  .qrcode-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .qrcode-text {
+    text-align: center;
+  }
+
+  .qrcode-icon {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .privacy-highlight {
@@ -1667,6 +1710,23 @@ onMounted(() => {
     gap: 2rem;
   }
 
+  .qrcode-card {
+    padding: 2.5rem;
+  }
+
+  .qrcode-title {
+    font-size: 2rem;
+  }
+
+  .qrcode-description {
+    font-size: 1rem;
+  }
+
+  .qrcode-img {
+    width: 220px;
+    height: 220px;
+  }
+
   .privacy-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1675,6 +1735,34 @@ onMounted(() => {
   .conditions-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .condition-card {
+    padding: 2rem;
+  }
+
+  .condition-header {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+
+  .condition-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+
+  .condition-header h3 {
+    font-size: 1.375rem;
+  }
+
+  .condition-content {
+    font-size: 1rem;
+  }
+
+  .highlight-box {
+    padding: 1.25rem;
+    font-size: 0.9375rem;
   }
 
   .footer-notice {
@@ -1692,6 +1780,7 @@ onMounted(() => {
   }
 
   .methods-section,
+  .qrcode-section,
   .map-section,
   .conditions-section,
   .privacy-section {
@@ -1714,16 +1803,35 @@ onMounted(() => {
     padding: 2.5rem;
   }
 
-  .highlight-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .footer-content h3 {
-    font-size: 1.5rem;
+  .contact-privacy-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
   }
 
   .contact-privacy-content h3 {
     font-size: 1.5rem;
+  }
+
+  .contact-privacy-content p {
+    font-size: 1rem;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .detail-item {
+    padding: 1.25rem;
+  }
+
+  .detail-item strong {
+    font-size: 1rem;
+  }
+
+  .detail-item p {
+    font-size: 0.9375rem;
   }
 }
 
@@ -1746,8 +1854,71 @@ onMounted(() => {
     padding: 2rem 1.5rem;
   }
 
+  .qrcode-card {
+    padding: 2rem;
+  }
+
+  .qrcode-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .qrcode-title {
+    font-size: 1.5rem;
+  }
+
+  .qrcode-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .qrcode-badge {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
   .privacy-card {
     padding: 2rem;
+  }
+
+  .condition-card {
+    padding: 1.5rem;
+  }
+
+  .condition-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .condition-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .condition-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .condition-content {
+    font-size: 0.9375rem;
+  }
+
+  .highlight-box {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .highlight-box strong {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .note-text {
+    font-size: 0.875rem;
   }
 
   .privacy-card-header {
@@ -1774,6 +1945,31 @@ onMounted(() => {
     font-size: 2rem;
   }
 
+  .contact-privacy-card {
+    padding: 1.75rem;
+  }
+
+  .contact-privacy-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .contact-privacy-content p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .detail-item {
+    padding: 1rem;
+  }
+
+  .detail-item strong {
+    font-size: 0.9375rem;
+  }
+
+  .detail-item p {
+    font-size: 0.875rem;
+  }
+
   .scroll-indicator {
     display: none;
   }
@@ -1790,6 +1986,15 @@ onMounted(() => {
 
   .privacy-section {
     page-break-inside: avoid;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>

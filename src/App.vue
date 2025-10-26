@@ -105,26 +105,6 @@ const socialLinks = {
           </RouterLink>
         </nav>
 
-        <div class="header-actions">
-          <RouterLink to="/rates" class="cta-button">
-            <span class="cta-text">Prenota Ora</span>
-            <span class="cta-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </span>
-          </RouterLink>
-        </div>
-
         <button class="mobile-menu-btn" @click="toggleMobileMenu" aria-label="Menu">
           <span :class="{ open: mobileMenuOpen }"></span>
           <span :class="{ open: mobileMenuOpen }"></span>
@@ -148,11 +128,6 @@ const socialLinks = {
           Contatti
         </RouterLink>
       </nav>
-      <div class="mobile-cta">
-        <RouterLink to="/rates" class="mobile-cta-button" @click="closeMobileMenu">
-          Prenota Ora →
-        </RouterLink>
-      </div>
     </div>
   </header>
 
@@ -377,22 +352,25 @@ const socialLinks = {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 44px;
 }
 
 .contact-info {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .info-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   opacity: 0.95;
   transition: all 0.3s ease;
   text-decoration: none;
   color: white;
+  line-height: 1;
 }
 
 .info-item:hover {
@@ -412,10 +390,11 @@ const socialLinks = {
 .header-lang {
   display: flex;
   gap: 0.4rem;
+  align-items: center;
 }
 
 .lang-btn-small {
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
@@ -426,6 +405,18 @@ const socialLinks = {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-align: center;
+  min-width: 40px;
+  box-sizing: border-box;
+}
+
+.lang-btn-small > * {
+  position: relative;
+  z-index: 1;
 }
 
 .lang-btn-small::before {
@@ -441,6 +432,8 @@ const socialLinks = {
   transition:
     width 0.4s,
     height 0.4s;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .lang-btn-small:hover::before {
@@ -513,7 +506,7 @@ const socialLinks = {
   gap: 3rem;
   align-items: center;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .nav-item {
@@ -525,8 +518,10 @@ const socialLinks = {
   padding: 0.8rem 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
 }
 
 .nav-icon {
@@ -709,32 +704,41 @@ const socialLinks = {
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   z-index: 1001;
+  gap: 6px;
+  position: relative;
 }
 
 .mobile-menu-btn span {
-  width: 100%;
+  width: 28px;
   height: 3px;
   background-color: #1f4f80;
   border-radius: 3px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
+  position: relative;
 }
 
 .mobile-menu-btn:hover span {
   background-color: #ce4028;
 }
 
-.mobile-menu-btn span.open:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
+.mobile-menu-btn span.open {
   background-color: #ce4028;
+}
+
+.mobile-menu-btn span.open:nth-child(1) {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5px;
 }
 
 .mobile-menu-btn span.open:nth-child(2) {
@@ -743,8 +747,10 @@ const socialLinks = {
 }
 
 .mobile-menu-btn span.open:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-  background-color: #ce4028;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5px;
 }
 
 /* Mobile Menu */
@@ -1284,8 +1290,32 @@ const socialLinks = {
     display: flex;
   }
 
+  .header-main {
+    padding: 0.5rem 0;
+  }
+
+  .header-content {
+    padding: 0.75rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  .logo-container img {
+    height: 50px;
+  }
+
+  .mobile-menu-btn {
+    width: 45px;
+    height: 45px;
+    gap: 6px;
+  }
+
+  .mobile-menu-btn span {
+    width: 28px;
+    height: 3px;
+  }
+
   .mobile-menu {
-    top: 82px;
+    top: 70px;
   }
 
   .footer-main {
@@ -1301,11 +1331,26 @@ const socialLinks = {
 
 @media (max-width: 768px) {
   .header-content {
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1.25rem;
   }
 
   .logo-container img {
     height: 45px;
+  }
+
+  .mobile-menu-btn {
+    width: 42px;
+    height: 42px;
+    gap: 5px;
+  }
+
+  .mobile-menu-btn span {
+    width: 26px;
+    height: 2.5px;
+  }
+
+  .mobile-menu {
+    top: 68px;
   }
 
   .footer-container {
@@ -1335,10 +1380,6 @@ const socialLinks = {
     justify-content: center;
   }
 
-  .mobile-menu {
-    top: 72px;
-  }
-
   .footer-wave {
     height: 50px;
   }
@@ -1349,8 +1390,27 @@ const socialLinks = {
 }
 
 @media (max-width: 480px) {
+  .header-content {
+    padding: 0.6rem 1rem;
+  }
+
   .logo-container img {
-    height: 38px;
+    height: 40px;
+  }
+
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    gap: 4px;
+  }
+
+  .mobile-menu-btn span {
+    width: 24px;
+    height: 2.5px;
+  }
+
+  .mobile-menu {
+    top: 62px;
   }
 
   .contact-info {
