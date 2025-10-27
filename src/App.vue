@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { useI18n } from './composables/useI18n'
+
+const { locale, setLocale, t } = useI18n()
 
 const mobileMenuOpen = ref(false)
 
@@ -10,6 +13,10 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
+}
+
+const changeLanguage = (lang) => {
+  setLocale(lang)
 }
 
 // Link social media reali - sostituisci con i tuoi link
@@ -54,7 +61,7 @@ const socialLinks = {
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            Lun-Sab: 9:00-18:00
+            {{ t('header.schedule') }}
           </span>
           <a href="mailto:info@rentacarexpress.it" class="info-item">
             <svg
@@ -75,9 +82,27 @@ const socialLinks = {
           </a>
         </div>
         <div class="header-lang">
-          <button class="lang-btn-small active">IT</button>
-          <button class="lang-btn-small">EN</button>
-          <button class="lang-btn-small">ES</button>
+          <button
+            @click="changeLanguage('it')"
+            class="lang-btn-small"
+            :class="{ active: locale === 'it' }"
+          >
+            IT
+          </button>
+          <button
+            @click="changeLanguage('en')"
+            class="lang-btn-small"
+            :class="{ active: locale === 'en' }"
+          >
+            EN
+          </button>
+          <button
+            @click="changeLanguage('es')"
+            class="lang-btn-small"
+            :class="{ active: locale === 'es' }"
+          >
+            ES
+          </button>
         </div>
       </div>
     </div>
@@ -93,15 +118,15 @@ const socialLinks = {
         <nav class="nav-desktop">
           <RouterLink to="/" class="nav-item">
             <span class="nav-icon">🏠</span>
-            Home
+            {{ t('nav.home') }}
           </RouterLink>
           <RouterLink to="/rates" class="nav-item">
             <span class="nav-icon">💰</span>
-            Tariffe
+            {{ t('nav.rates') }}
           </RouterLink>
           <RouterLink to="/contacts" class="nav-item">
             <span class="nav-icon">📞</span>
-            Contatti
+            {{ t('nav.contacts') }}
           </RouterLink>
         </nav>
 
@@ -117,15 +142,15 @@ const socialLinks = {
       <nav class="mobile-nav">
         <RouterLink to="/" class="mobile-nav-item" @click="closeMobileMenu">
           <span class="mobile-icon">🏠</span>
-          Home
+          {{ t('nav.home') }}
         </RouterLink>
         <RouterLink to="/rates" class="mobile-nav-item" @click="closeMobileMenu">
           <span class="mobile-icon">💰</span>
-          Tariffe
+          {{ t('nav.rates') }}
         </RouterLink>
         <RouterLink to="/contacts" class="mobile-nav-item" @click="closeMobileMenu">
           <span class="mobile-icon">📞</span>
-          Contatti
+          {{ t('nav.contacts') }}
         </RouterLink>
       </nav>
     </div>
@@ -152,8 +177,7 @@ const socialLinks = {
             class="footer-logo"
           />
           <p class="footer-tagline">
-            Il tuo partner di fiducia per il noleggio auto in Sardegna. Servizi professionali ad
-            Alghero e in tutta la regione.
+            {{ t('footer.tagline') }}
           </p>
           <div class="footer-social">
             <a
@@ -218,16 +242,22 @@ const socialLinks = {
 
         <div class="footer-links">
           <div class="footer-column">
-            <h4>Navigazione</h4>
+            <h4>{{ t('footer.navigation') }}</h4>
             <ul>
-              <li><RouterLink to="/">Home</RouterLink></li>
-              <li><RouterLink to="/rates">Tariffe</RouterLink></li>
-              <li><RouterLink to="/contacts">Contatti</RouterLink></li>
+              <li>
+                <RouterLink to="/">{{ t('nav.home') }}</RouterLink>
+              </li>
+              <li>
+                <RouterLink to="/rates">{{ t('nav.rates') }}</RouterLink>
+              </li>
+              <li>
+                <RouterLink to="/contacts">{{ t('nav.contacts') }}</RouterLink>
+              </li>
             </ul>
           </div>
 
           <div class="footer-column">
-            <h4>Contatti</h4>
+            <h4>{{ t('footer.contactsTitle') }}</h4>
             <ul class="contact-list">
               <li>
                 <svg
@@ -275,25 +305,21 @@ const socialLinks = {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                Via S. Satta, 52 - Alghero (SS)
+                {{ t('footer.address') }}
               </li>
             </ul>
           </div>
 
           <div class="footer-column">
-            <h4>Orari di Apertura</h4>
+            <h4>{{ t('footer.openingHours') }}</h4>
             <ul class="hours-list">
               <li>
-                <span>Lun - Ven</span>
+                <span>{{ t('footer.mondayToSaturday') }}</span>
                 <span class="time">9:00 - 18:00</span>
               </li>
               <li>
-                <span>Sabato</span>
-                <span class="time">9:00 - 18:00</span>
-              </li>
-              <li>
-                <span>Domenica</span>
-                <span class="time closed">Chiuso</span>
+                <span>{{ t('footer.sunday') }}</span>
+                <span class="time closed">{{ t('footer.closed') }}</span>
               </li>
             </ul>
           </div>
@@ -301,13 +327,13 @@ const socialLinks = {
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Rent a Car Express - Tutti i diritti riservati</p>
+        <p>{{ t('footer.copyright') }}</p>
         <div class="footer-bottom-links">
-          <RouterLink to="/contacts">Privacy Policy</RouterLink>
-          <span>•</span>
-          <RouterLink to="/contacts">Cookie Policy</RouterLink>
-          <span>•</span>
-          <RouterLink to="/contacts">Termini e Condizioni</RouterLink>
+          <a href="#">{{ t('footer.privacy') }}</a>
+          <span>|</span>
+          <a href="#">{{ t('footer.terms') }}</a>
+          <span>|</span>
+          <a href="#">{{ t('footer.cookies') }}</a>
         </div>
       </div>
     </div>
