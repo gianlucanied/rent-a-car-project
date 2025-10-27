@@ -153,6 +153,30 @@ const socialLinks = {
           {{ t('nav.contacts') }}
         </RouterLink>
       </nav>
+      <!-- Bottoni lingua nel menu mobile -->
+      <div class="mobile-lang-buttons">
+        <button
+          @click="changeLanguage('it')"
+          class="mobile-lang-btn"
+          :class="{ active: locale === 'it' }"
+        >
+          IT
+        </button>
+        <button
+          @click="changeLanguage('en')"
+          class="mobile-lang-btn"
+          :class="{ active: locale === 'en' }"
+        >
+          EN
+        </button>
+        <button
+          @click="changeLanguage('es')"
+          class="mobile-lang-btn"
+          :class="{ active: locale === 'es' }"
+        >
+          ES
+        </button>
+      </div>
     </div>
   </header>
 
