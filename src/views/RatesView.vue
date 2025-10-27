@@ -1,64 +1,67 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useI18n } from '../composables/useI18n'
 
-const pricingPlans = [
+const { t } = useI18n()
+
+const pricingPlans = computed(() => [
   {
-    name: 'Economy',
+    name: t('rates.economyName'),
     icon: '🚗',
     price: '25',
-    period: 'al giorno',
+    period: t('rates.perDay'),
     features: [
-      'Utilitarie compatte',
-      'Aria condizionata',
-      'Cambio manuale',
-      'Assicurazione base',
-      '200 km inclusi',
+      t('rates.economyFeature1'),
+      t('rates.economyFeature2'),
+      t('rates.economyFeature3'),
+      t('rates.economyFeature4'),
+      t('rates.economyFeature5'),
     ],
     popular: false,
     color: '#3a6fa0',
   },
   {
-    name: 'Comfort',
+    name: t('rates.comfortName'),
     icon: '🚘',
     price: '35',
-    period: 'al giorno',
+    period: t('rates.perDay'),
     features: [
-      'Berline medie',
-      'Clima automatico',
-      'Cambio automatico',
-      'Assicurazione premium',
-      'Km illimitati',
-      'GPS incluso',
+      t('rates.comfortFeature1'),
+      t('rates.comfortFeature2'),
+      t('rates.comfortFeature3'),
+      t('rates.comfortFeature4'),
+      t('rates.comfortFeature5'),
+      t('rates.comfortFeature6'),
     ],
     popular: true,
     color: '#ce4028',
   },
   {
-    name: 'Premium',
+    name: t('rates.premiumName'),
     icon: '🚙',
     price: '50',
-    period: 'al giorno',
+    period: t('rates.perDay'),
     features: [
-      'SUV e auto di lusso',
-      'Full optional',
-      'Cambio automatico',
-      'Assicurazione kasko',
-      'Km illimitati',
-      'GPS e seggiolini inclusi',
-      'Servizio prioritario',
+      t('rates.premiumFeature1'),
+      t('rates.premiumFeature2'),
+      t('rates.premiumFeature3'),
+      t('rates.premiumFeature4'),
+      t('rates.premiumFeature5'),
+      t('rates.premiumFeature6'),
+      t('rates.premiumFeature7'),
     ],
     popular: false,
     color: '#1f4f80',
   },
-]
+])
 
-const extraServices = [
-  { name: 'GPS Navigatore', price: '5', icon: '🗺️', color: '#3a6fa0' },
-  { name: 'Seggiolino bambini', price: '8', icon: '👶', color: '#ce4028' },
-  { name: 'Conducente aggiuntivo', price: '10', icon: '👥', color: '#1f4f80' },
-  { name: 'Catene da neve', price: '15', icon: '❄️', color: '#2d5f8f' },
-]
+const extraServices = computed(() => [
+  { name: t('rates.gpsNavigator'), price: '5', icon: '🗺️', color: '#3a6fa0' },
+  { name: t('rates.childSeat'), price: '8', icon: '👶', color: '#ce4028' },
+  { name: t('rates.additionalDriver'), price: '10', icon: '👥', color: '#1f4f80' },
+  { name: t('rates.snowChains'), price: '15', icon: '❄️', color: '#2d5f8f' },
+])
 
 const longTermRates = [
   { period: '1 Settimana', discount: '10%', badge: 'Risparmia', icon: '📅' },
@@ -102,37 +105,34 @@ onMounted(() => {
       <div class="hero-content" :class="{ visible: isVisible }">
         <div class="hero-badge">
           <span class="badge-icon">💎</span>
-          <span>Prezzi Imbattibili</span>
+          <span>{{ t('rates.heroTag') }}</span>
         </div>
 
         <h1 class="hero-title">
-          <span class="title-line">Le Nostre</span>
-          <span class="title-line gradient-text">Tariffe</span>
+          <span class="title-line">{{ t('rates.heroTitle') }}</span>
+          <span class="title-line gradient-text">{{ t('rates.heroSubtitle') }}</span>
         </h1>
 
-        <p class="hero-description">
-          Prezzi trasparenti e competitivi per ogni esigenza.<br />
-          Nessun costo nascosto, massima flessibilità!
-        </p>
+        <p class="hero-description" v-html="t('rates.heroDescription')"></p>
 
         <div class="hero-features">
           <div class="feature-item">
             <span class="feature-icon">✓</span>
-            <span>Prezzi trasparenti</span>
+            <span>{{ t('rates.transparentPrices') }}</span>
           </div>
           <div class="feature-item">
             <span class="feature-icon">✓</span>
-            <span>Cancellazione gratuita</span>
+            <span>{{ t('rates.freeCancellation') }}</span>
           </div>
           <div class="feature-item">
             <span class="feature-icon">✓</span>
-            <span>Nessun costo nascosto</span>
+            <span>{{ t('rates.noHiddenCosts') }}</span>
           </div>
         </div>
       </div>
 
       <div class="scroll-down">
-        <span>Scopri le nostre offerte</span>
+        <span>{{ t('rates.discoverOffers') }}</span>
         <div class="scroll-arrow">↓</div>
       </div>
     </section>
@@ -141,9 +141,9 @@ onMounted(() => {
     <section class="pricing-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Scegli il Tuo Piano</span>
-          <h2>Piani di Noleggio</h2>
-          <p class="section-subtitle">Trova la soluzione perfetta per le tue esigenze di viaggio</p>
+          <span class="section-label">{{ t('rates.plansLabel') }}</span>
+          <h2>{{ t('rates.plansTitle') }}</h2>
+          <p class="section-subtitle">{{ t('rates.plansSubtitle') }}</p>
         </div>
 
         <div class="pricing-grid">
@@ -156,7 +156,7 @@ onMounted(() => {
           >
             <div v-if="plan.popular" class="popular-badge">
               <span class="badge-star">⭐</span>
-              <span>PIÙ SCELTO</span>
+              <span>{{ t('rates.mostChosen') }}</span>
             </div>
 
             <div class="card-glow"></div>
@@ -200,7 +200,7 @@ onMounted(() => {
             </ul>
 
             <RouterLink to="/contacts" class="select-button">
-              <span class="btn-text">Prenota Ora</span>
+              <span class="btn-text">{{ t('rates.bookNow') }}</span>
               <span class="btn-arrow">→</span>
             </RouterLink>
           </div>
@@ -220,10 +220,7 @@ onMounted(() => {
             <line x1="12" y1="16" x2="12" y2="12"></line>
             <line x1="12" y1="8" x2="12.01" y2="8"></line>
           </svg>
-          <span
-            >Tutti i prezzi sono IVA inclusa. Richiedi un preventivo personalizzato per noleggi
-            oltre 30 giorni.</span
-          >
+          <span>{{ t('rates.priceNote') }}</span>
         </div>
       </div>
     </section>
@@ -232,11 +229,9 @@ onMounted(() => {
     <section class="extras-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Personalizza</span>
-          <h2>Servizi Extra</h2>
-          <p class="section-subtitle">
-            Aggiungi comfort e sicurezza al tuo noleggio con i nostri servizi opzionali
-          </p>
+          <span class="section-label">{{ t('rates.extrasLabel') }}</span>
+          <h2>{{ t('rates.extrasTitle') }}</h2>
+          <p class="section-subtitle">{{ t('rates.extrasSubtitle') }}</p>
         </div>
 
         <div class="extras-grid">
@@ -255,7 +250,11 @@ onMounted(() => {
 
             <div class="extra-price">
               <span class="price-amount">€{{ extra.price }}</span>
-              <span class="price-period">/giorno</span>
+              <span class="price-period"
+                >/{{
+                  t('rates.perDay').replace('al ', '').replace('per ', '').replace('por ', '')
+                }}</span
+              >
             </div>
           </div>
         </div>
@@ -274,14 +273,14 @@ onMounted(() => {
         <div class="cta-content">
           <div class="cta-icon">💬</div>
 
-          <h2>Hai bisogno di un preventivo personalizzato?</h2>
-          <p>Contattaci per offerte su misura, soluzioni aziendali e preventivi per gruppi</p>
+          <h2>{{ t('rates.ctaTitle') }}</h2>
+          <p>{{ t('rates.ctaSubtitle') }}</p>
 
           <div class="cta-buttons">
             <RouterLink to="/contacts" class="cta-primary">
               <span class="btn-glow"></span>
               <span class="btn-content">
-                <span>Richiedi Preventivo</span>
+                <span>{{ t('rates.requestQuote') }}</span>
                 <span class="btn-icon">📧</span>
               </span>
             </RouterLink>
@@ -290,17 +289,17 @@ onMounted(() => {
           <div class="cta-trust">
             <div class="trust-item">
               <span class="trust-number">500+</span>
-              <span class="trust-label">Clienti Felici</span>
+              <span class="trust-label">{{ t('rates.happyClients') }}</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
               <span class="trust-number">4.9/5</span>
-              <span class="trust-label">Recensioni</span>
+              <span class="trust-label">{{ t('rates.reviews') }}</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
               <span class="trust-number">24/7</span>
-              <span class="trust-label">Assistenza</span>
+              <span class="trust-label">{{ t('rates.support') }}</span>
             </div>
           </div>
         </div>
@@ -1462,7 +1461,6 @@ h2 {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: inherit;
   padding: 0 0.5rem;
   border-radius: 50px;
 }

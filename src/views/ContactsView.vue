@@ -1,64 +1,65 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from '../composables/useI18n'
 
-const contactMethods = [
+const { t } = useI18n()
+
+const contactMethods = computed(() => [
   {
     icon: '📞',
-    title: 'Telefono',
+    title: t('contacts.phone'),
     value: '+39 079 123 4567',
-    description: 'Lun-Sab: 9:00-18:00',
+    description: t('contacts.phoneSchedule'),
     link: 'tel:+390791234567',
     gradient: 'from-blue-500 via-blue-600 to-indigo-600',
     iconBg: 'bg-blue-50',
   },
   {
     icon: '📧',
-    title: 'Email',
+    title: t('contacts.email'),
     value: 'info@rentacarexpress.it',
-    description: 'Risposta entro 24h',
+    description: t('contacts.emailResponse'),
     link: 'mailto:info@rentacarexpress.it',
     gradient: 'from-red-500 via-red-600 to-rose-600',
     iconBg: 'bg-red-50',
   },
   {
     icon: '💬',
-    title: 'WhatsApp',
+    title: t('contacts.whatsapp'),
     value: '+39 333 123 4567',
-    description: 'Assistenza rapida',
+    description: t('contacts.whatsappAssistance'),
     link: 'https://wa.me/393331234567',
     gradient: 'from-green-500 via-emerald-600 to-teal-600',
     iconBg: 'bg-green-50',
   },
-]
+])
 
-const privacyData = [
+const privacyData = computed(() => [
   {
     icon: '📋',
-    title: 'Quali dati raccogliamo',
+    title: t('contacts.privacyDataCollected'),
     items: [
-      'Nome e Cognome',
-      "Nome dell'azienda (se specificata)",
-      'Numero di telefono (se specificato)',
-      'Indirizzo email',
-      'Informazioni inserite come richiesta',
+      t('contacts.privacyName'),
+      t('contacts.privacyCompany'),
+      t('contacts.privacyPhone'),
+      t('contacts.privacyEmail'),
+      t('contacts.privacyRequest'),
     ],
     color: '#1f4f80',
   },
   {
     icon: '⏱️',
-    title: 'Modalità e durata del trattamento',
-    description:
-      "Il trattamento viene effettuato mediante raccolta, elaborazione e raffronto dei dati attraverso strumenti informatici o telematici con misure di sicurezza idonee a garantirne la riservatezza. I dati rimangono in nostro possesso per il tempo strettamente necessario allo svolgimento delle attività aziendali e all'eventuale gestione di dispute legali, nel rispetto delle normative vigenti.",
+    title: t('contacts.privacyTreatment'),
+    description: t('contacts.privacyTreatmentText'),
     color: '#ce4028',
   },
   {
     icon: '🔒',
-    title: "Diritti dell'interessato",
-    description:
-      "È possibile far valere i diritti previsti dall'art.7 del D.Lgs n°196/03 e dal GDPR, tra cui l'accesso, la cancellazione, l'aggiornamento, la rettifica o l'integrazione dei dati scrivendo all'indirizzo della nostra sede o via email.",
+    title: t('contacts.privacyRights'),
+    description: t('contacts.privacyRightsText'),
     color: '#2d5f8f',
   },
-]
+])
 
 const isVisible = ref(false)
 
@@ -98,18 +99,15 @@ onMounted(() => {
       <div class="hero-content" :class="{ visible: isVisible }">
         <div class="hero-badge">
           <span class="badge-icon">💬</span>
-          <span class="badge-text">Siamo Qui per Te</span>
+          <span class="badge-text">{{ t('contacts.heroTag') }}</span>
         </div>
 
         <h1 class="hero-title">
-          <span class="title-main">Contattaci</span>
-          <span class="title-gradient">Subito!</span>
+          <span class="title-main">{{ t('contacts.heroTitle') }}</span>
+          <span class="title-gradient">{{ t('contacts.heroSubtitle') }}</span>
         </h1>
 
-        <p class="hero-description">
-          Scegli il modo che preferisci per raggiungerci.<br />
-          Ti risponderemo nel minor tempo possibile!
-        </p>
+        <p class="hero-description" v-html="t('contacts.heroDescription')"></p>
 
         <div class="scroll-indicator">
           <div class="scroll-mouse">
@@ -123,8 +121,8 @@ onMounted(() => {
     <section class="methods-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Canali di Contatto</span>
-          <h2 class="section-title">Come Preferisci Contattarci?</h2>
+          <span class="section-tag">{{ t('contacts.channelsTag') }}</span>
+          <h2 class="section-title">{{ t('contacts.channelsTitle') }}</h2>
         </div>
 
         <div class="methods-grid">
@@ -161,11 +159,8 @@ onMounted(() => {
           <div class="qrcode-content">
             <div class="qrcode-text">
               <div class="qrcode-icon">💬</div>
-              <h2 class="qrcode-title">Scansiona e Chatta su WhatsApp</h2>
-              <p class="qrcode-description">
-                Inquadra il QR code con la fotocamera del tuo smartphone per iniziare una
-                conversazione immediata con noi su WhatsApp!
-              </p>
+              <h2 class="qrcode-title">{{ t('contacts.qrCodeTitle') }}</h2>
+              <p class="qrcode-description">{{ t('contacts.qrCodeDescription') }}</p>
             </div>
 
             <div class="qrcode-image-wrapper">
@@ -173,7 +168,7 @@ onMounted(() => {
                 <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qrcode-img" />
               </div>
               <div class="qrcode-badge">
-                <span>📱 Scansiona Ora</span>
+                <span>{{ t('contacts.scanNow') }}</span>
               </div>
             </div>
           </div>
@@ -185,9 +180,9 @@ onMounted(() => {
     <section class="map-section observe" id="map">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Dove Siamo</span>
-          <h2 class="section-title">📍 La Nostra Sede</h2>
-          <p class="section-subtitle">Vieni a trovarci ad Alghero, Sardegna</p>
+          <span class="section-tag">{{ t('contacts.locationTag') }}</span>
+          <h2 class="section-title">{{ t('contacts.locationTitle') }}</h2>
+          <p class="section-subtitle">{{ t('contacts.locationSubtitle') }}</p>
         </div>
 
         <div class="map-wrapper">
@@ -206,24 +201,24 @@ onMounted(() => {
             <div class="info-card">
               <div class="info-icon">📍</div>
               <div>
-                <strong>Indirizzo Completo</strong>
-                <p>Via Sebastiano Satta, 52<br />07041 Alghero (SS) - Sardegna, Italia</p>
+                <strong>{{ t('contacts.addressFull') }}</strong>
+                <p v-html="t('contacts.addressDetails')"></p>
               </div>
             </div>
 
             <div class="info-card">
               <div class="info-icon">🕒</div>
               <div>
-                <strong>Orari di Apertura</strong>
-                <p>Lunedì - Sabato: 9:00 - 18:00<br />Domenica: Chiuso</p>
+                <strong>{{ t('contacts.openingHoursTitle') }}</strong>
+                <p v-html="t('contacts.openingHoursDetails')"></p>
               </div>
             </div>
 
             <div class="info-card">
               <div class="info-icon">🚗</div>
               <div>
-                <strong>Servizi Premium</strong>
-                <p>Consegna e ritiro gratuiti<br />Assistenza 24/7 in Sardegna</p>
+                <strong>{{ t('contacts.premiumServices') }}</strong>
+                <p v-html="t('contacts.premiumDetails')"></p>
               </div>
             </div>
           </div>
@@ -235,11 +230,9 @@ onMounted(() => {
     <section class="conditions-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Informazioni Utili</span>
-          <h2 class="section-title">📋 Condizioni di Noleggio</h2>
-          <p class="section-subtitle">
-            Tutto ciò che devi sapere per noleggiare con noi in modo semplice e trasparente
-          </p>
+          <span class="section-tag">{{ t('contacts.conditionsTag') }}</span>
+          <h2 class="section-title">{{ t('contacts.conditionsTitle') }}</h2>
+          <p class="section-subtitle">{{ t('contacts.conditionsSubtitle') }}</p>
         </div>
 
         <div class="conditions-grid">
@@ -248,22 +241,15 @@ onMounted(() => {
               <div class="condition-icon" style="background: #1f4f80">
                 <span>💳</span>
               </div>
-              <h3>Pagamento</h3>
+              <h3>{{ t('contacts.payment') }}</h3>
             </div>
             <div class="condition-content">
-              <p>
-                Il pagamento del servizio di noleggio viene effettuato alla consegna
-                dell'autovettura. Vengono accettate le principali carte di credito (Visa e
-                MasterCard) oppure contanti.
-              </p>
+              <p>{{ t('contacts.paymentText') }}</p>
               <div class="highlight-box">
-                <strong>💰 Deposito Cauzionale:</strong> In caso di pagamento in contanti si dovrà
-                versare un deposito cauzionale di <strong>€ 500,00</strong>
+                <strong>{{ t('contacts.deposit') }}</strong> {{ t('contacts.depositText') }}
+                <strong>{{ t('contacts.depositAmount') }}</strong>
               </div>
-              <p class="note-text">
-                La tariffa applicata viene garantita, per noleggi continuativi, sino alla data di
-                previsto rientro presente nella lettera di noleggio.
-              </p>
+              <p class="note-text">{{ t('contacts.paymentNote') }}</p>
             </div>
           </div>
 
@@ -272,13 +258,10 @@ onMounted(() => {
               <div class="condition-icon" style="background: #ce4028">
                 <span>📊</span>
               </div>
-              <h3>Tasse</h3>
+              <h3>{{ t('contacts.taxes') }}</h3>
             </div>
             <div class="condition-content">
-              <p>
-                Tutti i prezzi indicati sono da intendersi
-                <strong>comprensivi di IVA 22%</strong> se non diversamente specificato.
-              </p>
+              <p>{{ t('contacts.taxesText') }}</p>
             </div>
           </div>
 
@@ -287,15 +270,13 @@ onMounted(() => {
               <div class="condition-icon" style="background: #2d5f8f">
                 <span>⛽</span>
               </div>
-              <h3>Carburante</h3>
+              <h3>{{ t('contacts.fuel') }}</h3>
             </div>
             <div class="condition-content">
-              <p>Il costo del carburante è da intendersi a carico del cliente.</p>
+              <p>{{ t('contacts.fuelText') }}</p>
               <div class="highlight-box warning">
-                <strong>⚠️ Attenzione:</strong> Se il veicolo viene affidato con il pieno di
-                carburante e riconsegnato senza lo stesso, verrà conteggiato in aumento oltre
-                l'importo dei litri mancanti, il costo di servizio di rifornimento pari a
-                <strong>€ 15,00</strong>
+                <strong>{{ t('contacts.fuelWarning') }}</strong>
+                {{ t('contacts.fuelWarningText') }} <strong>{{ t('contacts.fuelCost') }}</strong>
               </div>
             </div>
           </div>
@@ -305,16 +286,11 @@ onMounted(() => {
               <div class="condition-icon" style="background: #e6583f">
                 <span>🎂</span>
               </div>
-              <h3>Età Minima</h3>
+              <h3>{{ t('contacts.minAge') }}</h3>
             </div>
             <div class="condition-content">
-              <p>
-                <strong>21 anni</strong> con patente di cat. B in corso di validità ed emessa da
-                almeno <strong>1 anno</strong>.
-              </p>
-              <p class="note-text">
-                Non è possibile noleggiare l'autovettura ai clienti al di sotto dei 21 anni.
-              </p>
+              <p>{{ t('contacts.minAgeText') }}</p>
+              <p class="note-text">{{ t('contacts.minAgeNote') }}</p>
             </div>
           </div>
 
@@ -323,139 +299,32 @@ onMounted(() => {
               <div class="condition-icon" style="background: #1f4f80">
                 <span>🛡️</span>
               </div>
-              <h3>Super CDW (SCDW)</h3>
+              <h3>{{ t('contacts.superCDW') }}</h3>
             </div>
             <div class="condition-content">
-              <p>
-                La copertura opzionale Super CDW costituisce l'esonero da ogni responsabilità per
-                danni al veicolo con conseguente eliminazione della penalità risarcitoria
-                (franchigia).
-              </p>
-              <div class="pricing-box">
-                <div class="price-item">
-                  <span class="price-label">Gruppi A-B-C-E</span>
-                  <span class="price-value">€ 18,00</span>
-                </div>
-                <div class="price-item">
-                  <span class="price-label">Gruppi F-G</span>
-                  <span class="price-value">€ 19,00</span>
-                </div>
-              </div>
-              <p class="note-text">
-                ⚠️ L'assicurazione Super Kasko non copre i danni alle ruote, al sotto scocca e agli
-                interni dell'autovettura.
-              </p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #ce4028">
-                <span>🚨</span>
-              </div>
-              <h3>Penalità risarcitorie (Franchigie)</h3>
-            </div>
-            <div class="condition-content">
-              <p>In caso di danni o furto si applicano le seguenti franchigie:</p>
-              <div class="pricing-box">
-                <div class="price-item">
-                  <span class="price-label">Gruppi A-B</span>
-                  <span class="price-value">€ 700,00</span>
-                </div>
-                <div class="price-item">
-                  <span class="price-label">Gruppo C-E</span>
-                  <span class="price-value">€ 800,00</span>
-                </div>
-                <div class="price-item">
-                  <span class="price-label">Gruppo F</span>
-                  <span class="price-value">€ 900,00</span>
-                </div>
-                <div class="price-item">
-                  <span class="price-label">Gruppo G</span>
-                  <span class="price-value">€ 1.400,00</span>
-                </div>
-              </div>
-              <p class="note-text">
-                Le franchigie si applicano per ogni singolo evento dannoso o furto.
-              </p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #2d5f8f">
-                <span>👤</span>
-              </div>
-              <h3>Conducenti Aggiuntivi</h3>
-            </div>
-            <div class="condition-content">
-              <p>È possibile aggiungere conducenti extra al contratto di noleggio.</p>
-              <div class="pricing-box">
-                <div class="price-item">
-                  <span class="price-label">Costo giornaliero</span>
-                  <span class="price-value">€ 5,00</span>
-                </div>
-              </div>
-              <p class="note-text">
-                Ogni conducente aggiuntivo deve soddisfare i requisiti di età e patente.
-              </p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #e6583f">
-                <span>🌍</span>
-              </div>
-              <h3>Limiti Territoriali</h3>
-            </div>
-            <div class="condition-content">
-              <p>
-                È espressamente vietato l'utilizzo del veicolo al di fuori del territorio della
-                Regione Sardegna.
-              </p>
-              <div class="highlight-box warning">
-                <strong>⚠️ Importante:</strong> La violazione di questo limite comporta la decadenza
-                di tutte le coperture assicurative ed eventuali sanzioni.
-              </div>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #1f4f80">
-                <span>🔧</span>
-              </div>
-              <h3>Manutenzione e Danni</h3>
-            </div>
-            <div class="condition-content">
-              <p>
-                Il cliente è responsabile della manutenzione ordinaria durante il noleggio
-                (controllo livelli olio, acqua, pressione pneumatici).
-              </p>
+              <p>{{ t('contacts.superCDWText') }}</p>
               <div class="highlight-box">
-                <strong>💡 Servizio Assistenza:</strong> In caso di problemi tecnici, contattare
-                immediatamente il nostro servizio assistenza disponibile 24/7.
+                <strong>{{ t('contacts.superCDWCost') }}</strong>
+                {{ t('contacts.superCDWCostAmount') }}
               </div>
+              <p class="note-text">{{ t('contacts.superCDWNote') }}</p>
             </div>
           </div>
 
           <div class="condition-card">
             <div class="condition-header">
               <div class="condition-icon" style="background: #ce4028">
-                <span>📅</span>
+                <span>📋</span>
               </div>
-              <h3>Cancellazione e Modifiche</h3>
+              <h3>{{ t('contacts.documentation') }}</h3>
             </div>
             <div class="condition-content">
-              <p>
-                È possibile cancellare o modificare la prenotazione gratuitamente fino a
-                <strong>48 ore</strong> prima dell'inizio del noleggio.
-              </p>
-              <div class="highlight-box warning">
-                <strong>⚠️ Penali:</strong> Cancellazioni o modifiche entro 48 ore dall'inizio del
-                noleggio potrebbero essere soggette a penali.
-              </div>
+              <ul class="requirements-list">
+                <li>{{ t('contacts.docLicense') }}</li>
+                <li>{{ t('contacts.docID') }}</li>
+                <li>{{ t('contacts.docCard') }}</li>
+                <li>{{ t('contacts.docFiscalCode') }}</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -466,11 +335,9 @@ onMounted(() => {
     <section class="privacy-section observe">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Informativa Privacy</span>
-          <h2 class="section-title">🔐 La Tua Privacy è Importante</h2>
-          <p class="section-subtitle">
-            Come trattiamo i tuoi dati personali in conformità con il GDPR
-          </p>
+          <span class="section-tag">{{ t('contacts.privacyTag') }}</span>
+          <h2 class="section-title">{{ t('contacts.privacyTitle') }}</h2>
+          <p class="section-subtitle">{{ t('contacts.privacySubtitle') }}</p>
         </div>
 
         <div class="privacy-highlight">
@@ -478,12 +345,8 @@ onMounted(() => {
             <span>🛡️</span>
           </div>
           <div class="highlight-content">
-            <h3>Protezione Totale dei Tuoi Dati</h3>
-            <p>
-              Trattiamo i tuoi dati personali con la massima cura e sicurezza, in piena conformità
-              con il Regolamento Generale sulla Protezione dei Dati (GDPR) e il D.Lgs n°196/03. La
-              tua privacy è la nostra priorità.
-            </p>
+            <h3>{{ t('contacts.privacyGuarantee') }}</h3>
+            <p>{{ t('contacts.privacyGuaranteeText') }}</p>
           </div>
         </div>
 
@@ -514,14 +377,8 @@ onMounted(() => {
               <span>🎯</span>
             </div>
             <div class="footer-content">
-              <h3>Finalità del Trattamento</h3>
-              <p>
-                I dati raccolti vengono utilizzati esclusivamente per:
-                <strong
-                  >gestire le prenotazioni, fornire assistenza clienti, migliorare i nostri servizi
-                  e adempiere agli obblighi contrattuali e legali</strong
-                >. Non condividiamo mai i tuoi dati con terze parti senza il tuo esplicito consenso.
-              </p>
+              <h3>{{ t('contacts.privacyPurpose') }}</h3>
+              <p v-html="t('contacts.privacyPurposeText')"></p>
             </div>
           </div>
 
@@ -530,12 +387,8 @@ onMounted(() => {
               <span>🔐</span>
             </div>
             <div class="footer-content">
-              <h3>Sicurezza dei Dati</h3>
-              <p>
-                Utilizziamo <strong>tecnologie di crittografia avanzate</strong> e misure di
-                sicurezza all'avanguardia per proteggere i tuoi dati da accessi non autorizzati,
-                perdita o alterazione. I nostri sistemi sono costantemente monitorati e aggiornati.
-              </p>
+              <h3>{{ t('contacts.dataSecurity') }}</h3>
+              <p v-html="t('contacts.dataSecurityText')"></p>
             </div>
           </div>
 
@@ -544,25 +397,21 @@ onMounted(() => {
               <span>📞</span>
             </div>
             <div class="contact-privacy-content">
-              <h3>Hai Domande sulla Privacy?</h3>
-              <p>
-                Per qualsiasi informazione riguardante il trattamento dei tuoi dati personali, per
-                esercitare i tuoi diritti o per richiedere chiarimenti sulla nostra informativa
-                privacy, non esitare a contattarci.
-              </p>
+              <h3>{{ t('contacts.privacyQuestions') }}</h3>
+              <p>{{ t('contacts.privacyQuestionsText') }}</p>
               <div class="contact-details">
                 <div class="detail-item">
-                  <strong>📧 Email</strong>
+                  <strong>📧 {{ t('contacts.email') }}</strong>
                   <p>
                     <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
                   </p>
                 </div>
                 <div class="detail-item">
-                  <strong>📞 Telefono</strong>
+                  <strong>📞 {{ t('contacts.phone') }}</strong>
                   <p>+39 079 123 4567</p>
                 </div>
                 <div class="detail-item">
-                  <strong>📍 Sede Legale</strong>
+                  <strong>📍 {{ t('contacts.legalHeadquarters') }}</strong>
                   <p>Via Sebastiano Satta, 52<br />07041 Alghero (SS)</p>
                 </div>
               </div>
