@@ -1322,66 +1322,62 @@ const socialLinks = {
 /* Mobile Language Buttons */
 .mobile-lang-buttons {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  gap: 0.6rem;
+  align-items: center;
   padding: 1.5rem 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 0.5rem;
+  gap: 0.75rem;
+  border-top: 1px solid #e5e7eb;
 }
 
 .mobile-lang-btn {
-  padding: 0.5rem 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ce4028;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
+  color: #1f4f80;
+  padding: 0.5rem 1rem;
   font-weight: 600;
+  font-size: 0.85rem;
+  border: 2px solid #e5e7eb;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  min-width: 50px;
+  background: white;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  min-width: 50px;
 }
 
 .mobile-lang-btn::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  left: 0;
+  top: 0;
+  height: 100%;
   width: 0;
-  height: 0;
-  background: rgba(206, 64, 40, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.4s,
-    height 0.4s;
+  background: linear-gradient(90deg, rgba(206, 64, 40, 0.1), transparent);
+  transition: width 0.3s ease;
   z-index: 0;
 }
 
 .mobile-lang-btn:hover::before {
-  width: 100px;
-  height: 100px;
+  width: 100%;
 }
 
 .mobile-lang-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(206, 64, 40, 0.5);
-  color: white;
+  background-color: rgba(206, 64, 40, 0.05);
+  border-color: #ce4028;
+  color: #ce4028;
   transform: translateY(-2px);
 }
 
 .mobile-lang-btn.active {
-  background: #ce4028;
-  border-color: #ce4028;
+  background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(206, 64, 40, 0.3);
-}
-
-.mobile-lang-btn.active::before {
-  display: none;
+  border-color: #ce4028;
+  box-shadow: 0 2px 8px rgba(206, 64, 40, 0.3);
 }
 
 /* Responsive Design */
