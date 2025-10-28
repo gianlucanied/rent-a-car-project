@@ -1323,52 +1323,65 @@ const socialLinks = {
 .mobile-lang-buttons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1.25rem 2rem 1.5rem;
+  gap: 0.6rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
 }
 
 .mobile-lang-btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background: #ce4028;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ce4028;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
   min-width: 50px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
+  letter-spacing: 0.5px;
 }
 
 .mobile-lang-btn::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 70%;
-  height: 2px;
-  background: #ce4028;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+  height: 0;
+  background: rgba(206, 64, 40, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s,
+    height 0.4s;
+  z-index: 0;
 }
 
 .mobile-lang-btn:hover::before {
-  transform: translateX(-50%) scaleX(1);
+  width: 100px;
+  height: 100px;
+}
+
+.mobile-lang-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(206, 64, 40, 0.5);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .mobile-lang-btn.active {
-  background: rgba(206, 64, 40, 0.15);
-  color: #ce4028;
-  font-weight: 600;
+  background: #ce4028;
+  border-color: #ce4028;
+  color: white;
+  box-shadow: 0 4px 12px rgba(206, 64, 40, 0.3);
 }
 
 .mobile-lang-btn.active::before {
-  transform: translateX(-50%) scaleX(1);
-  background: #ce4028;
+  display: none;
 }
 
 /* Responsive Design */
