@@ -11,244 +11,262 @@ const services = computed(() => [
     title: t('home.servicePaymentTitle'),
     description: t('home.servicePaymentText'),
     color: '#1f4f80',
+    span: 'normal',
   },
   {
     icon: '🔧',
     title: t('home.serviceAssistanceTitle'),
     description: t('home.serviceAssistanceText'),
-    color: '#e6583f',
+    color: '#ce4028',
+    span: 'normal',
   },
 ])
-
-const fleet = [
-  {
-    name: 'Auto e Utilitarie',
-    description: 'Marche premium del mercato',
-    image: '🚙',
-    price: 'da €25/giorno',
-    features: ['Senza conducente', 'Consegna inclusa', 'Tutte le marche'],
-  },
-  {
-    name: 'Monovolumi e Minibus',
-    description: 'Spazio per tutta la famiglia',
-    image: '🚐',
-    price: 'da €45/giorno',
-    features: ['Fino a 9 posti', 'Ideali per gruppi', 'Con o senza autista'],
-  },
-]
 
 const stats = computed(() => [
   { number: '10+', label: t('home.yearsExperience') },
   { number: '24/7', label: t('home.assistance') },
 ])
 
+const features = computed(() => [
+  {
+    num: '01',
+    title: t('home.aboutFeature1Title'),
+    text: t('home.aboutFeature1Text'),
+    color: '#1f4f80',
+  },
+  {
+    num: '02',
+    title: t('home.aboutFeature2Title'),
+    text: t('home.aboutFeature2Text'),
+    color: '#ce4028',
+  },
+  {
+    num: '03',
+    title: t('home.aboutFeature3Title'),
+    text: t('home.aboutFeature3Text'),
+    color: '#1f4f80',
+  },
+  {
+    num: '04',
+    title: t('home.aboutFeature4Title'),
+    text: t('home.aboutFeature4Text'),
+    color: '#ce4028',
+  },
+])
+
+const steps = computed(() => [
+  { n: '01', title: t('home.step1Title'), text: t('home.step1Text') },
+  { n: '02', title: t('home.step2Title'), text: t('home.step2Text') },
+  { n: '03', title: t('home.step3Title'), text: t('home.step3Text') },
+])
+
 const isVisible = ref(false)
 
 onMounted(() => {
-  isVisible.value = true
+  setTimeout(() => {
+    isVisible.value = true
+  }, 80)
 
-  // Intersection Observer per animazioni allo scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px',
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in')
-      }
-    })
-  }, observerOptions)
-
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('animate-in')
+      })
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -80px 0px' },
+  )
   document.querySelectorAll('.observe').forEach((el) => observer.observe(el))
 })
 </script>
 
 <template>
-  <main>
-    <!-- Hero Section / Jumbotron -->
-    <section class="jumbotron">
-      <div class="hero-background">
-        <div class="floating-car car-1">🚗</div>
-        <div class="floating-car car-2">🚙</div>
-        <div class="floating-car car-3">🚘</div>
+  <main class="home-page">
+    <!-- ░░ HERO ░░ -->
+    <section class="page-hero">
+      <div class="hero-lines" aria-hidden="true">
+        <span v-for="n in 8" :key="n" class="diag-line" :style="{ '--i': n }"></span>
       </div>
+      <div class="hero-blob blob-1" aria-hidden="true"></div>
+      <div class="hero-blob blob-2" aria-hidden="true"></div>
 
-      <div class="hero-content" :class="{ visible: isVisible }">
+      <!-- auto flottanti -->
+      <div class="floating-car car-1" aria-hidden="true">🚗</div>
+      <div class="floating-car car-2" aria-hidden="true">🚙</div>
+      <div class="floating-car car-3" aria-hidden="true">🚘</div>
+
+      <div class="hero-inner" :class="{ visible: isVisible }">
+        <div class="hero-tag-row">
+          <span class="hero-eyebrow">Alghero · Sardegna</span>
+          <span class="hero-divider">—</span>
+          <span class="hero-brand">Rent a Car Express</span>
+        </div>
+
         <h1 class="hero-title">
-          <span class="title-line">{{ t('home.heroTitle') }}</span>
-          <span class="title-line gradient-text">{{ t('home.heroSubtitle') }}</span>
+          <span class="title-block">{{ t('home.heroTitle') }}</span>
+          <span class="title-accent">{{ t('home.heroSubtitle') }}</span>
         </h1>
 
         <div class="hero-buttons">
           <RouterLink to="/rates" class="btn-primary">
             <span class="btn-text">{{ t('home.discoverRates') }}</span>
-            <span class="btn-icon">→</span>
+            <span class="btn-arrow">→</span>
           </RouterLink>
           <RouterLink to="/contacts" class="btn-secondary">
-            <span class="btn-icon">📞</span>
+            <span>📞</span>
             <span class="btn-text">{{ t('home.contactUs') }}</span>
           </RouterLink>
         </div>
 
-        <!-- Stats rapide -->
         <div class="hero-stats">
           <div v-for="stat in stats" :key="stat.label" class="stat-item">
-            <div class="stat-number">{{ stat.number }}</div>
-            <div class="stat-label">{{ stat.label }}</div>
+            <span class="stat-number">{{ stat.number }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
           </div>
         </div>
       </div>
 
-      <div class="scroll-indicator">
-        <span>{{ t('home.scroll') }}</span>
-        <div class="scroll-arrow">↓</div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span class="scroll-text">{{ t('home.scroll') }}</span>
+      </div>
+
+      <div class="hero-deco-num" aria-hidden="true">01</div>
+    </section>
+
+    <!-- ░░ CHI SIAMO ░░ -->
+    <section class="section-wrap bg-white">
+      <div class="container">
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('home.aboutLabel') }}</p>
+        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('home.aboutTitle') }}</h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('home.aboutSubtitle') }}</p>
+
+        <div class="about-layout">
+          <!-- colonna sinistra: highlight + descrizione + features -->
+          <div class="about-left">
+            <div class="about-highlight observe" style="--delay: 0.15s">
+              <div class="note-bar" aria-hidden="true"></div>
+              <div class="ah-body">
+                <div>
+                  <h3 class="ah-title">{{ t('home.aboutCompany') }}</h3>
+                  <p class="ah-sub">{{ t('home.aboutCompanySubtitle') }}</p>
+                </div>
+              </div>
+            </div>
+
+            <p
+              class="about-description observe"
+              style="--delay: 0.2s"
+              v-html="t('home.aboutDescription')"
+            ></p>
+
+            <div class="features-grid">
+              <article
+                v-for="(feat, i) in features"
+                :key="feat.num"
+                class="feat-card observe"
+                :style="{ '--card-color': feat.color, '--delay': i * 0.08 + 0.25 + 's' }"
+              >
+                <span class="feat-num" aria-hidden="true">{{ feat.num }}</span>
+                <div class="feat-body">
+                  <div class="feat-icon-wrap">
+                    <div class="feat-dot"></div>
+                  </div>
+                  <div>
+                    <h4 class="feat-title">{{ feat.title }}</h4>
+                    <p class="feat-text">{{ feat.text }}</p>
+                  </div>
+                </div>
+                <div class="card-underline" aria-hidden="true"></div>
+              </article>
+            </div>
+          </div>
+
+          <!-- colonna destra: card decorativa -->
+          <div class="about-right observe" style="--delay: 0.3s">
+            <div class="about-deco-blob blob-a" aria-hidden="true"></div>
+            <div class="about-deco-blob blob-b" aria-hidden="true"></div>
+            <div class="about-card">
+              <div class="about-card-icon">🚗</div>
+              <h4 class="about-card-title">{{ t('home.aboutImageTitle') }}</h4>
+              <p class="about-card-sub">{{ t('home.aboutImageSubtitle') }}</p>
+              <div class="about-card-stats">
+                <div v-for="stat in stats" :key="stat.label" class="acs-item">
+                  <span class="acs-num">{{ stat.number }}</span>
+                  <span class="acs-label">{{ stat.label }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Sezione Chi Siamo -->
-    <section class="about-us observe">
+    <!-- ░░ PERCHÉ NOI ░░ -->
+    <section class="section-wrap bg-light">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label">{{ t('home.aboutLabel') }}</span>
-          <h2>{{ t('home.aboutTitle') }}</h2>
-          <p class="section-subtitle">{{ t('home.aboutSubtitle') }}</p>
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('home.whyUsLabel') }}</p>
         </div>
-
-        <div class="about-content">
-          <div class="about-text">
-            <div class="about-highlight">
-              <span class="highlight-icon">🏝️</span>
-              <div>
-                <h3>{{ t('home.aboutCompany') }}</h3>
-                <p class="highlight-subtitle">{{ t('home.aboutCompanySubtitle') }}</p>
-              </div>
-            </div>
-
-            <p class="about-description" v-html="t('home.aboutDescription')"></p>
-
-            <div class="about-features">
-              <div class="about-feature-item">
-                <span class="feature-number">01</span>
-                <div class="feature-content">
-                  <h4>{{ t('home.aboutFeature1Title') }}</h4>
-                  <p>{{ t('home.aboutFeature1Text') }}</p>
-                </div>
-              </div>
-
-              <div class="about-feature-item">
-                <span class="feature-number">02</span>
-                <div class="feature-content">
-                  <h4>{{ t('home.aboutFeature2Title') }}</h4>
-                  <p>{{ t('home.aboutFeature2Text') }}</p>
-                </div>
-              </div>
-
-              <div class="about-feature-item">
-                <span class="feature-number">03</span>
-                <div class="feature-content">
-                  <h4>{{ t('home.aboutFeature3Title') }}</h4>
-                  <p>{{ t('home.aboutFeature3Text') }}</p>
-                </div>
-              </div>
-
-              <div class="about-feature-item">
-                <span class="feature-number">04</span>
-                <div class="feature-content">
-                  <h4>{{ t('home.aboutFeature4Title') }}</h4>
-                  <p>{{ t('home.aboutFeature4Text') }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-image">
-            <div class="image-decoration decoration-1"></div>
-            <div class="image-decoration decoration-2"></div>
-            <div class="image-card">
-              <div class="image-icon">🚗</div>
-              <div class="image-content">
-                <h4>{{ t('home.aboutImageTitle') }}</h4>
-                <p>{{ t('home.aboutImageSubtitle') }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sezione Perché Sceglierci -->
-    <section class="why-us observe">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">{{ t('home.whyUsLabel') }}</span>
-          <h2>{{ t('home.whyUsTitle') }}</h2>
-          <p class="section-subtitle">{{ t('home.whyUsSubtitle') }}</p>
-        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('home.whyUsTitle') }}</h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('home.whyUsSubtitle') }}</p>
 
         <div class="services-grid">
-          <div
+          <article
             v-for="(service, index) in services"
             :key="service.title"
-            class="service-card"
-            :style="{ '--card-color': service.color, '--delay': index * 0.1 + 's' }"
+            class="service-card observe"
+            :style="{ '--card-color': service.color, '--delay': index * 0.1 + 0.15 + 's' }"
           >
-            <div class="card-shine"></div>
-            <div class="service-icon">
-              <span>{{ service.icon }}</span>
+            <span class="card-num" aria-hidden="true">{{
+              String(index + 1).padStart(2, '0')
+            }}</span>
+            <div class="card-body">
+              <div class="card-header">
+                <div class="card-icon-wrap">
+                  <span class="card-icon">{{ service.icon }}</span>
+                </div>
+                <h3 class="card-title">{{ service.title }}</h3>
+              </div>
+              <p class="card-text">{{ service.description }}</p>
             </div>
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-            <div class="card-corner"></div>
-          </div>
+            <div class="card-underline" aria-hidden="true"></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Sezione Come Funziona -->
-    <section class="how-it-works observe">
+    <!-- ░░ COME FUNZIONA ░░ -->
+    <section class="section-wrap bg-white">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label">{{ t('home.howItWorksLabel') }}</span>
-          <h2>{{ t('home.howItWorksTitle') }}</h2>
-          <p class="section-subtitle">{{ t('home.howItWorksSubtitle') }}</p>
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('home.howItWorksLabel') }}</p>
         </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">
+          {{ t('home.howItWorksTitle') }}
+        </h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('home.howItWorksSubtitle') }}</p>
 
-        <div class="steps">
-          <div class="step" :style="{ '--delay': '0s' }">
-            <div class="step-number">
-              <span class="number">1</span>
-              <div class="pulse-ring"></div>
-            </div>
-            <div class="step-content">
-              <h3>{{ t('home.step1Title') }}</h3>
-              <p>{{ t('home.step1Text') }}</p>
-            </div>
-            <div class="step-connector"></div>
-          </div>
+        <div class="steps-grid">
+          <div
+            v-for="(step, i) in steps"
+            :key="step.n"
+            class="step-card observe"
+            :style="{ '--delay': i * 0.12 + 0.15 + 's' }"
+          >
+            <!-- connettore -->
+            <div v-if="i < steps.length - 1" class="step-connector" aria-hidden="true"></div>
 
-          <div class="step" :style="{ '--delay': '0.2s' }">
-            <div class="step-number">
-              <span class="number">2</span>
-              <div class="pulse-ring"></div>
+            <div class="step-badge">
+              <span class="step-n">{{ step.n }}</span>
+              <div class="step-ring" aria-hidden="true"></div>
             </div>
-            <div class="step-content">
-              <h3>{{ t('home.step2Title') }}</h3>
-              <p>{{ t('home.step2Text') }}</p>
-            </div>
-            <div class="step-connector"></div>
-          </div>
-
-          <div class="step" :style="{ '--delay': '0.4s' }">
-            <div class="step-number">
-              <span class="number">3</span>
-              <div class="pulse-ring"></div>
-            </div>
-            <div class="step-content">
-              <h3>{{ t('home.step3Title') }}</h3>
-              <p>{{ t('home.step3Text') }}</p>
-            </div>
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-text">{{ step.text }}</p>
           </div>
         </div>
       </div>
@@ -257,871 +275,917 @@ onMounted(() => {
 </template>
 
 <style scoped>
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Hero / Jumbotron Section */
-.jumbotron {
+/* ─── HERO ─────────────────────────────────────────────────────── */
+.page-hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 50%, #ce4028 100%);
+  background: #0e2d4e;
   overflow: hidden;
 }
 
-.hero-background {
+.hero-lines {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  pointer-events: none;
+}
+.diag-line {
+  position: absolute;
+  left: calc(var(--i) * 13% - 10%);
+  top: -20%;
+  width: 1px;
+  height: 160%;
+  background: rgba(255, 255, 255, 0.035);
+  transform: rotate(20deg);
+  transform-origin: top center;
 }
 
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(31, 79, 128, 0.65) 0%, transparent 70%);
+  top: -160px;
+  left: -120px;
+  animation: blobDrift 22s ease-in-out infinite alternate;
+}
+.blob-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(206, 64, 40, 0.5) 0%, transparent 70%);
+  bottom: -100px;
+  right: 5%;
+  animation: blobDrift 28s ease-in-out infinite alternate-reverse;
+}
+@keyframes blobDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+
+/* auto flottanti */
 .floating-car {
   position: absolute;
   font-size: 4rem;
-  opacity: 0.1;
-  animation: float 20s ease-in-out infinite;
+  opacity: 0.07;
   filter: blur(2px);
+  animation: carFloat 22s ease-in-out infinite;
 }
-
 .car-1 {
-  top: 20%;
-  left: 10%;
+  top: 18%;
+  left: 8%;
   animation-delay: 0s;
 }
-
 .car-2 {
-  top: 60%;
-  right: 15%;
-  animation-delay: 7s;
+  top: 58%;
+  right: 10%;
+  animation-delay: 8s;
 }
-
 .car-3 {
-  bottom: 20%;
-  left: 50%;
-  animation-delay: 14s;
+  bottom: 18%;
+  left: 48%;
+  animation-delay: 16s;
 }
-
-@keyframes float {
+@keyframes carFloat {
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
   33% {
-    transform: translate(30px, -30px) rotate(5deg);
+    transform: translate(28px, -28px) rotate(4deg);
   }
   66% {
-    transform: translate(-20px, 20px) rotate(-5deg);
+    transform: translate(-18px, 18px) rotate(-4deg);
   }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  max-width: 900px;
-  padding: 2rem;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+.hero-deco-num {
+  position: absolute;
+  right: 3rem;
+  bottom: 4rem;
+  font-size: clamp(8rem, 18vw, 18rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
 }
 
-.hero-content.visible {
+/* contenuto hero */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+  padding: 2rem 2rem 6rem;
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-inner.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.hero-title {
+.hero-tag-row {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.hero-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6583f;
+}
+.hero-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+.hero-brand {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
 }
 
-.title-line {
-  font-size: 4rem;
+.hero-title {
+  margin-bottom: 2.5rem;
+}
+.title-block {
+  display: block;
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 900;
-  color: white;
+  color: #fff;
   line-height: 1;
-  letter-spacing: -0.02em;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
-
-.gradient-text {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
+.title-accent {
+  display: block;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #e6583f 0%, #ffa07a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin-top: 0.4rem;
 }
 
+/* bottoni */
 .hero-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
-
 .btn-primary,
 .btn-secondary {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.25rem 2.5rem;
+  padding: 1.1rem 2.25rem;
   border-radius: 50px;
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1rem;
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease,
+    background 0.35s ease;
   position: relative;
   overflow: hidden;
 }
-
 .btn-primary {
-  background: white;
+  background: #fff;
   color: #1f4f80;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
-
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #ce4028, #e6583f);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
 }
-
 .btn-primary:hover::before {
   opacity: 1;
 }
-
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  color: white;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+.btn-text,
+.btn-arrow {
+  position: relative;
+  z-index: 1;
+}
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
 }
 
 .btn-secondary {
   background: rgba(255, 255, 255, 0.1);
-  color: white;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
 }
-
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: white;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-3px);
 }
 
-.btn-text,
-.btn-icon {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-icon {
-  font-size: 1.25rem;
-  transition: transform 0.3s ease;
-}
-
-.btn-primary:hover .btn-icon {
-  transform: translateX(5px);
-}
-
+/* stats */
 .hero-stats {
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
 }
-
 .stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 3rem;
-  font-weight: 900;
-  color: white;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.stat-label {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
+  padding: 1.25rem 2.5rem;
+  gap: 0.3rem;
+  position: relative;
+}
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.stat-label {
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.scroll-arrow {
-  font-size: 1.5rem;
-  animation: bounce 2s ease-in-out infinite;
+/* scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 2;
+}
+.scroll-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.scroll-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
+/* ─── SEZIONI ───────────────────────────────────────────────────── */
+.section-wrap {
+  padding: 6rem 2rem 7rem;
 }
-
-/* Sezioni comuni */
-section {
-  padding: 6rem 2rem;
+.bg-white {
+  background: #fff;
+}
+.bg-light {
+  background: #f4f6f9;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
+.section-intro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.1);
 }
-
-.section-label {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background: linear-gradient(135deg, #ce4028, #e6583f);
-  color: white;
-  border-radius: 50px;
-  font-size: 0.875rem;
+.intro-dash {
+  font-size: 1.2rem;
+  color: #ce4028;
   font-weight: 700;
+}
+.intro-text {
+  font-size: 0.82rem;
+  color: #999;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(206, 64, 40, 0.3);
 }
 
-h2 {
-  font-size: 3rem;
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
-  color: #1f4f80;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  color: #0e2d4e;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: #6a7a8a;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 3.5rem;
 }
 
-.section-subtitle {
-  font-size: 1.25rem;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* About Us Section */
-.about-us {
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-}
-
-.about-content {
+/* ─── CHI SIAMO ─────────────────────────────────────────────────── */
+.about-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
   align-items: start;
 }
 
-.about-text {
+.about-left {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* highlight box con barra laterale */
 .about-highlight {
   display: flex;
+  align-items: stretch;
+  background: #f4f6f9;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 79, 128, 0.08);
+}
+.note-bar {
+  width: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1f4f80, #ce4028);
+}
+.ah-body {
+  display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, rgba(31, 79, 128, 0.05), rgba(206, 64, 40, 0.05));
-  border-radius: 20px;
-  border: 2px solid rgba(31, 79, 128, 0.1);
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
 }
-
-.highlight-icon {
-  font-size: 3.5rem;
+.ah-icon {
+  font-size: 2.5rem;
   line-height: 1;
+  flex-shrink: 0;
 }
-
-.about-highlight h3 {
-  font-size: 1.75rem;
+.ah-title {
+  font-size: 1.3rem;
   font-weight: 800;
-  color: #1f4f80;
-  margin-bottom: 0.5rem;
+  color: #0e2d4e;
+  margin-bottom: 0.3rem;
 }
-
-.highlight-subtitle {
-  color: #666;
-  font-size: 1rem;
+.ah-sub {
+  font-size: 0.92rem;
+  color: #6a7a8a;
 }
 
 .about-description {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #444;
+  font-size: 1.05rem;
+  color: #5a6a7a;
+  line-height: 1.85;
 }
 
-.about-features {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.about-feature-item {
-  display: flex;
-  gap: 1.5rem;
-  align-items: start;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(31, 79, 128, 0.1);
-}
-
-.about-feature-item:hover {
-  transform: translateX(10px);
-  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.1);
-  border-color: #ce4028;
-}
-
-.feature-number {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #ce4028;
-  line-height: 1;
-  opacity: 0.3;
-  min-width: 60px;
-}
-
-.feature-content h4 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1f4f80;
-  margin-bottom: 0.75rem;
-}
-
-.feature-content p {
-  color: #666;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-.about-image {
-  position: relative;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-decoration {
-  position: absolute;
-  background: linear-gradient(135deg, #ce4028, #e6583f);
-  border-radius: 30px;
-  opacity: 0.1;
-}
-
-.decoration-1 {
-  top: 0;
-  right: 0;
-  width: 80%;
-  height: 80%;
-  animation: float 10s ease-in-out infinite;
-}
-
-.decoration-2 {
-  bottom: 0;
-  left: 0;
-  width: 70%;
-  height: 70%;
-  background: linear-gradient(135deg, #1f4f80, #3a6fa0);
-  animation: float 15s ease-in-out infinite reverse;
-}
-
-.image-card {
-  position: relative;
-  z-index: 1;
-  background: white;
-  padding: 3rem 2.5rem;
-  border-radius: 25px;
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
-  text-align: center;
-  max-width: 350px;
-  border: 3px solid rgba(31, 79, 128, 0.1);
-}
-
-.image-icon {
-  font-size: 5rem;
-  margin-bottom: 1.5rem;
-  animation: bounce 3s ease-in-out infinite;
-}
-
-.image-content h4 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #1f4f80;
-  margin-bottom: 0.75rem;
-}
-
-.image-content p {
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* Why Us Section */
-.why-us {
-  background: white;
-}
-
-.services-grid {
+/* features grid 2 colonne */
+.features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.service-card {
+.feat-card {
   position: relative;
-  padding: 3rem 2.5rem;
-  background: white;
-  border-radius: 25px;
-  box-shadow: 0 10px 40px rgba(31, 79, 128, 0.08);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem 2rem;
+  border: 1px solid rgba(31, 79, 128, 0.07);
   overflow: hidden;
-  border: 2px solid rgba(31, 79, 128, 0.05);
-  animation: fadeInUp 0.6s ease-out calc(var(--delay)) both;
+  transition:
+    transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
 }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--card-color),
-    color-mix(in srgb, var(--card-color) 70%, white)
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.service-card:hover::before {
-  opacity: 0.05;
-}
-
-.service-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
+.feat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px rgba(14, 45, 78, 0.1);
   border-color: var(--card-color);
 }
 
-.card-shine {
+.feat-num {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.8) 50%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.6s;
-}
-
-.service-card:hover .card-shine {
-  opacity: 1;
-  animation: shine 1.5s ease-in-out;
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) skewX(-15deg);
-  }
-  100% {
-    transform: translateX(200%) skewX(-15deg);
-  }
-}
-
-.service-icon {
-  font-size: 4.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.service-card h3 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #1f4f80;
-  margin-bottom: 1.25rem;
-  position: relative;
-  z-index: 1;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(31, 79, 128, 0.055);
+  letter-spacing: -0.04em;
+  user-select: none;
   transition: color 0.3s ease;
 }
-
-.service-card:hover h3 {
-  color: var(--card-color);
+.feat-card:hover .feat-num {
+  color: rgba(31, 79, 128, 0.1);
 }
 
-.service-card p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1.05rem;
+.feat-body {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
   position: relative;
   z-index: 1;
 }
+.feat-icon-wrap {
+  width: 10px;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+.feat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--card-color);
+  transition: transform 0.3s ease;
+}
+.feat-card:hover .feat-dot {
+  transform: scale(1.4);
+}
 
-.card-corner {
+.feat-title {
+  font-size: 0.97rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  margin-bottom: 0.4rem;
+  transition: color 0.3s;
+}
+.feat-card:hover .feat-title {
+  color: var(--card-color);
+}
+.feat-text {
+  font-size: 0.87rem;
+  color: #6a7a8a;
+  line-height: 1.7;
+}
+
+/* colonna destra about */
+.about-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+.about-deco-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.blob-a {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(206, 64, 40, 0.12) 0%, transparent 70%);
+  top: 0;
+  right: 0;
+  animation: blobDrift 18s ease-in-out infinite alternate;
+}
+.blob-b {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(31, 79, 128, 0.1) 0%, transparent 70%);
+  bottom: 0;
+  left: 0;
+  animation: blobDrift 24s ease-in-out infinite alternate-reverse;
+}
+.about-card {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(31, 79, 128, 0.1);
+  box-shadow: 0 12px 50px rgba(14, 45, 78, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+}
+.about-card-icon {
+  font-size: 4rem;
+  margin-bottom: 1.25rem;
+  animation: carFloat 5s ease-in-out infinite;
+}
+.about-card-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  margin-bottom: 0.5rem;
+}
+.about-card-sub {
+  font-size: 0.9rem;
+  color: #6a7a8a;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+.about-card-stats {
+  display: flex;
+  gap: 0;
+  background: #f4f6f9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.acs-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  gap: 0.2rem;
+  position: relative;
+}
+.acs-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: rgba(31, 79, 128, 0.12);
+}
+.acs-num {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #1f4f80;
+  letter-spacing: -0.03em;
+}
+.acs-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6a7a8a;
+}
+
+/* ─── PERCHÉ NOI ────────────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* card base (stessa logica ConditionsView) */
+.service-card,
+.feat-card {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 79, 128, 0.07);
+}
+.service-card {
+  padding: 2.5rem 2.25rem 3rem;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(14, 45, 78, 0.13);
+  border-color: var(--card-color);
+}
+
+.card-num {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(31, 79, 128, 0.055);
+  letter-spacing: -0.04em;
+  user-select: none;
+  transition: color 0.35s ease;
+}
+.service-card:hover .card-num {
+  color: rgba(31, 79, 128, 0.1);
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-color) 12%, white),
+    color-mix(in srgb, var(--card-color) 6%, white)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s ease;
+}
+.service-card:hover .card-icon-wrap {
+  transform: scale(1.1) rotate(6deg);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-color) 22%, white),
+    color-mix(in srgb, var(--card-color) 12%, white)
+  );
+}
+.card-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+.service-card:hover .card-title {
+  color: var(--card-color);
+}
+.card-text {
+  font-size: 0.95rem;
+  color: #5a6a7a;
+  line-height: 1.8;
+}
+
+.card-underline {
   position: absolute;
   bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, transparent 50%, var(--card-color) 50%);
-  opacity: 0.1;
-  transition: all 0.5s ease;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--card-color),
+    color-mix(in srgb, var(--card-color) 50%, white)
+  );
+  border-radius: 0 0 16px 16px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.service-card:hover .card-underline,
+.feat-card:hover .card-underline {
+  width: 100%;
 }
 
-.service-card:hover .card-corner {
-  width: 150px;
-  height: 150px;
-  opacity: 0.15;
-}
-
-/* Come Funziona */
-.how-it-works {
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-}
-
-.steps {
+/* ─── COME FUNZIONA ─────────────────────────────────────────────── */
+.steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+  gap: 2rem;
   position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.step {
+.step-card {
+  position: relative;
   text-align: center;
-  position: relative;
-  padding: 2rem 1.5rem;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: fadeInUp 0.6s ease-out calc(var(--delay)) both;
+  padding: 2.5rem 1.5rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 79, 128, 0.07);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 48px rgba(14, 45, 78, 0.1);
 }
 
-.step:hover {
-  transform: translateY(-15px);
-}
-
+/* connettore orizzontale tra step */
 .step-connector {
   position: absolute;
-  top: 45px;
-  right: -1.5rem;
-  width: 3rem;
+  top: 58px;
+  right: -1rem;
+  width: 2rem;
   height: 2px;
-  background: linear-gradient(90deg, #ce4028 0%, #e6583f 50%, transparent 100%);
-  display: none;
+  background: linear-gradient(90deg, #ce4028, transparent);
+  z-index: 1;
 }
-
-@media (min-width: 992px) {
-  .step:not(:last-child) .step-connector {
-    display: block;
+@media (max-width: 860px) {
+  .step-connector {
+    display: none;
   }
 }
 
-.step-number {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #1f4f80, #3a6fa0);
-  color: white;
+.step-badge {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #0e2d4e, #1f4f80);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin: 0 auto 2rem;
-  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.3);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 auto 1.75rem;
+  box-shadow: 0 10px 30px rgba(14, 45, 78, 0.25);
   position: relative;
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s ease,
+    background 0.5s ease;
+}
+.step-card:hover .step-badge {
+  transform: scale(1.12) rotate(360deg);
+  background: linear-gradient(135deg, #ce4028, #e6583f);
+  box-shadow: 0 14px 38px rgba(206, 64, 40, 0.35);
 }
 
-.number {
+.step-n {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
   position: relative;
   z-index: 2;
+  letter-spacing: -0.03em;
 }
 
-.pulse-ring {
+.step-ring {
   position: absolute;
   top: -5px;
   left: -5px;
   right: -5px;
   bottom: -5px;
   border-radius: 50%;
-  border: 3px solid #ce4028;
+  border: 2.5px solid #ce4028;
   opacity: 0;
-  animation: pulseRing 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: pulseRing 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
-
 @keyframes pulseRing {
   0% {
     opacity: 0;
     transform: scale(0.8);
   }
   50% {
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
     opacity: 0;
-    transform: scale(1.3);
+    transform: scale(1.35);
   }
 }
 
-.step:hover .pulse-ring {
-  animation-duration: 1s;
-}
-
-.step:hover .step-number {
-  transform: scale(1.15) rotate(360deg);
-  box-shadow: 0 15px 40px rgba(31, 79, 128, 0.4);
-  background: linear-gradient(135deg, #ce4028, #e6583f);
-}
-
-.step-content h3 {
-  color: #1f4f80;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 700;
+.step-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  margin-bottom: 0.75rem;
   transition: color 0.3s ease;
 }
-
-.step:hover .step-content h3 {
+.step-card:hover .step-title {
   color: #ce4028;
 }
-
-.step-content p {
-  color: #666;
+.step-text {
+  font-size: 0.93rem;
+  color: #6a7a8a;
   line-height: 1.8;
-  font-size: 1rem;
 }
 
-/* Animations Observer */
+/* ─── SCROLL ANIMATION ──────────────────────────────────────────── */
 .observe {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s ease-out calc(var(--delay, 0s)),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0s));
 }
-
 .observe.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .steps {
-    gap: 2.5rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-stats {
-    gap: 2rem;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-  }
-
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
-
-  .about-image {
-    min-height: 400px;
-  }
-
-  .steps {
+/* ─── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .about-layout {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
-  .step-connector {
-    display: none !important;
+  .about-right {
+    min-height: auto;
   }
-}
-
-@media (max-width: 768px) {
-  .jumbotron {
-    min-height: 100vh;
-    padding: 8rem 1.5rem 4rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    letter-spacing: -1px;
-  }
-
-  .title-line {
-    font-size: 2.5rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  section {
-    padding: 4rem 1.5rem;
-  }
-
-  .services-grid,
-  .steps {
-    gap: 2rem;
-  }
-
-  .hero-stats {
-    gap: 1.5rem;
-    flex-direction: column;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-  }
-
-  .scroll-indicator {
-    display: none;
-  }
-
-  .floating-car {
-    font-size: 3rem;
-  }
-
-  .about-content {
-    gap: 3rem;
-  }
-
-  .about-highlight {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-image {
-    min-height: 350px;
-  }
-
-  .image-card {
+  .about-card {
     max-width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
+@media (max-width: 860px) {
+  .features-grid {
+    grid-template-columns: 1fr;
   }
-
-  .title-line {
-    font-size: 2rem;
+  .services-grid {
+    grid-template-columns: 1fr;
   }
-
-  h2 {
-    font-size: 1.8rem;
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-
-  .section-subtitle {
-    font-size: 1rem;
+  .hero-deco-num {
+    display: none;
   }
-
-  .service-icon {
-    font-size: 3.5rem;
-  }
-
-  .step-number {
-    width: 80px;
-    height: 80px;
-    font-size: 2rem;
-  }
-
-  .hero-stats {
-    padding: 1.5rem;
+  .hero-scroll-hint {
+    display: none;
   }
 }
 
-/* Print Styles */
-@media print {
-  .hero-buttons,
+@media (max-width: 600px) {
+  .page-hero {
+    min-height: 100svh;
+  }
+  .hero-inner {
+    padding-bottom: 4rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
   .btn-primary,
-  .btn-secondary,
-  .scroll-indicator {
+  .btn-secondary {
+    justify-content: center;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 0;
+    border-radius: 14px;
+  }
+  .stat-item:not(:last-child)::after {
     display: none;
+  }
+  .section-wrap {
+    padding: 4rem 1.25rem 5rem;
+  }
+  .feat-card {
+    padding: 1.5rem 1.25rem 1.75rem;
   }
 }
 </style>

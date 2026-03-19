@@ -1,3 +1,4 @@
+import ConditionView from '@/views/ConditionView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ContactsView from '../views/ContactsView.vue'
 import HomeView from '../views/HomeView.vue'
@@ -20,6 +21,11 @@ const router = createRouter({
       path: '/contacts',
       name: 'contacts',
       component: ContactsView,
+    },
+    {
+      path: '/conditions',
+      name: 'conditions',
+      component: ConditionView,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -11,8 +11,7 @@ const contactMethods = computed(() => [
     value: '+39 079 123 4567',
     description: t('contacts.phoneSchedule'),
     link: 'tel:+390791234567',
-    gradient: 'from-blue-500 via-blue-600 to-indigo-600',
-    iconBg: 'bg-blue-50',
+    color: '#1f4f80',
   },
   {
     icon: '📧',
@@ -20,8 +19,7 @@ const contactMethods = computed(() => [
     value: 'info@rentacarexpress.it',
     description: t('contacts.emailResponse'),
     link: 'mailto:info@rentacarexpress.it',
-    gradient: 'from-red-500 via-red-600 to-rose-600',
-    iconBg: 'bg-red-50',
+    color: '#ce4028',
   },
   {
     icon: '💬',
@@ -29,36 +27,35 @@ const contactMethods = computed(() => [
     value: '+39 333 123 4567',
     description: t('contacts.whatsappAssistance'),
     link: 'https://wa.me/393331234567',
-    gradient: 'from-green-500 via-emerald-600 to-teal-600',
-    iconBg: 'bg-green-50',
+    color: '#1f4f80',
   },
 ])
 
-const privacyData = computed(() => [
+const locationInfo = computed(() => [
+  { icon: '📍', label: t('contacts.addressFull'), value: t('contacts.addressDetails'), html: true },
   {
-    icon: '📋',
-    title: t('contacts.privacyDataCollected'),
-    items: [
-      t('contacts.privacyName'),
-      t('contacts.privacyCompany'),
-      t('contacts.privacyPhone'),
-      t('contacts.privacyEmail'),
-      t('contacts.privacyRequest'),
-    ],
-    color: '#1f4f80',
+    icon: '🕒',
+    label: t('contacts.openingHoursTitle'),
+    value: t('contacts.openingHoursDetails'),
+    html: true,
   },
   {
-    icon: '⏱️',
-    title: t('contacts.privacyTreatment'),
-    description: t('contacts.privacyTreatmentText'),
-    color: '#ce4028',
+    icon: '🚗',
+    label: t('contacts.premiumServices'),
+    value: t('contacts.premiumDetails'),
+    html: true,
   },
-  {
-    icon: '🔒',
-    title: t('contacts.privacyRights'),
-    description: t('contacts.privacyRightsText'),
-    color: '#2d5f8f',
-  },
+])
+
+const faqs = computed(() => [
+  { q: t('faq.q1'), a: t('faq.a1') },
+  { q: t('faq.q2'), a: t('faq.a2') },
+  { q: t('faq.q3'), a: t('faq.a3') },
+  { q: t('faq.q4'), a: t('faq.a4') },
+  { q: t('faq.q5'), a: t('faq.a5') },
+  { q: t('faq.q6'), a: t('faq.a6') },
+  { q: t('faq.q7'), a: t('faq.a7') },
+  { q: t('faq.q8'), a: t('faq.a8') },
 ])
 
 const isVisible = ref(false)
@@ -68,351 +65,188 @@ onMounted(() => {
     isVisible.value = true
   }, 100)
 
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px',
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in')
-      }
-    })
-  }, observerOptions)
-
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('animate-in')
+      })
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -60px 0px' },
+  )
   document.querySelectorAll('.observe').forEach((el) => observer.observe(el))
 })
 </script>
 
 <template>
   <main class="contacts-page">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="grid-pattern"></div>
+    <!-- ░░ HERO ░░ -->
+    <section class="page-hero">
+      <div class="hero-lines" aria-hidden="true">
+        <span v-for="n in 8" :key="n" class="diag-line" :style="{ '--i': n }"></span>
       </div>
+      <div class="hero-blob blob-1" aria-hidden="true"></div>
+      <div class="hero-blob blob-2" aria-hidden="true"></div>
 
-      <div class="hero-content" :class="{ visible: isVisible }">
-        <div class="hero-badge">
-          <span class="badge-icon">💬</span>
-          <span class="badge-text">{{ t('contacts.heroTag') }}</span>
+      <div class="hero-inner" :class="{ visible: isVisible }">
+        <div class="hero-tag-row">
+          <span class="hero-eyebrow">{{ t('contacts.heroTag') }}</span>
+          <span class="hero-divider">—</span>
+          <span class="hero-brand">Rent a Car Express</span>
         </div>
-
         <h1 class="hero-title">
-          <span class="title-main">{{ t('contacts.heroTitle') }}</span>
-          <span class="title-gradient">{{ t('contacts.heroSubtitle') }}</span>
+          <span class="title-block">{{ t('contacts.heroTitle') }}</span>
+          <span class="title-accent">{{ t('contacts.heroSubtitle') }}</span>
         </h1>
-
-        <p class="hero-description" v-html="t('contacts.heroDescription')"></p>
-
-        <div class="scroll-indicator">
-          <div class="scroll-mouse">
-            <div class="scroll-wheel"></div>
-          </div>
+        <p class="hero-subtitle">{{ t('contacts.heroDescription') }}</p>
+        <div class="hero-scroll-hint" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-text">scroll</span>
         </div>
       </div>
+
+      <div class="hero-deco-num" aria-hidden="true">03</div>
     </section>
 
-    <!-- Contact Methods Section -->
-    <section class="methods-section observe">
+    <!-- ░░ METODI DI CONTATTO ░░ -->
+    <section class="section-wrap bg-light">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{{ t('contacts.channelsTag') }}</span>
-          <h2 class="section-title">{{ t('contacts.channelsTitle') }}</h2>
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('contacts.channelsTag') }}</p>
         </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">
+          {{ t('contacts.channelsTitle') }}
+        </h2>
 
         <div class="methods-grid">
           <a
             v-for="(method, index) in contactMethods"
             :key="index"
             :href="method.link"
-            class="method-card"
+            class="method-card observe"
+            :style="{ '--card-color': method.color, '--delay': index * 0.1 + 0.1 + 's' }"
           >
-            <div class="card-shine"></div>
-            <div :class="['method-icon-wrapper', method.iconBg]">
-              <span class="method-icon">{{ method.icon }}</span>
+            <span class="card-num" aria-hidden="true">{{
+              String(index + 1).padStart(2, '0')
+            }}</span>
+            <div class="card-body">
+              <div class="card-header">
+                <div class="card-icon-wrap">
+                  <span class="card-icon">{{ method.icon }}</span>
+                </div>
+                <h3 class="card-title">{{ method.title }}</h3>
+              </div>
+              <p class="method-value">{{ method.value }}</p>
+              <p class="card-text">{{ method.description }}</p>
             </div>
-            <h3 class="method-title">{{ method.title }}</h3>
-            <p class="method-value">{{ method.value }}</p>
-            <p class="method-desc">{{ method.description }}</p>
-            <div class="card-arrow">
-              <span>→</span>
-            </div>
+            <div class="card-arrow" aria-hidden="true">→</div>
+            <div class="card-underline" aria-hidden="true"></div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- QR Code WhatsApp Section -->
-    <section class="qrcode-section observe">
+    <!-- ░░ QR CODE WHATSAPP ░░ -->
+    <section class="section-wrap bg-white">
       <div class="container">
-        <div class="qrcode-card">
-          <div class="qrcode-decoration">
-            <div class="qrcode-blob qrcode-blob-1"></div>
-            <div class="qrcode-blob qrcode-blob-2"></div>
+        <div class="qr-block observe">
+          <!-- decorazioni blob interne -->
+          <div class="qr-blob qr-blob-1" aria-hidden="true"></div>
+          <div class="qr-blob qr-blob-2" aria-hidden="true"></div>
+
+          <div class="qr-text">
+            <div class="qr-icon-wrap">💬</div>
+            <h2 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h2>
+            <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
           </div>
 
-          <div class="qrcode-content">
-            <div class="qrcode-text">
-              <div class="qrcode-icon">💬</div>
-              <h2 class="qrcode-title">{{ t('contacts.qrCodeTitle') }}</h2>
-              <p class="qrcode-description">{{ t('contacts.qrCodeDescription') }}</p>
+          <div class="qr-image-col">
+            <div class="qr-frame">
+              <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qr-img" />
             </div>
-
-            <div class="qrcode-image-wrapper">
-              <div class="qrcode-frame">
-                <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qrcode-img" />
-              </div>
-              <div class="qrcode-badge">
-                <span>{{ t('contacts.scanNow') }}</span>
-              </div>
-            </div>
+            <span class="qr-badge">{{ t('contacts.scanNow') }}</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section observe" id="map">
+    <!-- ░░ FAQ ░░ -->
+    <section class="section-wrap bg-white">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{{ t('contacts.locationTag') }}</span>
-          <h2 class="section-title">{{ t('contacts.locationTitle') }}</h2>
-          <p class="section-subtitle">{{ t('contacts.locationSubtitle') }}</p>
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('faq.sectionLabel') }}</p>
         </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('faq.sectionTitle') }}</h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('faq.sectionSubtitle') }}</p>
 
-        <div class="map-wrapper">
+        <div class="faq-list">
+          <details v-for="(faq, i) in faqs" :key="i" class="faq-item">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
+              <span class="faq-q-text">{{ faq.q }}</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>{{ faq.a }}</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ MAPPA ░░ -->
+    <section class="section-wrap bg-light" id="map">
+      <div class="container">
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('contacts.locationTag') }}</p>
+        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">
+          {{ t('contacts.locationTitle') }}
+        </h2>
+        <p class="section-sub observe" style="--delay: 0.1s">
+          {{ t('contacts.locationSubtitle') }}
+        </p>
+
+        <div class="map-wrapper observe" style="--delay: 0.15s">
           <div class="map-frame">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.7890234567!2d8.315!3d40.556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d73b5e5c3e8e9d%3A0x123456789abcdef!2sVia%20Sebastiano%20Satta%2C%2052%2C%2007041%20Alghero%20SS!5e0!3m2!1sit!2sit!4v1234567890123!5m2!1sit!2sit"
               width="100%"
               height="100%"
               style="border: 0"
-              allowfullscreen=""
+              allowfullscreen
               loading="lazy"
             ></iframe>
           </div>
 
-          <div class="location-info">
-            <div class="info-card">
-              <div class="info-icon">📍</div>
-              <div>
-                <strong>{{ t('contacts.addressFull') }}</strong>
-                <p v-html="t('contacts.addressDetails')"></p>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon">🕒</div>
-              <div>
-                <strong>{{ t('contacts.openingHoursTitle') }}</strong>
-                <p v-html="t('contacts.openingHoursDetails')"></p>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon">🚗</div>
-              <div>
-                <strong>{{ t('contacts.premiumServices') }}</strong>
-                <p v-html="t('contacts.premiumDetails')"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Condizioni di Noleggio Section -->
-    <section class="conditions-section observe">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{{ t('contacts.conditionsTag') }}</span>
-          <h2 class="section-title">{{ t('contacts.conditionsTitle') }}</h2>
-          <p class="section-subtitle">{{ t('contacts.conditionsSubtitle') }}</p>
-        </div>
-
-        <div class="conditions-grid">
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #1f4f80">
-                <span>💳</span>
-              </div>
-              <h3>{{ t('contacts.payment') }}</h3>
-            </div>
-            <div class="condition-content">
-              <p>{{ t('contacts.paymentText') }}</p>
-              <div class="highlight-box">
-                <strong>{{ t('contacts.deposit') }}</strong> {{ t('contacts.depositText') }}
-                <strong>{{ t('contacts.depositAmount') }}</strong>
-              </div>
-              <p class="note-text">{{ t('contacts.paymentNote') }}</p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #ce4028">
-                <span>📊</span>
-              </div>
-              <h3>{{ t('contacts.taxes') }}</h3>
-            </div>
-            <div class="condition-content">
-              <p>{{ t('contacts.taxesText') }}</p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #2d5f8f">
-                <span>⛽</span>
-              </div>
-              <h3>{{ t('contacts.fuel') }}</h3>
-            </div>
-            <div class="condition-content">
-              <p>{{ t('contacts.fuelText') }}</p>
-              <div class="highlight-box warning">
-                <strong>{{ t('contacts.fuelWarning') }}</strong>
-                {{ t('contacts.fuelWarningText') }} <strong>{{ t('contacts.fuelCost') }}</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #e6583f">
-                <span>🎂</span>
-              </div>
-              <h3>{{ t('contacts.minAge') }}</h3>
-            </div>
-            <div class="condition-content">
-              <p>{{ t('contacts.minAgeText') }}</p>
-              <p class="note-text">{{ t('contacts.minAgeNote') }}</p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #1f4f80">
-                <span>🛡️</span>
-              </div>
-              <h3>{{ t('contacts.superCDW') }}</h3>
-            </div>
-            <div class="condition-content">
-              <p>{{ t('contacts.superCDWText') }}</p>
-              <div class="highlight-box">
-                <strong>{{ t('contacts.superCDWCost') }}</strong>
-                {{ t('contacts.superCDWCostAmount') }}
-              </div>
-              <p class="note-text">{{ t('contacts.superCDWNote') }}</p>
-            </div>
-          </div>
-
-          <div class="condition-card">
-            <div class="condition-header">
-              <div class="condition-icon" style="background: #ce4028">
-                <span>📋</span>
-              </div>
-              <h3>{{ t('contacts.documentation') }}</h3>
-            </div>
-            <div class="condition-content">
-              <ul class="requirements-list">
-                <li>{{ t('contacts.docLicense') }}</li>
-                <li>{{ t('contacts.docID') }}</li>
-                <li>{{ t('contacts.docCard') }}</li>
-                <li>{{ t('contacts.docFiscalCode') }}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Privacy Section -->
-    <section class="privacy-section observe">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">{{ t('contacts.privacyTag') }}</span>
-          <h2 class="section-title">{{ t('contacts.privacyTitle') }}</h2>
-          <p class="section-subtitle">{{ t('contacts.privacySubtitle') }}</p>
-        </div>
-
-        <div class="privacy-highlight">
-          <div class="highlight-icon">
-            <span>🛡️</span>
-          </div>
-          <div class="highlight-content">
-            <h3>{{ t('contacts.privacyGuarantee') }}</h3>
-            <p>{{ t('contacts.privacyGuaranteeText') }}</p>
-          </div>
-        </div>
-
-        <div class="privacy-grid">
-          <div v-for="(item, index) in privacyData" :key="index" class="privacy-card">
-            <div class="privacy-card-header">
-              <div class="privacy-icon" :style="{ background: item.color }">
-                <span>{{ item.icon }}</span>
-              </div>
-              <h3>{{ item.title }}</h3>
-            </div>
-
-            <div class="privacy-card-content">
-              <ul v-if="item.items" class="privacy-list">
-                <li v-for="(listItem, i) in item.items" :key="i">
-                  <span class="list-bullet">✓</span>
-                  <span>{{ listItem }}</span>
-                </li>
-              </ul>
-              <p v-else class="privacy-description">{{ item.description }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-cards">
-          <div class="footer-card">
-            <div class="footer-icon">
-              <span>🎯</span>
-            </div>
-            <div class="footer-content">
-              <h3>{{ t('contacts.privacyPurpose') }}</h3>
-              <p v-html="t('contacts.privacyPurposeText')"></p>
-            </div>
-          </div>
-
-          <div class="footer-card">
-            <div class="footer-icon">
-              <span>🔐</span>
-            </div>
-            <div class="footer-content">
-              <h3>{{ t('contacts.dataSecurity') }}</h3>
-              <p v-html="t('contacts.dataSecurityText')"></p>
-            </div>
-          </div>
-
-          <div class="contact-privacy-card">
-            <div class="contact-privacy-icon">
-              <span>📞</span>
-            </div>
-            <div class="contact-privacy-content">
-              <h3>{{ t('contacts.privacyQuestions') }}</h3>
-              <p>{{ t('contacts.privacyQuestionsText') }}</p>
-              <div class="contact-details">
-                <div class="detail-item">
-                  <strong>📧 {{ t('contacts.email') }}</strong>
-                  <p>
-                    <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
-                  </p>
-                </div>
-                <div class="detail-item">
-                  <strong>📞 {{ t('contacts.phone') }}</strong>
-                  <p>+39 079 123 4567</p>
-                </div>
-                <div class="detail-item">
-                  <strong>📍 {{ t('contacts.legalHeadquarters') }}</strong>
-                  <p>Via Sebastiano Satta, 52<br />07041 Alghero (SS)</p>
+          <div class="location-cards">
+            <div
+              v-for="(info, i) in locationInfo"
+              :key="i"
+              class="location-card"
+              :style="{ '--delay': i * 0.08 + 0.2 + 's' }"
+            >
+              <div class="note-bar" aria-hidden="true"></div>
+              <div class="lc-body">
+                <div class="lc-icon">{{ info.icon }}</div>
+                <div>
+                  <strong class="lc-label">{{ info.label }}</strong>
+                  <p v-if="info.html" v-html="info.value" class="lc-value"></p>
+                  <p v-else class="lc-value">{{ info.value }}</p>
                 </div>
               </div>
             </div>
@@ -424,1426 +258,739 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Global Styles */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.contacts-page {
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Hero Section */
-.hero-section {
+/* ─── HERO ─────────────────────────────────────────────────────── */
+.page-hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 56vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  padding: 9rem 3rem 5.5rem;
+  background: #0e2d4e;
   overflow: hidden;
-  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 50%, #3a6f9e 100%);
 }
 
-.hero-bg {
+.hero-lines {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
+  inset: 0;
+  pointer-events: none;
+}
+.diag-line {
+  position: absolute;
+  left: calc(var(--i) * 13% - 10%);
+  top: -20%;
+  width: 1px;
+  height: 160%;
+  background: rgba(255, 255, 255, 0.04);
+  transform: rotate(20deg);
+  transform-origin: top center;
 }
 
-.blob {
+.hero-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
-  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
 }
-
 .blob-1 {
-  width: 600px;
-  height: 600px;
-  background: linear-gradient(45deg, #ffd93d, #ff6b9d);
-  top: -200px;
-  left: -200px;
-  animation-delay: 0s;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(31, 79, 128, 0.7) 0%, transparent 70%);
+  top: -130px;
+  left: -80px;
+  animation: blobDrift 20s ease-in-out infinite alternate;
 }
-
 .blob-2 {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
-  bottom: -150px;
-  right: -150px;
-  animation-delay: 5s;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(206, 64, 40, 0.5) 0%, transparent 70%);
+  bottom: -80px;
+  right: 5%;
+  animation: blobDrift 26s ease-in-out infinite alternate-reverse;
+}
+@keyframes blobDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
 }
 
-.blob-3 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(225deg, #f093fb, #f5576c);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: 10s;
-}
-
-.grid-pattern {
+.hero-deco-num {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(7rem, 15vw, 14rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(30px, -30px) rotate(120deg);
-  }
-  66% {
-    transform: translate(-20px, 20px) rotate(240deg);
-  }
-}
-
-.hero-content {
+.hero-inner {
   position: relative;
   z-index: 2;
-  text-align: center;
-  max-width: 900px;
-  padding: 4rem 2rem;
+  max-width: 820px;
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.hero-content.visible {
+.hero-inner.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.hero-badge {
-  display: inline-flex;
+.hero-tag-row {
+  display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6583f;
+}
+.hero-divider {
+  color: rgba(255, 255, 255, 0.25);
+}
+.hero-brand {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-title {
+  margin-bottom: 1.5rem;
+}
+.title-block {
+  display: block;
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.title-accent {
+  display: block;
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #e6583f 0%, #ffa07a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 3rem;
+}
+
+.hero-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.scroll-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+.scroll-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* ─── SEZIONI ───────────────────────────────────────────────────── */
+.section-wrap {
+  padding: 5.5rem 2rem 6.5rem;
+}
+.bg-light {
+  background: #f4f6f9;
+}
+.bg-white {
+  background: #fff;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.section-intro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.12);
+}
+.intro-dash {
+  font-size: 1.2rem;
+  color: #ce4028;
+  font-weight: 700;
+}
+.intro-text {
+  font-size: 0.88rem;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: #0e2d4e;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: #6a7a8a;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 3rem;
+}
+
+/* ─── GRIGLIA METODI ────────────────────────────────────────────── */
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+/* ─── CARD BASE (condivisa metodi) ─────────────────────────────── */
+.method-card {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.25rem 2rem 2.75rem;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(31, 79, 128, 0.07);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease;
+}
+.method-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(14, 45, 78, 0.13);
+  border-color: var(--card-color);
+}
+
+.card-num {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(31, 79, 128, 0.055);
+  letter-spacing: -0.04em;
+  user-select: none;
+  transition: color 0.35s ease;
+}
+.method-card:hover .card-num {
+  color: rgba(31, 79, 128, 0.1);
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-color) 12%, white),
+    color-mix(in srgb, var(--card-color) 6%, white)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s ease;
+}
+.method-card:hover .card-icon-wrap {
+  transform: scale(1.1) rotate(6deg);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-color) 22%, white),
+    color-mix(in srgb, var(--card-color) 12%, white)
+  );
+}
+
+.card-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+.method-card:hover .card-title {
+  color: var(--card-color);
+}
+
+.method-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f4f80;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  font-size: 0.93rem;
+  color: #5a6a7a;
+  line-height: 1.75;
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.75rem;
+  font-size: 1.1rem;
+  color: var(--card-color);
+  opacity: 0;
+  transform: translate(6px, 0);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.method-card:hover .card-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.card-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--card-color),
+    color-mix(in srgb, var(--card-color) 50%, white)
+  );
+  border-radius: 0 0 16px 16px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.method-card:hover .card-underline {
+  width: 100%;
+}
+
+/* ─── QR BLOCK ──────────────────────────────────────────────────── */
+.qr-block {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 3.5rem 4rem;
+  border: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 8px 40px rgba(14, 45, 78, 0.08);
+  overflow: hidden;
+}
+
+.qr-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.qr-blob-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(37, 211, 102, 0.18) 0%, transparent 70%);
+  top: -80px;
+  right: -60px;
+  animation: blobDrift 18s ease-in-out infinite alternate;
+}
+.qr-blob-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(31, 79, 128, 0.12) 0%, transparent 70%);
+  bottom: -60px;
+  left: -40px;
+  animation: blobDrift 24s ease-in-out infinite alternate-reverse;
+}
+
+.qr-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+}
+
+.qr-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  color: #0e2d4e;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.qr-desc {
   font-size: 1rem;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: #6a7a8a;
+  line-height: 1.75;
+  max-width: 440px;
 }
 
-.badge-icon {
-  font-size: 1.5rem;
-  animation: pulse 2s ease-in-out infinite;
+.qr-image-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+.qr-frame {
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 20px;
+  border: 2px solid #25d366;
+  box-shadow: 0 10px 40px rgba(37, 211, 102, 0.15);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+.qr-frame:hover {
+  transform: scale(1.04);
+  box-shadow: 0 16px 50px rgba(37, 211, 102, 0.25);
+}
+.qr-img {
+  display: block;
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
+.qr-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.75rem;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+  animation: pulse 2.5s ease-in-out infinite;
+}
 @keyframes pulse {
   0%,
   100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
 }
 
-.hero-title {
-  margin-bottom: 2rem;
+/* ─── MAPPA ─────────────────────────────────────────────────────── */
+.map-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+  align-items: start;
 }
 
-.title-main,
-.title-gradient {
-  display: block;
-  font-size: 4rem;
-  font-weight: 900;
-  line-height: 1.1;
+.map-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 460px;
+  box-shadow: 0 8px 36px rgba(14, 45, 78, 0.1);
+  border: 1px solid rgba(31, 79, 128, 0.08);
 }
 
-.title-main {
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.location-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.title-gradient {
-  background: linear-gradient(135deg, #ffd93d 0%, #ff6b9d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-top: 0.5rem;
+.location-card {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 3px 14px rgba(14, 45, 78, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.location-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 28px rgba(14, 45, 78, 0.12);
+  border-color: rgba(31, 79, 128, 0.2);
 }
 
-.hero-description {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 1.375rem;
-  line-height: 1.8;
-  max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.scroll-mouse {
-  width: 30px;
-  height: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 15px;
-  position: relative;
-}
-
-.scroll-wheel {
+/* riuso barra laterale gradiente dalla pagina conditions */
+.note-bar {
   width: 4px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll 2s ease-in-out infinite;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1f4f80, #ce4028);
 }
 
-@keyframes scroll {
-  0%,
-  100% {
-    top: 8px;
-    opacity: 1;
-  }
-  50% {
-    top: 20px;
-    opacity: 0.5;
-  }
+.lc-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem;
 }
-
-/* Common Section Styles */
-.methods-section,
-.qrcode-section,
-.map-section,
-.conditions-section,
-.privacy-section {
-  padding: 6rem 0;
-  position: relative;
+.lc-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
 }
-
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-tag {
-  display: inline-block;
-  padding: 0.625rem 1.5rem;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  color: white;
-  font-weight: 600;
-  font-size: 0.9375rem;
-  border-radius: 50px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(31, 79, 128, 0.3);
-}
-
-.section-title {
-  font-size: 3rem;
-  font-weight: 800;
+.lc-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: #1f4f80;
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+.lc-value {
+  font-size: 0.93rem;
+  color: #5a6a7a;
+  line-height: 1.65;
 }
 
-.section-subtitle {
-  font-size: 1.25rem;
-  color: #666;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
+/* ─── FAQ ───────────────────────────────────────────────────────── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-/* Observe Animation */
+.faq-item {
+  background: #f4f6f9;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 79, 128, 0.07);
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.faq-item:hover {
+  border-color: rgba(31, 79, 128, 0.2);
+  box-shadow: 0 6px 24px rgba(14, 45, 78, 0.08);
+}
+.faq-item[open] {
+  background: #fff;
+  border-color: rgba(31, 79, 128, 0.18);
+  box-shadow: 0 8px 30px rgba(14, 45, 78, 0.09);
+}
+
+/* rimuove il triangolino nativo */
+.faq-item summary {
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 1.75rem;
+  cursor: pointer;
+  user-select: none;
+  border-left: 4px solid rgba(31, 79, 128, 0.1);
+  transition: border-color 0.3s ease;
+}
+.faq-item:hover .faq-question {
+  border-left-color: rgba(31, 79, 128, 0.3);
+}
+.faq-item[open] .faq-question {
+  border-left-color: #ce4028;
+}
+
+.faq-num {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(31, 79, 128, 0.1);
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+.faq-item:hover .faq-num,
+.faq-item[open] .faq-num {
+  color: rgba(31, 79, 128, 0.18);
+}
+
+.faq-q-text {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0e2d4e;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+.faq-item:hover .faq-q-text,
+.faq-item[open] .faq-q-text {
+  color: #1f4f80;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(31, 79, 128, 0.07);
+  justify-content: center;
+  color: #1f4f80;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+.faq-item[open] .faq-icon {
+  background: #ce4028;
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.75rem 1.5rem;
+  padding-left: calc(1.75rem + 1.6rem + 1rem);
+}
+.faq-answer p {
+  font-size: 0.93rem;
+  color: #5a6a7a;
+  line-height: 1.8;
+}
+
+/* ─── SCROLL ANIMATION ──────────────────────────────────────────── */
 .observe {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s ease-out calc(var(--delay, 0s)),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0s));
 }
-
 .observe.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Contact Methods Grid */
-.methods-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
-
-.method-card {
-  position: relative;
-  padding: 3rem 2.5rem;
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  text-decoration: none;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 2px solid transparent;
-}
-
-.method-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, #1f4f80, #2d5f8f, #3a6f9e);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.method-card:hover::before {
-  opacity: 1;
-}
-
-.card-shine {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: rotate(45deg);
-  transition: all 0.6s ease;
-}
-
-.method-card:hover .card-shine {
-  left: 100%;
-}
-
-.method-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.2);
-  border-color: rgba(31, 79, 128, 0.2);
-}
-
-.method-icon-wrapper {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: transform 0.4s ease;
-}
-
-.method-card:hover .method-icon-wrapper {
-  transform: scale(1.1) rotate(-5deg);
-}
-
-.method-icon {
-  font-size: 2.5rem;
-}
-
-.method-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1f4f80;
-  margin-bottom: 1rem;
-}
-
-.method-value {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.75rem;
-}
-
-.method-desc {
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.card-arrow {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.5rem;
-  opacity: 0;
-  transform: translate(10px, 10px);
-  transition: all 0.4s ease;
-}
-
-.method-card:hover .card-arrow {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-/* QR Code Section Styles */
-.qrcode-section {
-  background: linear-gradient(135deg, #f8fafc 0%, #e8f4f8 100%);
-}
-
-.qrcode-card {
-  position: relative;
-  background: white;
-  border-radius: 32px;
-  padding: 4rem;
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
-  overflow: hidden;
-}
-
-.qrcode-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.qrcode-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-}
-
-.qrcode-blob-1 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  top: -100px;
-  right: -100px;
-  animation: float 15s ease-in-out infinite;
-}
-
-.qrcode-blob-2 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, #25d366, #34e89e);
-  bottom: -80px;
-  left: -80px;
-  animation: float 20s ease-in-out infinite reverse;
-}
-
-.qrcode-content {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.qrcode-text {
-  text-align: left;
-}
-
-.qrcode-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-}
-
-.qrcode-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1f4f80;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-.qrcode-description {
-  font-size: 1.125rem;
-  color: #666;
-  line-height: 1.8;
-}
-
-.qrcode-image-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.qrcode-frame {
-  position: relative;
-  padding: 2rem;
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-  border: 3px solid #25d366;
-  transition: all 0.4s ease;
-}
-
-.qrcode-frame:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 60px rgba(37, 211, 102, 0.3);
-}
-
-.qrcode-img {
-  display: block;
-  width: 280px;
-  height: 280px;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-.qrcode-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white;
-  font-weight: 700;
-  font-size: 1.125rem;
-  border-radius: 50px;
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Map Section */
-.map-section {
-  background: white;
-}
-
-.map-wrapper {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.map-frame {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-  height: 500px;
-}
-
-.location-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.info-card {
-  padding: 2rem;
-  background: linear-gradient(135deg, #f8fafc, #ffffff);
-  border-radius: 20px;
-  border: 2px solid rgba(31, 79, 128, 0.1);
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  transition: all 0.3s ease;
-}
-
-.info-card:hover {
-  transform: translateX(10px);
-  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.15);
-  border-color: rgba(31, 79, 128, 0.3);
-}
-
-.info-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(31, 79, 128, 0.25);
-}
-
-.info-card strong {
-  display: block;
-  font-size: 1.25rem;
-  color: #1f4f80;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
-}
-
-.info-card p {
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* Conditions Section */
-.conditions-section {
-  background: linear-gradient(to bottom, #ffffff, #f8fafc);
-}
-
-.conditions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-}
-
-@media (max-width: 768px) {
-  .conditions-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.condition-card {
-  background: white;
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
-  border: 2px solid transparent;
-  color: #333;
-}
-
-.condition-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
-  border-color: rgba(31, 79, 128, 0.2);
-}
-
-.condition-header {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.condition-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0;
-}
-
-.condition-header h3 {
-  font-size: 1.625rem;
-  font-weight: 700;
-  color: #1f4f80;
-}
-
-.condition-content {
-  color: #333;
-  line-height: 1.8;
-  font-size: 1.0625rem;
-}
-
-.condition-content p {
-  margin-bottom: 1.25rem;
-  color: #333;
-}
-
-.condition-content p:last-child {
-  margin-bottom: 0;
-}
-
-.highlight-box {
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #e8f4f8, #f0f9ff);
-  border-left: 4px solid #1f4f80;
-  border-radius: 12px;
-  margin: 1.5rem 0;
-  color: #333;
-}
-
-.highlight-box strong {
-  color: #1f4f80;
-  font-weight: 700;
-}
-
-.highlight-box.warning {
-  background: linear-gradient(135deg, #fff4e6, #ffe8cc);
-  border-left-color: #ce4028;
-  color: #333;
-}
-
-.highlight-box.warning strong {
-  color: #ce4028;
-}
-
-.note-text {
-  font-size: 0.9375rem;
-  color: #777;
-  font-style: italic;
-  margin-top: 1rem;
-}
-
-.pricing-box {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-  background: #f8fafc;
-  border-radius: 12px;
-  color: #333;
-}
-
-.price-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.price-label {
-  font-weight: 600;
-  color: #333;
-  font-size: 1rem;
-}
-
-.price-value {
-  font-weight: 700;
-  color: #1f4f80;
-  font-size: 1.25rem;
-}
-
-/* Privacy Section */
-.privacy-section {
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
-}
-
-.privacy-highlight {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  padding: 3rem;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 24px;
-  color: white;
-  margin-bottom: 4rem;
-  box-shadow: 0 15px 50px rgba(31, 79, 128, 0.3);
-}
-
-.highlight-icon {
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  flex-shrink: 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.highlight-content h3 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.highlight-content p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  opacity: 0.95;
-}
-
-.privacy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 4rem;
-}
-
-.privacy-card {
-  background: white;
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
-  border: 2px solid transparent;
-}
-
-.privacy-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
-  border-color: rgba(31, 79, 128, 0.2);
-}
-
-.privacy-card-header {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.privacy-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: white;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.privacy-card-header h3 {
-  font-size: 1.625rem;
-  font-weight: 700;
-  color: #1f4f80;
-  line-height: 1.3;
-}
-
-.privacy-list {
-  list-style: none;
-  padding: 0;
-}
-
-.privacy-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(31, 79, 128, 0.1);
-  color: #555;
-  font-size: 1.0625rem;
-}
-
-.privacy-list li:last-child {
-  border-bottom: none;
-}
-
-.list-bullet {
-  color: #25d366;
-  font-weight: 700;
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
-.privacy-description {
-  color: #555;
-  line-height: 1.8;
-  font-size: 1.0625rem;
-}
-
-.footer-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.footer-notice {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  padding: 3rem;
-  background: linear-gradient(135deg, #f8fafc, #e8f4f8);
-  border-radius: 24px;
-  border: 2px solid rgba(31, 79, 128, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.notice-icon {
-  width: 90px;
-  height: 90px;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  flex-shrink: 0;
-  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.3);
-}
-
-.notice-content h4 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1f4f80;
-  margin-bottom: 1rem;
-}
-
-.notice-content p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1.0625rem;
-}
-
-.footer-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 2.5rem;
-  padding: 3rem;
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  border: 2px solid transparent;
-  transition: all 0.4s ease;
-}
-
-.footer-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(31, 79, 128, 0.15);
-  border-color: rgba(31, 79, 128, 0.2);
-}
-
-.footer-icon {
-  width: 90px;
-  height: 90px;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  flex-shrink: 0;
-  box-shadow: 0 10px 30px rgba(31, 79, 128, 0.3);
-  transition: transform 0.4s ease;
-}
-
-.footer-card:hover .footer-icon {
-  transform: scale(1.1) rotate(-5deg);
-}
-
-.footer-content {
-  flex: 1;
-}
-
-.footer-content h3 {
-  color: #1f4f80;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-}
-
-.footer-content p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1.0625rem;
-  margin-bottom: 1rem;
-}
-
-.footer-content p:last-child {
-  margin-bottom: 0;
-}
-
-.footer-content strong {
-  color: #1f4f80;
-  font-weight: 700;
-}
-
-.contact-privacy-card {
-  padding: 3.5rem;
-  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
-  color: white;
-  border-radius: 24px;
-  box-shadow: 0 15px 50px rgba(31, 79, 128, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-privacy-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: rotate 10s linear infinite;
-}
-
-.contact-privacy-icon {
-  width: 90px;
-  height: 90px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 1;
-}
-
-.contact-privacy-content {
-  position: relative;
-  z-index: 1;
-}
-
-.contact-privacy-content h3 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  color: white;
-}
-
-.contact-privacy-content p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  opacity: 0.95;
-  margin-bottom: 2rem;
-  color: white;
-}
-
-.contact-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.detail-item {
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: all 0.3s ease;
-}
-
-.detail-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-5px);
-}
-
-.detail-item strong {
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: #ffd93d;
-}
-
-.detail-item p {
-  font-size: 1rem;
-  opacity: 1;
-  margin: 0;
-  line-height: 1.6;
-  color: white;
-}
-
-.detail-item a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.detail-item a:hover {
-  color: #ffd93d;
-  text-decoration: underline;
-}
-
-/* Responsive Design */
+/* ─── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .map-wrapper {
     grid-template-columns: 1fr;
-    gap: 3rem;
   }
-
   .map-frame {
-    height: 400px;
+    height: 380px;
   }
-
-  .qrcode-content {
+  .qr-block {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
+    padding: 2.5rem;
     text-align: center;
   }
-
-  .qrcode-text {
-    text-align: center;
-  }
-
-  .qrcode-icon {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .privacy-highlight {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .highlight-icon {
+  .qr-desc {
     margin: 0 auto;
   }
-
-  .footer-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-icon {
-    margin: 0 auto;
-  }
-
-  .contact-details {
-    grid-template-columns: 1fr;
+  .qr-image-col {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
-@media (max-width: 768px) {
-  .title-main,
-  .title-gradient {
-    font-size: 2.5rem;
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
+@media (max-width: 860px) {
   .methods-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
-
-  .qrcode-card {
-    padding: 2.5rem;
-  }
-
-  .qrcode-title {
-    font-size: 2rem;
-  }
-
-  .qrcode-description {
-    font-size: 1rem;
-  }
-
-  .qrcode-img {
-    width: 220px;
-    height: 220px;
-  }
-
-  .privacy-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .conditions-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .condition-card {
-    padding: 2rem;
-  }
-
-  .condition-header {
-    flex-direction: row;
-    gap: 1.25rem;
-  }
-
-  .condition-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.75rem;
-  }
-
-  .condition-header h3 {
-    font-size: 1.375rem;
-  }
-
-  .condition-content {
-    font-size: 1rem;
-  }
-
-  .highlight-box {
-    padding: 1.25rem;
-    font-size: 0.9375rem;
-  }
-
-  .footer-notice {
-    flex-direction: column;
-    text-align: center;
-    padding: 2.5rem;
-  }
-
-  .notice-icon {
-    margin: 0 auto;
-  }
-
-  .hero-section {
-    min-height: 70vh;
-  }
-
-  .methods-section,
-  .qrcode-section,
-  .map-section,
-  .conditions-section,
-  .privacy-section {
-    padding: 4rem 0;
-  }
-
-  .container {
-    padding: 0 1.5rem;
-  }
-
-  .privacy-highlight {
-    padding: 2rem;
-  }
-
-  .footer-card {
-    padding: 2rem;
-  }
-
-  .contact-privacy-card {
-    padding: 2.5rem;
-  }
-
-  .contact-privacy-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 2rem;
-  }
-
-  .contact-privacy-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .contact-privacy-content p {
-    font-size: 1rem;
-  }
-
-  .contact-details {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .detail-item {
-    padding: 1.25rem;
-  }
-
-  .detail-item strong {
-    font-size: 1rem;
-  }
-
-  .detail-item p {
-    font-size: 0.9375rem;
+  .hero-deco-num {
+    display: none;
   }
 }
 
-@media (max-width: 640px) {
-  .hero-badge {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
+@media (max-width: 600px) {
+  .page-hero {
+    padding: 7rem 1.75rem 4.5rem;
+    min-height: auto;
   }
-
-  .badge-icon {
-    font-size: 1.25rem;
+  .section-wrap {
+    padding: 3.5rem 1.25rem 5rem;
   }
-
-  .title-main,
-  .title-gradient {
-    font-size: 2rem;
-  }
-
-  .method-card {
+  .qr-block {
     padding: 2rem 1.5rem;
   }
-
-  .qrcode-card {
-    padding: 2rem;
+  .qr-img {
+    width: 190px;
+    height: 190px;
   }
-
-  .qrcode-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
+  .map-frame {
+    height: 300px;
   }
-
-  .qrcode-title {
-    font-size: 1.5rem;
-  }
-
-  .qrcode-img {
-    width: 200px;
-    height: 200px;
-  }
-
-  .qrcode-badge {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .privacy-card {
-    padding: 2rem;
-  }
-
-  .condition-card {
-    padding: 1.5rem;
-  }
-
-  .condition-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-
-  .condition-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    margin: 0 auto;
-  }
-
-  .condition-header h3 {
-    font-size: 1.25rem;
-  }
-
-  .condition-content {
-    font-size: 0.9375rem;
-  }
-
-  .highlight-box {
-    padding: 1rem;
-    font-size: 0.875rem;
-  }
-
-  .highlight-box strong {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .note-text {
-    font-size: 0.875rem;
-  }
-
-  .privacy-card-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .highlight-icon {
-    width: 80px;
-    height: 80px;
-    font-size: 3rem;
-  }
-
-  .privacy-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.75rem;
-  }
-
-  .footer-icon,
-  .contact-privacy-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 2rem;
-  }
-
-  .contact-privacy-card {
-    padding: 1.75rem;
-  }
-
-  .contact-privacy-content h3 {
-    font-size: 1.25rem;
-  }
-
-  .contact-privacy-content p {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  .detail-item {
-    padding: 1rem;
-  }
-
-  .detail-item strong {
-    font-size: 0.9375rem;
-  }
-
-  .detail-item p {
-    font-size: 0.875rem;
-  }
-
-  .scroll-indicator {
-    display: none;
-  }
-}
-
-/* Print Styles */
-@media print {
-  .hero-section,
-  .scroll-indicator,
-  .card-arrow,
-  .method-card:hover {
-    display: none;
-  }
-
-  .privacy-section {
-    page-break-inside: avoid;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  .card-num {
+    font-size: 2.5rem;
   }
 }
 </style>

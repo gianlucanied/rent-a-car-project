@@ -8,13 +8,14 @@ const translations = {
   it: {
     // Header
     header: {
-      schedule: 'Lun-Sab: 9:00-18:00',
+      schedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
     },
     // Navigazione
     nav: {
       home: 'Home',
       rates: 'Tariffe',
       contacts: 'Contatti',
+      conditions: 'Condizioni di noleggio',
     },
     // Pagina Home
     home: {
@@ -143,7 +144,7 @@ const translations = {
       channelsTag: 'Canali di Contatto',
       channelsTitle: 'Come Preferisci Contattarci?',
       phone: 'Telefono',
-      phoneSchedule: 'Lun-Sab: 9:00-18:00',
+      phoneSchedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
       email: 'Email',
       emailResponse: 'Risposta entro 24h',
       whatsapp: 'WhatsApp',
@@ -158,7 +159,7 @@ const translations = {
       addressFull: 'Indirizzo Completo',
       addressDetails: 'Via Sebastiano Satta, 52<br />07041 Alghero (SS) - Sardegna, Italia',
       openingHoursTitle: 'Orari di Apertura',
-      openingHoursDetails: 'Lunedì - Sabato: 9:00 - 18:00<br />Domenica: Chiuso',
+      openingHoursDetails: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
       premiumServices: 'Servizi Premium',
       premiumDetails: 'Consegna e ritiro gratuiti<br />Assistenza 24/7 in Sardegna',
       conditionsTag: 'Informazioni Utili',
@@ -256,6 +257,59 @@ const translations = {
         "Utilizziamo <strong>tecnologie di crittografia avanzate</strong> e misure di sicurezza all'avanguardia per proteggere i tuoi dati da accessi non autorizzati, perdita o alterazione. I nostri sistemi sono costantemente monitorati e aggiornati.",
       legalHeadquarters: 'Sede Legale',
     },
+    // FAQ
+    faq: {
+      sectionLabel: 'Domande frequenti',
+      sectionTitle: 'Hai qualche dubbio?',
+      sectionSubtitle: 'Le risposte alle domande più comuni sul nostro servizio di noleggio.',
+      q1: "Qual è l'età minima per noleggiare un'auto?",
+      a1: "L'età minima è 21 anni. Il conducente deve essere in possesso di una patente di guida categoria B in corso di validità, rilasciata da almeno 1 anno.",
+      q2: 'Quali metodi di pagamento accettate?',
+      a2: 'Accettiamo le principali carte di credito Visa e MasterCard. È possibile pagare anche in contanti; in quel caso sarà richiesto un deposito cauzionale di €500,00.',
+      q3: "La consegna e il ritiro dell'auto sono gratuiti?",
+      a3: "Sì, la consegna e il ritiro del veicolo all'interno dei limiti della città sono inclusi nel prezzo. Per località fuori dal comune di Alghero contattaci per un preventivo.",
+      q4: "Cos'è la copertura Super CDW?",
+      a4: 'La Super CDW elimina completamente la franchigia in caso di danni al veicolo. È disponibile a €10,00 al giorno per la massima tranquillità.',
+      q5: 'Posso estendere il noleggio una volta iniziato?',
+      a5: 'Assolutamente sì. Basta contattarci il prima possibile per comunicare la nuova data di rientro, così aggiorniamo la copertura assicurativa e verifichiamo la disponibilità.',
+      q6: "Cosa succede se riconsegno l'auto senza fare il pieno?",
+      a6: 'Verranno addebitati i costi del carburante mancante più un supplemento di servizio rifornimento pari a €18,00.',
+      q7: 'Posso portare il veicolo fuori dalla Sardegna?',
+      a7: "No, l'utilizzo è consentito esclusivamente in Sardegna. Il superamento di questo limite comporta la decadenza di tutte le coperture assicurative.",
+      q8: 'Cosa devo portare al momento del ritiro del veicolo?',
+      a8: "Patente di guida valida, documento d'identità, carta di credito intestata al conducente e codice fiscale.",
+    },
+    // Pagina Condizioni
+    conditions: {
+      label: 'Noleggio',
+      heroTitle: 'Condizioni di Noleggio',
+      heroSubtitle: 'Tutto quello che devi sapere prima di noleggiare il tuo veicolo con noi.',
+      paymentTitle: 'Pagamento',
+      paymentText:
+        "Il pagamento del servizio di noleggio viene effettuato alla consegna dell'autovettura. Vengono accettate le principali carte di credito (Visa e MasterCard) oppure contanti.",
+      taxesTitle: 'Tasse',
+      taxesText:
+        'Tutti i prezzi indicati sono da intendersi comprensivi di IVA 22% se non diversamente specificato.',
+      fuelTitle: 'Carburante',
+      fuelText:
+        'Il costo del carburante è a carico del cliente. Se il veicolo viene affidato con il pieno e riconsegnato senza, verrà addebitato il costo dei litri mancanti più un costo di servizio di rifornimento pari a €18,00.',
+      minAgeTitle: 'Età minima di accessibilità al nolo',
+      minAgeText:
+        "21 anni con patente di cat. B in corso di validità ed emessa da almeno 1 anno. Non è possibile noleggiare l'autovettura a clienti al di sotto dei 21 anni.",
+      scdwTitle: 'Super CDW (SCDW)',
+      scdwText:
+        "La copertura Super CDW costituisce l'esonero da ogni responsabilità per danni al veicolo con conseguente eliminazione della franchigia. Tutti i nostri prezzi sono inclusivi della Super CDW.",
+      deliveryTitle: 'Consegna e ripresa',
+      deliveryText:
+        "Entro i limiti della città la consegna e la ripresa dell'autovettura è inclusa nel prezzo. Per altre località si prega di informarsi presso i nostri uffici.",
+      extensionTitle: 'Estensione del noleggio',
+      extensionText:
+        "Se il cliente volesse prolungare il noleggio oltre i termini prefissati, ne deve dare immediata comunicazione alla stazione di noleggio per permettere l'estensione della copertura assicurativa.",
+      documentsTitle: 'Smarrimento documenti e rottura chiavi',
+      documentsText:
+        "Lo smarrimento dei documenti dell'autovettura comporterà una penale di €300,00. Lo smarrimento, rottura o furto delle chiavi comporterà anch'esso una penale di €300,00.",
+      note: 'Per ulteriori informazioni o chiarimenti sulle condizioni di noleggio, non esitare a contattarci. Il nostro team è disponibile 24/7 per assisterti.',
+    },
   },
   en: {
     // Header
@@ -267,6 +321,7 @@ const translations = {
       home: 'Home',
       rates: 'Rates',
       contacts: 'Contacts',
+      conditions: 'Rental conditions',
     },
     // Home Page
     home: {
@@ -408,7 +463,7 @@ const translations = {
       addressFull: 'Full Address',
       addressDetails: 'Via Sebastiano Satta, 52<br />07041 Alghero (SS) - Sardinia, Italy',
       openingHoursTitle: 'Opening Hours',
-      openingHoursDetails: 'Monday - Saturday: 9:00 AM - 6:00 PM<br />Sunday: Closed',
+      openingHoursDetails: 'Monday - Saturday: 08:30 - 13:00 / 16:00 - 19:00',
       premiumServices: 'Premium Services',
       premiumDetails: 'Free delivery and pickup<br />24/7 assistance in Sardinia',
       conditionsTag: 'Useful Information',
@@ -505,17 +560,70 @@ const translations = {
         'We use <strong>advanced encryption technologies</strong> and state-of-the-art security measures to protect your data from unauthorized access, loss or alteration. Our systems are constantly monitored and updated.',
       legalHeadquarters: 'Legal Headquarters',
     },
+    // FAQ
+    faq: {
+      sectionLabel: 'Frequently asked questions',
+      sectionTitle: 'Have a question?',
+      sectionSubtitle: 'Answers to the most common questions about our rental service.',
+      q1: 'What is the minimum age to rent a car?',
+      a1: 'The minimum age is 21 years. The driver must hold a valid category B driving licence that has been issued for at least 1 year.',
+      q2: 'What payment methods do you accept?',
+      a2: 'We accept the main credit cards Visa and MasterCard. Cash payments are also accepted; in that case a security deposit of €500.00 will be required.',
+      q3: 'Is vehicle delivery and pickup free of charge?',
+      a3: 'Yes, delivery and pickup within the city limits are included in the price. For locations outside the municipality of Alghero, please contact us for a quote.',
+      q4: 'What is Super CDW coverage?',
+      a4: 'Super CDW completely eliminates the excess in the event of damage to the vehicle. It is available at €10.00 per day for complete peace of mind.',
+      q5: 'Can I extend the rental once it has started?',
+      a5: 'Absolutely. Just contact us as soon as possible to communicate the new return date, so we can update the insurance coverage and check availability.',
+      q6: 'What happens if I return the car without a full tank?',
+      a6: 'The cost of the missing fuel plus a refuelling service supplement of €18.00 will be charged.',
+      q7: 'Can I take the vehicle outside Sardinia?',
+      a7: 'No, use of the vehicle is permitted exclusively within Sardinia. Exceeding this limit results in the loss of all insurance coverage.',
+      q8: 'What do I need to bring when picking up the vehicle?',
+      a8: "A valid driving licence, identity document, credit card in the driver's name and tax code.",
+    },
+    // Conditions Page
+    conditions: {
+      label: 'Rental',
+      heroTitle: 'Rental Terms & Conditions',
+      heroSubtitle: 'Everything you need to know before renting a vehicle with us.',
+      paymentTitle: 'Payment',
+      paymentText:
+        'Payment for the rental service is made upon delivery of the vehicle. We accept major credit cards (Visa and MasterCard) or cash.',
+      taxesTitle: 'Taxes',
+      taxesText: 'All prices listed are inclusive of 22% VAT unless otherwise stated.',
+      fuelTitle: 'Fuel',
+      fuelText:
+        'Fuel costs are the responsibility of the customer. If the vehicle is provided with a full tank and returned without, the cost of the missing fuel plus a €18.00 refuelling service fee will be charged.',
+      minAgeTitle: 'Minimum rental age',
+      minAgeText:
+        '21 years of age with a valid category B driving licence held for at least 1 year. It is not possible to rent a vehicle to customers under 21 years of age.',
+      scdwTitle: 'Super CDW (SCDW)',
+      scdwText:
+        'Super CDW coverage exempts the renter from all liability for vehicle damage, eliminating the excess charge. All our prices include Super CDW.',
+      deliveryTitle: 'Delivery & collection',
+      deliveryText:
+        'Delivery and collection within city limits is included in the price. For other locations, please contact our offices.',
+      extensionTitle: 'Rental extension',
+      extensionText:
+        'If the customer wishes to extend the rental beyond the agreed period, they must immediately notify the rental station to allow for insurance coverage extension.',
+      documentsTitle: 'Lost documents & keys',
+      documentsText:
+        'Loss of vehicle documents will incur a penalty of €300.00. Loss, breakage or theft of keys will also incur a penalty of €300.00.',
+      note: 'For further information or clarification on our rental conditions, please do not hesitate to contact us. Our team is available 24/7 to assist you.',
+    },
   },
   es: {
     // Header
     header: {
-      schedule: 'Lun-Sáb: 9:00-18:00',
+      schedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
     },
     // Navegación
     nav: {
       home: 'Inicio',
       rates: 'Tarifas',
       contacts: 'Contactos',
+      conditions: 'Condiciones de alquiler',
     },
     // Página de Inicio
     home: {
@@ -645,7 +753,7 @@ const translations = {
       channelsTag: 'Canales de Contacto',
       channelsTitle: '¿Cómo Prefieres Contactarnos?',
       phone: 'Teléfono',
-      phoneSchedule: 'Lun-Sáb: 9:00-18:00',
+      phoneSchedule: 'Lun-Sáb: 8:30 - 13:00 / 16:00 - 19:00',
       email: 'Email',
       emailResponse: 'Respuesta en 24h',
       whatsapp: 'WhatsApp',
@@ -660,7 +768,7 @@ const translations = {
       addressFull: 'Dirección Completa',
       addressDetails: 'Via Sebastiano Satta, 52<br />07041 Alghero (SS) - Cerdeña, Italia',
       openingHoursTitle: 'Horario de Apertura',
-      openingHoursDetails: 'Lunes - Sábado: 9:00 - 18:00<br />Domingo: Cerrado',
+      openingHoursDetails: 'Lunes - Sábado: 08:30 - 13:00 / 16:00 - 19:00',
       premiumServices: 'Servicios Premium',
       premiumDetails: 'Entrega y recogida gratuitas<br />Asistencia 24/7 en Cerdeña',
       conditionsTag: 'Información Útil',
@@ -758,6 +866,60 @@ const translations = {
       dataSecurityText:
         'Utilizamos <strong>tecnologías de cifrado avanzadas</strong> y medidas de seguridad de vanguardia para proteger tus datos contra accesos no autorizados, pérdida o alteración. Nuestros sistemas son monitoreados y actualizados constantemente.',
       legalHeadquarters: 'Sede Legal',
+    },
+    // FAQ
+    faq: {
+      sectionLabel: 'Preguntas frecuentes',
+      sectionTitle: '¿Tienes alguna duda?',
+      sectionSubtitle:
+        'Las respuestas a las preguntas más comunes sobre nuestro servicio de alquiler.',
+      q1: '¿Cuál es la edad mínima para alquilar un coche?',
+      a1: 'La edad mínima es 21 años. El conductor debe estar en posesión de un carnet de conducir categoría B en vigor, expedido hace al menos 1 año.',
+      q2: '¿Qué métodos de pago aceptáis?',
+      a2: 'Aceptamos las principales tarjetas de crédito Visa y MasterCard. También se puede pagar en efectivo; en ese caso se requerirá un depósito de garantía de €500,00.',
+      q3: '¿La entrega y recogida del coche son gratuitas?',
+      a3: 'Sí, la entrega y recogida del vehículo dentro de los límites del municipio están incluidas en el precio. Para localidades fuera de Alghero, contáctanos para un presupuesto.',
+      q4: '¿Qué es la cobertura Super CDW?',
+      a4: 'La Super CDW elimina completamente la franquicia en caso de daños al vehículo. Está disponible por €10,00 al día para tu máxima tranquilidad.',
+      q5: '¿Puedo ampliar el alquiler una vez iniciado?',
+      a5: 'Por supuesto. Solo tienes que contactarnos lo antes posible para comunicar la nueva fecha de devolución, así actualizamos la cobertura del seguro y verificamos la disponibilidad.',
+      q6: '¿Qué pasa si devuelvo el coche sin llenar el depósito?',
+      a6: 'Se cobrarán los costes del combustible faltante más un suplemento de servicio de repostaje de €18,00.',
+      q7: '¿Puedo llevar el vehículo fuera de Cerdeña?',
+      a7: 'No, el uso del vehículo está permitido exclusivamente en Cerdeña. Superar este límite conlleva la pérdida de todas las coberturas del seguro.',
+      q8: '¿Qué debo llevar al recoger el vehículo?',
+      a8: 'Carnet de conducir válido, documento de identidad, tarjeta de crédito a nombre del conductor y código fiscal.',
+    },
+    // Página Condiciones
+    conditions: {
+      label: 'Alquiler',
+      heroTitle: 'Condiciones de Alquiler',
+      heroSubtitle: 'Todo lo que necesitas saber antes de alquilar un vehículo con nosotros.',
+      paymentTitle: 'Pago',
+      paymentText:
+        'El pago del servicio de alquiler se realiza en el momento de la entrega del vehículo. Se aceptan las principales tarjetas de crédito (Visa y MasterCard) o efectivo.',
+      taxesTitle: 'Impuestos',
+      taxesText:
+        'Todos los precios indicados incluyen el IVA del 22% salvo indicación en contrario.',
+      fuelTitle: 'Combustible',
+      fuelText:
+        'El coste del combustible corre a cargo del cliente. Si el vehículo se entrega con el depósito lleno y se devuelve vacío, se cobrarán los litros faltantes más un cargo de servicio de repostaje de €18,00.',
+      minAgeTitle: 'Edad mínima para el alquiler',
+      minAgeText:
+        '21 años con carnet de conducir categoría B en vigor y expedido desde hace al menos 1 año. No es posible alquilar un vehículo a clientes menores de 21 años.',
+      scdwTitle: 'Super CDW (SCDW)',
+      scdwText:
+        'La cobertura Super CDW exime al arrendatario de toda responsabilidad por daños al vehículo, eliminando la franquicia. Todos nuestros precios incluyen la Super CDW.',
+      deliveryTitle: 'Entrega y recogida',
+      deliveryText:
+        'La entrega y recogida dentro del municipio está incluida en el precio. Para otras localidades, consulte con nuestras oficinas.',
+      extensionTitle: 'Extensión del alquiler',
+      extensionText:
+        'Si el cliente desea prolongar el alquiler más allá del plazo acordado, debe comunicarlo de inmediato a la estación de alquiler para ampliar la cobertura del seguro.',
+      documentsTitle: 'Extravío de documentos y llaves',
+      documentsText:
+        'La pérdida de los documentos del vehículo conllevará una penalización de €300,00. La pérdida, rotura o robo de las llaves también conllevará una penalización de €300,00.',
+      note: 'Para más información o aclaraciones sobre las condiciones de alquiler, no dude en ponerse en contacto con nosotros. Nuestro equipo está disponible 24/7 para atenderle.',
     },
   },
 }

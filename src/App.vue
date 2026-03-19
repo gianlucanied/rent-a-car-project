@@ -19,7 +19,6 @@ const changeLanguage = (lang) => {
   setLocale(lang)
 }
 
-// Link social media reali - sostituisci con i tuoi link
 const socialLinks = {
   facebook: 'https://www.facebook.com/rentacarexpress',
   instagram: 'https://www.instagram.com/rentacarexpress',
@@ -28,15 +27,17 @@ const socialLinks = {
 </script>
 
 <template>
+  <!-- ░░ HEADER ░░ -->
   <header class="app-header">
+    <!-- barra superiore info -->
     <div class="header-top">
-      <div class="header-top-content">
-        <div class="contact-info">
-          <a href="tel:+390791234567" class="info-item">
+      <div class="top-inner">
+        <div class="top-contacts">
+          <a href="tel:+390791234567" class="top-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -48,11 +49,12 @@ const socialLinks = {
             </svg>
             +39 079 123 4567
           </a>
-          <span class="info-item">
+          <span class="top-sep" aria-hidden="true">·</span>
+          <span class="top-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -63,11 +65,12 @@ const socialLinks = {
             </svg>
             {{ t('header.schedule') }}
           </span>
-          <a href="mailto:info@rentacarexpress.it" class="info-item">
+          <span class="top-sep" aria-hidden="true">·</span>
+          <a href="mailto:info@rentacarexpress.it" class="top-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -81,56 +84,48 @@ const socialLinks = {
             info@rentacarexpress.it
           </a>
         </div>
-        <div class="header-lang">
+        <div class="top-lang">
           <button
-            @click="changeLanguage('it')"
-            class="lang-btn-small"
-            :class="{ active: locale === 'it' }"
+            v-for="lang in ['it', 'en', 'es']"
+            :key="lang"
+            @click="changeLanguage(lang)"
+            class="lang-btn"
+            :class="{ active: locale === lang }"
           >
-            IT
-          </button>
-          <button
-            @click="changeLanguage('en')"
-            class="lang-btn-small"
-            :class="{ active: locale === 'en' }"
-          >
-            EN
-          </button>
-          <button
-            @click="changeLanguage('es')"
-            class="lang-btn-small"
-            :class="{ active: locale === 'es' }"
-          >
-            ES
+            {{ lang.toUpperCase() }}
           </button>
         </div>
       </div>
     </div>
 
+    <!-- barra principale nav -->
     <div class="header-main">
-      <div class="header-content">
-        <div class="logo-container">
-          <RouterLink to="/" @click="closeMobileMenu">
-            <img src="/src/assets/logo.jpg" alt="Rent a Car Express" />
-          </RouterLink>
-        </div>
+      <div class="header-inner">
+        <RouterLink to="/" class="logo-link" @click="closeMobileMenu">
+          <img src="/src/assets/logo.jpg" alt="Rent a Car Express" class="logo-img" />
+        </RouterLink>
 
-        <nav class="nav-desktop">
+        <nav class="nav-desktop" aria-label="Navigazione principale">
           <RouterLink to="/" class="nav-item">
-            <span class="nav-icon">🏠</span>
             {{ t('nav.home') }}
           </RouterLink>
           <RouterLink to="/rates" class="nav-item">
-            <span class="nav-icon">💰</span>
             {{ t('nav.rates') }}
           </RouterLink>
           <RouterLink to="/contacts" class="nav-item">
-            <span class="nav-icon">📞</span>
             {{ t('nav.contacts') }}
+          </RouterLink>
+          <RouterLink to="/conditions" class="nav-item">
+            {{ t('nav.conditions') }}
           </RouterLink>
         </nav>
 
-        <button class="mobile-menu-btn" @click="toggleMobileMenu" aria-label="Menu">
+        <button
+          class="burger"
+          @click="toggleMobileMenu"
+          :aria-expanded="mobileMenuOpen"
+          aria-label="Menu"
+        >
           <span :class="{ open: mobileMenuOpen }"></span>
           <span :class="{ open: mobileMenuOpen }"></span>
           <span :class="{ open: mobileMenuOpen }"></span>
@@ -138,43 +133,31 @@ const socialLinks = {
       </div>
     </div>
 
-    <div class="mobile-menu" :class="{ open: mobileMenuOpen }">
+    <!-- menu mobile -->
+    <div class="mobile-menu" :class="{ open: mobileMenuOpen }" aria-hidden="!mobileMenuOpen">
       <nav class="mobile-nav">
-        <RouterLink to="/" class="mobile-nav-item" @click="closeMobileMenu">
-          <span class="mobile-icon">🏠</span>
-          {{ t('nav.home') }}
+        <RouterLink to="/" class="mob-item" @click="closeMobileMenu">
+          <span aria-hidden="true">🏠</span> {{ t('nav.home') }}
         </RouterLink>
-        <RouterLink to="/rates" class="mobile-nav-item" @click="closeMobileMenu">
-          <span class="mobile-icon">💰</span>
-          {{ t('nav.rates') }}
+        <RouterLink to="/rates" class="mob-item" @click="closeMobileMenu">
+          <span aria-hidden="true">💰</span> {{ t('nav.rates') }}
         </RouterLink>
-        <RouterLink to="/contacts" class="mobile-nav-item" @click="closeMobileMenu">
-          <span class="mobile-icon">📞</span>
-          {{ t('nav.contacts') }}
+        <RouterLink to="/contacts" class="mob-item" @click="closeMobileMenu">
+          <span aria-hidden="true">📞</span> {{ t('nav.contacts') }}
+        </RouterLink>
+        <RouterLink to="/conditions" class="mob-item" @click="closeMobileMenu">
+          <span aria-hidden="true">📋</span> {{ t('nav.conditions') }}
         </RouterLink>
       </nav>
-      <!-- Bottoni lingua nel menu mobile -->
-      <div class="mobile-lang-buttons">
+      <div class="mob-lang">
         <button
-          @click="changeLanguage('it')"
-          class="mobile-lang-btn"
-          :class="{ active: locale === 'it' }"
+          v-for="lang in ['it', 'en', 'es']"
+          :key="lang"
+          @click="changeLanguage(lang)"
+          class="mob-lang-btn"
+          :class="{ active: locale === lang }"
         >
-          IT
-        </button>
-        <button
-          @click="changeLanguage('en')"
-          class="mobile-lang-btn"
-          :class="{ active: locale === 'en' }"
-        >
-          EN
-        </button>
-        <button
-          @click="changeLanguage('es')"
-          class="mobile-lang-btn"
-          :class="{ active: locale === 'es' }"
-        >
-          ES
+          {{ lang.toUpperCase() }}
         </button>
       </div>
     </div>
@@ -182,39 +165,39 @@ const socialLinks = {
 
   <RouterView />
 
+  <!-- ░░ FOOTER ░░ -->
   <footer class="app-footer">
-    <div class="footer-wave">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path
-          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-          fill="currentColor"
-        ></path>
-      </svg>
+    <!-- linee diagonali decorative -->
+    <div class="footer-lines" aria-hidden="true">
+      <span v-for="n in 6" :key="n" class="f-line" :style="{ '--i': n }"></span>
     </div>
+    <!-- blob -->
+    <div class="f-blob f-blob-1" aria-hidden="true"></div>
+    <div class="f-blob f-blob-2" aria-hidden="true"></div>
 
-    <div class="footer-container">
-      <div class="footer-main">
+    <div class="footer-inner">
+      <!-- corpo principale -->
+      <div class="footer-body">
+        <!-- colonna brand -->
         <div class="footer-brand">
           <img
             src="/src/assets/logo-removebg-preview.png"
             alt="Rent a Car Express"
             class="footer-logo"
           />
-          <p class="footer-tagline">
-            {{ t('footer.tagline') }}
-          </p>
+          <p class="footer-tagline">{{ t('footer.tagline') }}</p>
           <div class="footer-social">
             <a
               :href="socialLinks.facebook"
               target="_blank"
               rel="noopener noreferrer"
-              class="social-link"
+              class="soc-link"
               aria-label="Facebook"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -227,13 +210,13 @@ const socialLinks = {
               :href="socialLinks.instagram"
               target="_blank"
               rel="noopener noreferrer"
-              class="social-link"
+              class="soc-link"
               aria-label="Instagram"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -246,13 +229,13 @@ const socialLinks = {
               :href="socialLinks.whatsapp"
               target="_blank"
               rel="noopener noreferrer"
-              class="social-link"
+              class="soc-link"
               aria-label="WhatsApp"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -264,1298 +247,740 @@ const socialLinks = {
           </div>
         </div>
 
-        <div class="footer-links">
-          <div class="footer-column">
-            <h4>{{ t('footer.navigation') }}</h4>
-            <ul>
-              <li>
-                <RouterLink to="/">{{ t('nav.home') }}</RouterLink>
-              </li>
-              <li>
-                <RouterLink to="/rates">{{ t('nav.rates') }}</RouterLink>
-              </li>
-              <li>
-                <RouterLink to="/contacts">{{ t('nav.contacts') }}</RouterLink>
-              </li>
-            </ul>
-          </div>
+        <!-- colonna navigazione -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">{{ t('footer.navigation') }}</h4>
+          <ul class="footer-list">
+            <li>
+              <RouterLink to="/">{{ t('nav.home') }}</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/rates">{{ t('nav.rates') }}</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/contacts">{{ t('nav.contacts') }}</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/conditions">{{ t('nav.conditions') }}</RouterLink>
+            </li>
+          </ul>
+        </div>
 
-          <div class="footer-column">
-            <h4>{{ t('footer.contactsTitle') }}</h4>
-            <ul class="contact-list">
-              <li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  ></path>
-                </svg>
-                <a href="tel:+390791234567">+39 079 123 4567</a>
-              </li>
-              <li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                  ></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
-              </li>
-              <li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                {{ t('footer.address') }}
-              </li>
-            </ul>
-          </div>
+        <!-- colonna contatti -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">{{ t('footer.contactsTitle') }}</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+              <a href="tel:+390791234567">+39 079 123 4567</a>
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <a href="mailto:info@rentacarexpress.it">info@rentacarexpress.it</a>
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>{{ t('footer.address') }}</span>
+            </li>
+          </ul>
+        </div>
 
-          <div class="footer-column">
-            <h4>{{ t('footer.openingHours') }}</h4>
-            <ul class="hours-list">
-              <li>
-                <span>{{ t('footer.mondayToSaturday') }}</span>
-                <span class="time">9:00 - 18:00</span>
-              </li>
-              <li>
-                <span>{{ t('footer.sunday') }}</span>
-                <span class="time closed">{{ t('footer.closed') }}</span>
-              </li>
-            </ul>
-          </div>
+        <!-- colonna orari -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">{{ t('footer.openingHours') }}</h4>
+          <ul class="footer-hours">
+            <li>
+              <span>{{ t('footer.mondayToSaturday') }}</span>
+              <span class="hours-time">08:30 – 19:00</span>
+            </li>
+            <li>
+              <span>{{ t('footer.sunday') }}</span>
+              <span class="hours-time closed">{{ t('footer.closed') }}</span>
+            </li>
+          </ul>
         </div>
       </div>
 
+      <!-- fondo footer -->
       <div class="footer-bottom">
-        <p>{{ t('footer.copyright') }}</p>
-        <div class="footer-bottom-links">
-          <a href="#">{{ t('footer.privacy') }}</a>
-          <span>|</span>
-          <a href="#">{{ t('footer.terms') }}</a>
-          <span>|</span>
-          <a href="#">{{ t('footer.cookies') }}</a>
-        </div>
+        <p class="footer-copy">{{ t('footer.copyright') }}</p>
       </div>
     </div>
   </footer>
 </template>
 
 <style scoped>
-/* Header Top Bar */
-.header-top {
-  background: linear-gradient(135deg, #1f4f80 0%, #2d5f8f 100%);
-  color: white;
-  font-size: 0.85rem;
-  padding: 0.6rem 0;
-  position: relative;
-  overflow: hidden;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.header-top::before {
-  content: '';
-  position: absolute;
+/* ═══════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════ */
+.app-header {
+  position: sticky;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shimmer 3s infinite;
+  z-index: 1000;
 }
 
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
+/* ── barra top ── */
+.header-top {
+  background: #0e2d4e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
-
-.header-top-content {
-  max-width: 1400px;
+.top-inner {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 44px;
+  min-height: 40px;
 }
-
-.contact-info {
+.top-contacts {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  align-items: center;
 }
-
-.info-item {
+.top-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  opacity: 0.95;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: white;
-  line-height: 1;
-}
-
-.info-item:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.info-item svg {
-  opacity: 0.8;
-  transition: transform 0.3s ease;
-}
-
-.info-item:hover svg {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.header-lang {
-  display: flex;
   gap: 0.4rem;
-  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease;
+}
+.top-item:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+.top-item svg {
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.top-sep {
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 0.7rem;
 }
 
-.lang-btn-small {
-  padding: 0.4rem 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  border-radius: 6px;
+.top-lang {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+.lang-btn {
+  padding: 0.28rem 0.65rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.45);
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  text-align: center;
-  min-width: 40px;
-  box-sizing: border-box;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.25s ease;
 }
-
-.lang-btn-small > * {
-  position: relative;
-  z-index: 1;
+.lang-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
 }
-
-.lang-btn-small::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.4s,
-    height 0.4s;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.lang-btn-small:hover::before {
-  width: 100px;
-  height: 100px;
-}
-
-.lang-btn-small:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.lang-btn-small.active {
+.lang-btn.active {
   background: #ce4028;
   border-color: #ce4028;
-  box-shadow: 0 2px 8px rgba(206, 64, 40, 0.4);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(206, 64, 40, 0.35);
 }
 
-/* Header Main */
-.app-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  animation: slideDown 0.5s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
+/* ── barra principale ── */
 .header-main {
-  background: white;
+  background: #fff;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 2px 20px rgba(14, 45, 78, 0.07);
 }
-
-.header-content {
-  max-width: 1400px;
+.header-inner {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 
-.logo-container {
+.logo-link {
   flex-shrink: 0;
-  z-index: 1001;
+  display: block;
 }
-
-.logo-container img {
-  height: 55px;
+.logo-img {
+  height: 52px;
   width: auto;
   display: block;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
-.logo-container img:hover {
-  transform: scale(1.08) rotate(-2deg);
-}
-
-/* Desktop Navigation */
+/* nav desktop */
 .nav-desktop {
   display: flex;
-  gap: 3rem;
   align-items: center;
-  flex: 1;
-  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-left: auto;
 }
-
 .nav-item {
   position: relative;
-  color: #1f4f80;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.8rem 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1rem;
+  color: #3a5068;
+  font-weight: 600;
+  font-size: 0.93rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
 }
-
 .nav-icon {
-  font-size: 1.2rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-block;
-}
-
-.nav-item::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #ce4028, #e6583f);
-  border-radius: 2px;
+  font-size: 1rem;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .nav-item::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(206, 64, 40, 0.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.4s,
-    height 0.4s;
-  z-index: -1;
+  bottom: 4px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: linear-gradient(90deg, #ce4028, #e6583f);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.nav-item:hover::after {
-  width: 120px;
-  height: 120px;
-}
-
 .nav-item:hover {
-  color: #ce4028;
+  color: #0e2d4e;
+  background: rgba(31, 79, 128, 0.05);
 }
-
 .nav-item:hover .nav-icon {
-  transform: translateY(-4px) scale(1.1);
-  animation: bounce 0.6s ease;
+  transform: translateY(-3px) scale(1.1);
 }
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(-4px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-8px) scale(1.15);
-  }
+.nav-item:hover::after {
+  transform: scaleX(1);
 }
-
-.nav-item:hover::before {
-  transform: translateX(-50%) scaleX(1);
-}
-
 .nav-item.router-link-active {
   color: #ce4028;
+  background: rgba(206, 64, 40, 0.05);
+}
+.nav-item.router-link-active::after {
+  transform: scaleX(1);
 }
 
-.nav-item.router-link-active::before {
-  transform: translateX(-50%) scaleX(1);
-}
-
-.nav-item.router-link-active .nav-icon {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Header CTA Button */
-.header-actions {
-  display: flex;
-  align-items: center;
-}
-
-.cta-button {
-  padding: 0.9rem 2rem;
-  background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  box-shadow: 0 4px 15px rgba(206, 64, 40, 0.3);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
-}
-
-.cta-button:hover::before {
-  left: 100%;
-}
-
-.cta-button::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50px;
-  padding: 2px;
-  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.cta-button:hover::after {
-  opacity: 1;
-}
-
-.cta-button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px rgba(206, 64, 40, 0.5);
-}
-
-.cta-text {
-  position: relative;
-  z-index: 1;
-}
-
-.cta-icon {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s ease;
-}
-
-.cta-button:hover .cta-icon {
-  transform: translateX(5px);
-  animation: arrowBounce 0.8s ease infinite;
-}
-
-@keyframes arrowBounce {
-  0%,
-  100% {
-    transform: translateX(5px);
-  }
-  50% {
-    transform: translateX(10px);
-  }
-}
-
-/* Mobile Menu Button */
-.mobile-menu-btn {
+/* burger */
+.burger {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  gap: 5px;
   z-index: 1001;
-  gap: 6px;
-  position: relative;
 }
-
-.mobile-menu-btn span {
-  width: 28px;
-  height: 3px;
-  background-color: #1f4f80;
-  border-radius: 3px;
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: #1f4f80;
+  border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
 }
-
-.mobile-menu-btn:hover span {
-  background-color: #ce4028;
+.burger span.open {
+  background: #ce4028;
 }
-
-.mobile-menu-btn span.open {
-  background-color: #ce4028;
+.burger span.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
 }
-
-.mobile-menu-btn span.open:nth-child(1) {
-  transform: rotate(45deg);
-  position: absolute;
-  top: 50%;
-  margin-top: -1.5px;
-}
-
-.mobile-menu-btn span.open:nth-child(2) {
+.burger span.open:nth-child(2) {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateX(-12px);
+}
+.burger span.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.mobile-menu-btn span.open:nth-child(3) {
-  transform: rotate(-45deg);
-  position: absolute;
-  top: 50%;
-  margin-top: -1.5px;
-}
-
-/* Mobile Menu */
+/* menu mobile */
 .mobile-menu {
   display: none;
-  position: fixed;
-  top: 120px;
-  left: 0;
-  right: 0;
-  background: white;
+  background: #fff;
+  border-top: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 8px 30px rgba(14, 45, 78, 0.1);
   max-height: 0;
   overflow: hidden;
-  transition:
-    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s ease;
-  box-shadow: none;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .mobile-menu.open {
   max-height: 500px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem 0.5rem;
 }
-
-.mobile-nav-item {
-  color: #1f4f80;
-  text-decoration: none;
-  padding: 1.2rem 1rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border-bottom: 1px solid #e5e7eb;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.mob-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-}
-
-.mobile-nav-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, rgba(206, 64, 40, 0.1), transparent);
-  transition: width 0.3s ease;
-}
-
-.mobile-nav-item:hover::before {
-  width: 100%;
-}
-
-.mobile-icon {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.mobile-nav-item:hover {
-  background-color: rgba(206, 64, 40, 0.05);
-  color: #ce4028;
-  padding-left: 1.5rem;
-}
-
-.mobile-nav-item:hover .mobile-icon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.mobile-nav-item.router-link-active {
-  background: linear-gradient(90deg, rgba(206, 64, 40, 0.15) 0%, transparent 100%);
-  color: #ce4028;
-  border-left: 4px solid #ce4028;
-}
-
-.mobile-cta {
-  padding: 1.5rem 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.mobile-cta-button {
-  display: block;
-  width: 100%;
-  padding: 1.2rem;
-  background: linear-gradient(135deg, #ce4028, #e6583f);
-  color: white;
+  gap: 0.85rem;
+  padding: 1rem 0.75rem;
+  color: #1f4f80;
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  text-align: center;
+  border-radius: 8px;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.07);
+  transition: all 0.25s ease;
+}
+.mob-item:hover {
+  background: rgba(31, 79, 128, 0.04);
+  color: #ce4028;
+  padding-left: 1.25rem;
+}
+.mob-item.router-link-active {
+  color: #ce4028;
+  border-left: 3px solid #ce4028;
+  padding-left: 1rem;
+  background: rgba(206, 64, 40, 0.04);
+}
+
+.mob-lang {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem 1.25rem;
+  border-top: 1px solid rgba(31, 79, 128, 0.08);
+  margin-top: 0.5rem;
+}
+.mob-lang-btn {
+  padding: 0.4rem 1rem;
+  background: #fff;
+  border: 1.5px solid rgba(31, 79, 128, 0.2);
+  color: #1f4f80;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
   font-weight: 700;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  letter-spacing: 0.08em;
+  transition: all 0.25s ease;
+}
+.mob-lang-btn:hover {
+  border-color: #ce4028;
+  color: #ce4028;
+}
+.mob-lang-btn.active {
+  background: #ce4028;
+  border-color: #ce4028;
+  color: #fff;
 }
 
-.mobile-cta-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.6s,
-    height 0.6s;
-}
-
-.mobile-cta-button:active::before {
-  width: 300px;
-  height: 300px;
-}
-
-.mobile-cta-button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(206, 64, 40, 0.4);
-}
-
-/* Footer Styles */
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
 .app-footer {
-  background: linear-gradient(180deg, #1f4f80 0%, #2d5f8f 100%);
-  color: white;
-  margin-top: auto;
   position: relative;
-}
-
-.footer-wave {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  height: 80px;
+  background: #0e2d4e;
   overflow: hidden;
-  color: white;
+  padding-top: 5rem;
 }
 
-.footer-wave svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  transform-origin: center;
+/* linee diagonali */
+.footer-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.f-line {
+  position: absolute;
+  left: calc(var(--i) * 17% - 5%);
+  top: -10%;
+  width: 1px;
+  height: 130%;
+  background: rgba(255, 255, 255, 0.025);
+  transform: rotate(15deg);
+  transform-origin: top center;
 }
 
-.footer-container {
-  max-width: 1400px;
+/* blob */
+.f-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.f-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(31, 79, 128, 0.55) 0%, transparent 70%);
+  top: -100px;
+  left: -80px;
+  animation: blobDrift 25s ease-in-out infinite alternate;
+}
+.f-blob-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(206, 64, 40, 0.4) 0%, transparent 70%);
+  bottom: 0;
+  right: 5%;
+  animation: blobDrift 30s ease-in-out infinite alternate-reverse;
+}
+@keyframes blobDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(35px, 25px) scale(1.07);
+  }
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 5rem 2rem 2rem;
+  padding: 0 2rem 0;
 }
 
-.footer-main {
+/* corpo 4 colonne */
+.footer-body {
   display: grid;
-  grid-template-columns: 1.5fr 2fr;
-  gap: 4rem;
+  grid-template-columns: 1.8fr 1fr 1.4fr 1.2fr;
+  gap: 3.5rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* brand */
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  animation: fadeInLeft 0.6s ease-out;
+  gap: 1.25rem;
 }
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 .footer-logo {
-  height: 60px;
-  width: fit-content;
-  max-width: 200px;
+  height: 54px;
+  width: auto;
   filter: brightness(0) invert(1);
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
-
 .footer-logo:hover {
-  transform: scale(1.05);
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  transform: scale(1.04);
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
 }
-
 .footer-tagline {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 320px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  max-width: 280px;
 }
 
 .footer-social {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
 }
-
-.social-link {
-  width: 48px;
-  height: 48px;
+.soc-link {
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: white;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
-
-.social-link::before {
+.soc-link::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
+  inset: 0;
   background: #ce4028;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.4s,
-    height 0.4s;
-  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-
-.social-link:hover::before {
-  width: 100%;
-  height: 100%;
+.soc-link:hover::before {
+  opacity: 1;
 }
-
-.social-link:hover {
-  transform: translateY(-8px) scale(1.1);
+.soc-link:hover {
+  color: #fff;
   border-color: #ce4028;
-  box-shadow: 0 8px 20px rgba(206, 64, 40, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(206, 64, 40, 0.3);
 }
-
-.social-link:nth-child(1):hover {
-  animation: wiggle 0.5s ease;
-}
-
-.social-link:nth-child(2):hover {
-  animation: rotate360 0.6s ease;
-}
-
-.social-link:nth-child(3):hover {
-  animation: heartbeat 0.6s ease;
-}
-
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: translateY(-8px) rotate(0deg) scale(1.1);
-  }
-  25% {
-    transform: translateY(-8px) rotate(-10deg) scale(1.1);
-  }
-  75% {
-    transform: translateY(-8px) rotate(10deg) scale(1.1);
-  }
-}
-
-@keyframes rotate360 {
-  from {
-    transform: translateY(-8px) rotate(0deg) scale(1.1);
-  }
-  to {
-    transform: translateY(-8px) rotate(360deg) scale(1.1);
-  }
-}
-
-@keyframes heartbeat {
-  0%,
-  100% {
-    transform: translateY(-8px) scale(1.1);
-  }
-  25% {
-    transform: translateY(-8px) scale(1.2);
-  }
-  50% {
-    transform: translateY(-8px) scale(1.1);
-  }
-  75% {
-    transform: translateY(-8px) scale(1.15);
-  }
-}
-
-.social-link svg {
+.soc-link svg {
   position: relative;
   z-index: 1;
-  transition: transform 0.3s ease;
 }
 
-.social-link:hover svg {
-  transform: scale(1.1);
+/* colonne footer */
+.footer-col {
 }
-
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  animation: fadeInRight 0.6s ease-out;
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.footer-column h4 {
-  font-size: 1.15rem;
-  margin-bottom: 1.5rem;
+.footer-col-title {
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
   position: relative;
-  padding-bottom: 0.8rem;
-  letter-spacing: 0.5px;
 }
-
-.footer-column h4::after {
+.footer-col-title::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
-  height: 3px;
+  width: 24px;
+  height: 2px;
   background: linear-gradient(90deg, #ce4028, #e6583f);
-  border-radius: 2px;
+  border-radius: 1px;
   transition: width 0.3s ease;
 }
-
-.footer-column:hover h4::after {
-  width: 60px;
+.footer-col:hover .footer-col-title::after {
+  width: 40px;
 }
 
-.footer-column ul {
+.footer-list {
   list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.6rem;
 }
-
-.footer-column ul li a {
-  color: rgba(255, 255, 255, 0.85);
+.footer-list li a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  position: relative;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
-
-.footer-column ul li a::before {
-  content: '→';
+.footer-list li a::before {
+  content: '—';
+  font-size: 0.7rem;
+  color: #ce4028;
   opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
+  transform: translateX(-6px);
+  transition: all 0.25s ease;
 }
-
-.footer-column ul li a:hover::before {
+.footer-list li a:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+}
+.footer-list li a:hover::before {
   opacity: 1;
   transform: translateX(0);
 }
 
-.footer-column ul li a:hover {
-  color: white;
-  transform: translateX(5px);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.contact-list li {
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.25s ease;
+}
+.footer-contact-list li:hover {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
 }
-
-.contact-list li:hover {
-  transform: translateX(5px);
-  color: white;
-}
-
-.contact-list li a {
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.contact-list li a:hover {
-  color: #ce4028;
-  text-decoration: underline;
-}
-
-.contact-list svg {
+.footer-contact-list svg {
   color: #ce4028;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  margin-top: 2px;
+}
+.footer-contact-list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.footer-contact-list a:hover {
+  color: #fff;
 }
 
-.contact-list li:hover svg {
-  transform: scale(1.2) rotate(10deg);
+.footer-hours {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
-
-.hours-list li {
+.footer-hours li {
   display: flex;
   justify-content: space-between;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.95rem;
-  padding: 0.6rem 0;
-  transition: all 0.3s ease;
+  align-items: center;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-
-.hours-list li:hover {
-  padding-left: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+.footer-hours li:last-child {
+  border-bottom: none;
 }
-
-.time {
+.hours-time {
   font-weight: 700;
-  color: #ce4028;
-  text-shadow: 0 0 10px rgba(206, 64, 40, 0.3);
+  color: #e6583f;
+}
+.hours-time.closed {
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 500;
 }
 
-.time.closed {
-  color: rgba(255, 255, 255, 0.5);
-  text-shadow: none;
-}
-
+/* fondo */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
   flex-wrap: wrap;
   gap: 1rem;
-  animation: fadeIn 0.8s ease-out 0.3s both;
+  padding: 1.5rem 0 2rem;
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer-copy {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.28);
 }
-
-.footer-bottom p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.footer-bottom-links {
+.footer-legal {
   display: flex;
-  gap: 1rem;
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.footer-bottom-links a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.footer-bottom-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #ce4028;
-  transition: width 0.3s ease;
-}
-
-.footer-bottom-links a:hover::after {
-  width: 100%;
-}
-
-.footer-bottom-links a:hover {
-  color: #ce4028;
-}
-
-.footer-bottom-links span {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-/* Mobile Language Buttons */
-.mobile-lang-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem 2rem;
   gap: 0.75rem;
-  border-top: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.footer-legal a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+.footer-legal span {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.7rem;
 }
 
-.mobile-lang-btn {
-  color: #1f4f80;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border: 2px solid #e5e7eb;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  background: white;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  min-width: 50px;
-}
-
-.mobile-lang-btn::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, rgba(206, 64, 40, 0.1), transparent);
-  transition: width 0.3s ease;
-  z-index: 0;
-}
-
-.mobile-lang-btn:hover::before {
-  width: 100%;
-}
-
-.mobile-lang-btn:hover {
-  background-color: rgba(206, 64, 40, 0.05);
-  border-color: #ce4028;
-  color: #ce4028;
-  transform: translateY(-2px);
-}
-
-.mobile-lang-btn.active {
-  background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);
-  color: white;
-  border-color: #ce4028;
-  box-shadow: 0 2px 8px rgba(206, 64, 40, 0.3);
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .nav-desktop {
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .header-top {
-    display: none;
-  }
-
-  .nav-desktop,
-  .header-actions {
-    display: none;
-  }
-
-  .mobile-menu-btn,
-  .mobile-menu {
-    display: flex;
-  }
-
-  .header-main {
-    padding: 0.5rem 0;
-  }
-
-  .header-content {
-    padding: 0.75rem 1.5rem;
-    justify-content: space-between;
-  }
-
-  .logo-container img {
-    height: 50px;
-  }
-
-  .mobile-menu-btn {
-    width: 45px;
-    height: 45px;
-    gap: 6px;
-  }
-
-  .mobile-menu-btn span {
-    width: 28px;
-    height: 3px;
-  }
-
-  .mobile-menu {
-    top: 70px;
-  }
-
-  .footer-main {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .footer-links {
-    grid-template-columns: repeat(2, 1fr);
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .footer-body {
+    grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .header-content {
-    padding: 0.75rem 1.25rem;
+@media (max-width: 860px) {
+  .header-top {
+    display: none;
   }
-
-  .logo-container img {
-    height: 45px;
+  .nav-desktop {
+    display: none;
   }
-
-  .mobile-menu-btn {
-    width: 42px;
-    height: 42px;
-    gap: 5px;
-  }
-
-  .mobile-menu-btn span {
-    width: 26px;
-    height: 2.5px;
-  }
-
+  .burger,
   .mobile-menu {
-    top: 68px;
+    display: flex;
   }
-
-  .footer-container {
-    padding: 4rem 1.5rem 1.5rem;
+  .mobile-menu {
+    display: block;
   }
+}
 
-  .footer-links {
+@media (max-width: 600px) {
+  .header-inner {
+    padding: 0.7rem 1.25rem;
+  }
+  .logo-img {
+    height: 44px;
+  }
+  .footer-body {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-
-  .footer-column {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  .footer-inner {
+    padding: 0 1.25rem;
   }
-
-  .footer-column:last-child {
-    border-bottom: none;
-  }
-
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
-
-  .footer-bottom-links {
+  .footer-legal {
     justify-content: center;
   }
-
-  .footer-wave {
-    height: 50px;
+  .top-inner {
+    padding: 0 1.25rem;
   }
-
-  .footer-logo {
-    max-width: 150px;
-    height: 50px;
-  }
-
-  .contact-info {
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-content {
-    padding: 0.6rem 1rem;
-  }
-
-  .logo-container img {
-    height: 40px;
-  }
-
-  .mobile-menu-btn {
-    width: 40px;
-    height: 40px;
-    gap: 4px;
-  }
-
-  .mobile-menu-btn span {
-    width: 24px;
-    height: 2.5px;
-  }
-
-  .mobile-menu {
-    top: 62px;
-  }
-
-  .contact-info {
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-  }
-
-  .social-link {
-    width: 42px;
-    height: 42px;
-  }
-
-  .footer-social {
-    gap: 0.8rem;
-  }
-
-  .footer-tagline {
-    font-size: 0.9rem;
-  }
-
-  .footer-logo {
-    max-width: 120px;
-    height: 45px;
-  }
-
-  .footer-brand {
-    text-align: center;
+  .top-contacts {
+    display: none;
   }
 }
 </style>
