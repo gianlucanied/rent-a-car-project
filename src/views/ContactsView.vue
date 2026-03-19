@@ -146,30 +146,6 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- ░░ QR CODE WHATSAPP ░░ -->
-    <section class="section-wrap bg-white">
-      <div class="container">
-        <div class="qr-block observe">
-          <!-- decorazioni blob interne -->
-          <div class="qr-blob qr-blob-1" aria-hidden="true"></div>
-          <div class="qr-blob qr-blob-2" aria-hidden="true"></div>
-
-          <div class="qr-text">
-            <div class="qr-icon-wrap">💬</div>
-            <h2 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h2>
-            <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
-          </div>
-
-          <div class="qr-image-col">
-            <div class="qr-frame">
-              <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qr-img" />
-            </div>
-            <span class="qr-badge">{{ t('contacts.scanNow') }}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ░░ FAQ ░░ -->
     <section class="section-wrap bg-white">
       <div class="container">
