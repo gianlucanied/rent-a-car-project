@@ -6,34 +6,28 @@ import { useI18n } from './composables/useI18n'
 const { locale, setLocale, t } = useI18n()
 
 const mobileMenuOpen = ref(false)
-
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
-
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
 }
-
 const changeLanguage = (lang) => {
   setLocale(lang)
 }
 
 const socialLinks = {
-  facebook: 'https://www.facebook.com/rentacarexpress',
-  instagram: 'https://www.instagram.com/rentacarexpress',
-  whatsapp: 'https://wa.me/393331234567',
+  facebook: 'https://www.facebook.com/RentaCarExpressAlghero',
+  instagram: 'https://www.instagram.com/rent_a_car_express',
 }
 </script>
 
 <template>
-  <!-- ░░ HEADER ░░ -->
   <header class="app-header">
-    <!-- barra superiore info -->
     <div class="header-top">
       <div class="top-inner">
         <div class="top-contacts">
-          <a href="tel:+390791234567" class="top-item">
+          <a href="tel:+39079985937" class="top-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -47,7 +41,7 @@ const socialLinks = {
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
               ></path>
             </svg>
-            +39 079 123 4567
+            +39 079985937
           </a>
           <span class="top-sep" aria-hidden="true">·</span>
           <span class="top-item">
@@ -98,28 +92,17 @@ const socialLinks = {
       </div>
     </div>
 
-    <!-- barra principale nav -->
     <div class="header-main">
       <div class="header-inner">
         <RouterLink to="/" class="logo-link" @click="closeMobileMenu">
           <img src="/src/assets/logo.jpg" alt="Rent a Car Express" class="logo-img" />
         </RouterLink>
-
         <nav class="nav-desktop" aria-label="Navigazione principale">
-          <RouterLink to="/" class="nav-item">
-            {{ t('nav.home') }}
-          </RouterLink>
-          <RouterLink to="/rates" class="nav-item">
-            {{ t('nav.rates') }}
-          </RouterLink>
-          <RouterLink to="/contacts" class="nav-item">
-            {{ t('nav.contacts') }}
-          </RouterLink>
-          <RouterLink to="/conditions" class="nav-item">
-            {{ t('nav.conditions') }}
-          </RouterLink>
+          <RouterLink to="/" class="nav-item">{{ t('nav.home') }}</RouterLink>
+          <RouterLink to="/rates" class="nav-item">{{ t('nav.rates') }}</RouterLink>
+          <RouterLink to="/contacts" class="nav-item">{{ t('nav.contacts') }}</RouterLink>
+          <RouterLink to="/conditions" class="nav-item">{{ t('nav.conditions') }}</RouterLink>
         </nav>
-
         <button
           class="burger"
           @click="toggleMobileMenu"
@@ -133,21 +116,20 @@ const socialLinks = {
       </div>
     </div>
 
-    <!-- menu mobile -->
-    <div class="mobile-menu" :class="{ open: mobileMenuOpen }" aria-hidden="!mobileMenuOpen">
+    <div class="mobile-menu" :class="{ open: mobileMenuOpen }">
       <nav class="mobile-nav">
-        <RouterLink to="/" class="mob-item" @click="closeMobileMenu">
-          <span aria-hidden="true">🏠</span> {{ t('nav.home') }}
-        </RouterLink>
-        <RouterLink to="/rates" class="mob-item" @click="closeMobileMenu">
-          <span aria-hidden="true">💰</span> {{ t('nav.rates') }}
-        </RouterLink>
-        <RouterLink to="/contacts" class="mob-item" @click="closeMobileMenu">
-          <span aria-hidden="true">📞</span> {{ t('nav.contacts') }}
-        </RouterLink>
-        <RouterLink to="/conditions" class="mob-item" @click="closeMobileMenu">
-          <span aria-hidden="true">📋</span> {{ t('nav.conditions') }}
-        </RouterLink>
+        <RouterLink to="/" class="mob-item" @click="closeMobileMenu"
+          ><span>🏠</span> {{ t('nav.home') }}</RouterLink
+        >
+        <RouterLink to="/rates" class="mob-item" @click="closeMobileMenu"
+          ><span>💰</span> {{ t('nav.rates') }}</RouterLink
+        >
+        <RouterLink to="/contacts" class="mob-item" @click="closeMobileMenu"
+          ><span>📞</span> {{ t('nav.contacts') }}</RouterLink
+        >
+        <RouterLink to="/conditions" class="mob-item" @click="closeMobileMenu"
+          ><span>📋</span> {{ t('nav.conditions') }}</RouterLink
+        >
       </nav>
       <div class="mob-lang">
         <button
@@ -165,20 +147,15 @@ const socialLinks = {
 
   <RouterView />
 
-  <!-- ░░ FOOTER ░░ -->
   <footer class="app-footer">
-    <!-- linee diagonali decorative -->
     <div class="footer-lines" aria-hidden="true">
       <span v-for="n in 6" :key="n" class="f-line" :style="{ '--i': n }"></span>
     </div>
-    <!-- blob -->
     <div class="f-blob f-blob-1" aria-hidden="true"></div>
     <div class="f-blob f-blob-2" aria-hidden="true"></div>
 
     <div class="footer-inner">
-      <!-- corpo principale -->
       <div class="footer-body">
-        <!-- colonna brand -->
         <div class="footer-brand">
           <img
             src="/src/assets/logo-removebg-preview.png"
@@ -225,29 +202,9 @@ const socialLinks = {
                 />
               </svg>
             </a>
-            <a
-              :href="socialLinks.whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="soc-link"
-              aria-label="WhatsApp"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                />
-              </svg>
-            </a>
           </div>
         </div>
 
-        <!-- colonna navigazione -->
         <div class="footer-col">
           <h4 class="footer-col-title">{{ t('footer.navigation') }}</h4>
           <ul class="footer-list">
@@ -266,7 +223,6 @@ const socialLinks = {
           </ul>
         </div>
 
-        <!-- colonna contatti -->
         <div class="footer-col">
           <h4 class="footer-col-title">{{ t('footer.contactsTitle') }}</h4>
           <ul class="footer-contact-list">
@@ -284,7 +240,7 @@ const socialLinks = {
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                 ></path>
               </svg>
-              <a href="tel:+390791234567">+39 079 123 4567</a>
+              <a href="tel:+39079985937">+39 079 985937</a>
             </li>
             <li>
               <svg
@@ -321,23 +277,21 @@ const socialLinks = {
           </ul>
         </div>
 
-        <!-- colonna orari -->
         <div class="footer-col">
           <h4 class="footer-col-title">{{ t('footer.openingHours') }}</h4>
           <ul class="footer-hours">
             <li>
-              <span>{{ t('footer.mondayToSaturday') }}</span>
-              <span class="hours-time">08:30 – 19:00</span>
+              <span class="hours-day">{{ t('footer.mondayToSaturday') }}</span>
+              <span class="hours-time">08:30 – 13:00 · 16:00 – 19:00</span>
             </li>
             <li>
-              <span>{{ t('footer.sunday') }}</span>
-              <span class="hours-time closed">{{ t('footer.closed') }}</span>
+              <span class="hours-day">{{ t('footer.sunday') }}</span>
+              <span class="hours-time closed">08:30 – 12:30</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- fondo footer -->
       <div class="footer-bottom">
         <p class="footer-copy">{{ t('footer.copyright') }}</p>
       </div>
@@ -354,16 +308,12 @@ const socialLinks = {
   box-sizing: border-box;
 }
 
-/* ═══════════════════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════════════════ */
+/* ── HEADER TOP ── */
 .app-header {
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-
-/* ── barra top ── */
 .header-top {
   background: #0e2d4e;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -405,7 +355,6 @@ const socialLinks = {
   color: rgba(255, 255, 255, 0.18);
   font-size: 0.7rem;
 }
-
 .top-lang {
   display: flex;
   gap: 0.3rem;
@@ -434,7 +383,7 @@ const socialLinks = {
   box-shadow: 0 2px 8px rgba(206, 64, 40, 0.35);
 }
 
-/* ── barra principale ── */
+/* ── HEADER MAIN ── */
 .header-main {
   background: #fff;
   border-bottom: 1px solid rgba(31, 79, 128, 0.08);
@@ -449,7 +398,6 @@ const socialLinks = {
   align-items: center;
   gap: 2rem;
 }
-
 .logo-link {
   flex-shrink: 0;
   display: block;
@@ -463,8 +411,6 @@ const socialLinks = {
 .logo-img:hover {
   transform: scale(1.05);
 }
-
-/* nav desktop */
 .nav-desktop {
   display: flex;
   align-items: center;
@@ -475,7 +421,6 @@ const socialLinks = {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
   padding: 0.65rem 1rem;
   color: #3a5068;
   font-weight: 600;
@@ -485,10 +430,6 @@ const socialLinks = {
   transition:
     color 0.25s ease,
     background 0.25s ease;
-}
-.nav-icon {
-  font-size: 1rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-item::after {
   content: '';
@@ -507,9 +448,6 @@ const socialLinks = {
   color: #0e2d4e;
   background: rgba(31, 79, 128, 0.05);
 }
-.nav-item:hover .nav-icon {
-  transform: translateY(-3px) scale(1.1);
-}
 .nav-item:hover::after {
   transform: scaleX(1);
 }
@@ -521,7 +459,7 @@ const socialLinks = {
   transform: scaleX(1);
 }
 
-/* burger */
+/* ── BURGER ── */
 .burger {
   display: none;
   flex-direction: column;
@@ -557,7 +495,7 @@ const socialLinks = {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* menu mobile */
+/* ── MOBILE MENU ── */
 .mobile-menu {
   display: none;
   background: #fff;
@@ -570,7 +508,6 @@ const socialLinks = {
 .mobile-menu.open {
   max-height: 500px;
 }
-
 .mobile-nav {
   display: flex;
   flex-direction: column;
@@ -600,7 +537,6 @@ const socialLinks = {
   padding-left: 1rem;
   background: rgba(206, 64, 40, 0.04);
 }
-
 .mob-lang {
   display: flex;
   justify-content: center;
@@ -631,17 +567,13 @@ const socialLinks = {
   color: #fff;
 }
 
-/* ═══════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════ */
+/* ── FOOTER ── */
 .app-footer {
   position: relative;
   background: #0e2d4e;
   overflow: hidden;
   padding-top: 5rem;
 }
-
-/* linee diagonali */
 .footer-lines {
   position: absolute;
   inset: 0;
@@ -657,8 +589,6 @@ const socialLinks = {
   transform: rotate(15deg);
   transform-origin: top center;
 }
-
-/* blob */
 .f-blob {
   position: absolute;
   border-radius: 50%;
@@ -689,16 +619,13 @@ const socialLinks = {
     transform: translate(35px, 25px) scale(1.07);
   }
 }
-
 .footer-inner {
   position: relative;
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem 0;
+  padding: 0 2rem;
 }
-
-/* corpo 4 colonne */
 .footer-body {
   display: grid;
   grid-template-columns: 1.8fr 1fr 1.4fr 1.2fr;
@@ -706,8 +633,6 @@ const socialLinks = {
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-
-/* brand */
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -716,6 +641,7 @@ const socialLinks = {
 .footer-logo {
   height: 54px;
   width: auto;
+  object-fit: contain;
   filter: brightness(0) invert(1);
   transition:
     transform 0.3s ease,
@@ -731,7 +657,6 @@ const socialLinks = {
   line-height: 1.7;
   max-width: 280px;
 }
-
 .footer-social {
   display: flex;
   gap: 0.6rem;
@@ -773,9 +698,6 @@ const socialLinks = {
   z-index: 1;
 }
 
-/* colonne footer */
-.footer-col {
-}
 .footer-col-title {
   font-size: 0.78rem;
   font-weight: 700;
@@ -868,77 +790,59 @@ const socialLinks = {
   color: #fff;
 }
 
+/* ── ORARI: layout verticale, una voce per turno ── */
 .footer-hours {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.85rem;
 }
 .footer-hours li {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 0.5rem 0;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .footer-hours li:last-child {
   border-bottom: none;
+  padding-bottom: 0;
+}
+.hours-day {
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
 }
 .hours-time {
+  font-size: 0.9rem;
   font-weight: 700;
   color: #e6583f;
 }
 .hours-time.closed {
-  color: rgba(255, 255, 255, 0.25);
-  font-weight: 500;
+  color: #e6583f;
+  font-weight: 700;
 }
 
-/* fondo */
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: center;
   padding: 1.5rem 0 2rem;
 }
 .footer-copy {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.28);
 }
-.footer-legal {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.footer-legal a {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-.footer-legal a:hover {
-  color: rgba(255, 255, 255, 0.7);
-}
-.footer-legal span {
-  color: rgba(255, 255, 255, 0.15);
-  font-size: 0.7rem;
-}
 
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════ */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .footer-body {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
 }
-
 @media (max-width: 860px) {
   .header-top {
     display: none;
@@ -954,7 +858,6 @@ const socialLinks = {
     display: block;
   }
 }
-
 @media (max-width: 600px) {
   .header-inner {
     padding: 0.7rem 1.25rem;
@@ -969,18 +872,21 @@ const socialLinks = {
   .footer-inner {
     padding: 0 1.25rem;
   }
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-  .footer-legal {
-    justify-content: center;
-  }
   .top-inner {
     padding: 0 1.25rem;
   }
   .top-contacts {
     display: none;
   }
+}
+</style>
+
+<style>
+/* Numeri decorativi nascosti globalmente */
+.hero-deco-num,
+.card-num,
+.feat-num,
+.faq-num {
+  display: none;
 }
 </style>

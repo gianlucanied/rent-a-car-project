@@ -8,7 +8,7 @@ const translations = {
   it: {
     // Header
     header: {
-      schedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
+      schedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00 | Dom: 08:30 / 12:30',
     },
     // Navigazione
     nav: {
@@ -144,7 +144,7 @@ const translations = {
       channelsTag: 'Canali di Contatto',
       channelsTitle: 'Come Preferisci Contattarci?',
       phone: 'Telefono',
-      phoneSchedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
+      phoneSchedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00 | Dom: 08:30 / 12:30',
       email: 'Email',
       emailResponse: 'Risposta entro 24h',
       whatsapp: 'WhatsApp',
@@ -314,7 +314,7 @@ const translations = {
   en: {
     // Header
     header: {
-      schedule: 'Mon-Sat: 9:00 AM-6:00 PM',
+      schedule: 'Mon-Sat: 8:30 AM - 7:00 PM | Sun: 8:30 AM - 12:30 PM',
     },
     // Navigation
     nav: {
@@ -448,7 +448,7 @@ const translations = {
       channelsTag: 'Contact Channels',
       channelsTitle: 'How Would You Like to Contact Us?',
       phone: 'Phone',
-      phoneSchedule: 'Mon-Sat: 9:00 AM-6:00 PM',
+      phoneSchedule: 'Mon-Sat: 8:30 AM - 7:00 PM | Sun: 8:30 AM - 12:30 PM',
       email: 'Email',
       emailResponse: 'Response within 24h',
       whatsapp: 'WhatsApp',
@@ -616,7 +616,7 @@ const translations = {
   es: {
     // Header
     header: {
-      schedule: 'Lun-Sab: 08:30 - 13:00 / 16:00 - 19:00',
+      schedule: 'Lun - Sáb: 08:30 - 19:00 | Dom: 08:30 - 12:30',
     },
     // Navegación
     nav: {
@@ -753,7 +753,7 @@ const translations = {
       channelsTag: 'Canales de Contacto',
       channelsTitle: '¿Cómo Prefieres Contactarnos?',
       phone: 'Teléfono',
-      phoneSchedule: 'Lun-Sáb: 8:30 - 13:00 / 16:00 - 19:00',
+      phoneSchedule: 'Lun - Sáb: 08:30 - 19:00 | Dom: 08:30 - 12:30',
       email: 'Email',
       emailResponse: 'Respuesta en 24h',
       whatsapp: 'WhatsApp',

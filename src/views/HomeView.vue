@@ -125,11 +125,6 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <span class="scroll-line"></span>
-        <span class="scroll-text">{{ t('home.scroll') }}</span>
-      </div>
-
       <div class="hero-deco-num" aria-hidden="true">01</div>
     </section>
 
@@ -449,7 +444,6 @@ onMounted(() => {
   display: block;
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 900;
-  line-height: 1;
   letter-spacing: -0.04em;
   background: linear-gradient(90deg, #e6583f 0%, #ffa07a 100%);
   -webkit-background-clip: text;

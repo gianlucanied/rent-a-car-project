@@ -46,7 +46,6 @@ onMounted(() => {
         <p class="hero-subtitle">{{ t('rates.heroDescription') }}</p>
         <div class="hero-scroll-hint" aria-hidden="true">
           <span class="scroll-line"></span>
-          <span class="scroll-text">scroll</span>
         </div>
       </div>
 
@@ -72,7 +71,7 @@ onMounted(() => {
             <h3 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h3>
             <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
             <a
-              href="https://wa.me/393331234567"
+              href="https://wa.me/393400743137"
               target="_blank"
               rel="noopener noreferrer"
               class="wa-cta"

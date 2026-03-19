@@ -8,9 +8,9 @@ const contactMethods = computed(() => [
   {
     icon: '📞',
     title: t('contacts.phone'),
-    value: '+39 079 123 4567',
+    value: '+39 079 98 5937',
     description: t('contacts.phoneSchedule'),
-    link: 'tel:+390791234567',
+    link: 'tel:+39079985937',
     color: '#1f4f80',
   },
   {
@@ -24,9 +24,9 @@ const contactMethods = computed(() => [
   {
     icon: '💬',
     title: t('contacts.whatsapp'),
-    value: '+39 333 123 4567',
+    value: '+39 340 074 3137',
     description: t('contacts.whatsappAssistance'),
-    link: 'https://wa.me/393331234567',
+    link: 'https://wa.me/393400743137',
     color: '#1f4f80',
   },
 ])
@@ -100,7 +100,6 @@ onMounted(() => {
         <p class="hero-subtitle">{{ t('contacts.heroDescription') }}</p>
         <div class="hero-scroll-hint" aria-hidden="true">
           <span class="scroll-line"></span>
-          <span class="scroll-text">scroll</span>
         </div>
       </div>
 

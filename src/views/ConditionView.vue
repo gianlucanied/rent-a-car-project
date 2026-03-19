@@ -50,7 +50,6 @@ onMounted(() => {
         <p class="hero-subtitle">{{ t('conditions.heroSubtitle') }}</p>
         <div class="hero-scroll-hint" aria-hidden="true">
           <span class="scroll-line"></span>
-          <span class="scroll-text">scroll</span>
         </div>
       </div>
 
