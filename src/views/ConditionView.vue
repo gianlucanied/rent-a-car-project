@@ -154,7 +154,7 @@ onMounted(() => {
   padding: 9rem 3rem 5rem;
   background:
     linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/jumbo4.jpg') center center / cover no-repeat;
+    url('/jumbo5.jpg') center center / cover no-repeat;
   overflow: hidden;
 }
 

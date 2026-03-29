@@ -157,12 +157,6 @@ onMounted(() => {
             <div class="car-body">
               <h3 class="car-name">{{ car.name }}</h3>
 
-              <div class="car-badges">
-                <span v-if="car.automaticNote" class="badge badge--auto">
-                  {{ t('rates.automatic') }}
-                </span>
-              </div>
-
               <ul class="car-specs">
                 <li class="spec-item">
                   <span class="spec-icon">👥</span>
