@@ -1,10 +1,86 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from '../composables/useI18n'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const isVisible = ref(false)
+
+const cars = computed(() => [
+  {
+    category: 'A',
+    name: 'Fiat Panda',
+    seats: 5,
+    transmission: t('rates.manual'),
+    image: '/cars/panda.jpg',
+    color: '#1f4f80',
+  },
+  {
+    category: 'B',
+    name: 'Dacia Sandero',
+    seats: 5,
+    transmission: t('rates.manual'),
+    image: '/cars/sandero.jpg',
+    color: '#ce4028',
+  },
+  {
+    category: 'C',
+    name: 'Citroën C3',
+    seats: 5,
+    transmission: t('rates.manual'),
+    image: '/cars/c3.jpg',
+    color: '#1f4f80',
+  },
+  {
+    category: 'D',
+    name: 'Hyundai i10',
+    seats: 5,
+    transmission: t('rates.automatic'),
+    image: '/cars/i10.jpg',
+    color: '#ce4028',
+    automaticNote: true,
+  },
+  {
+    category: 'D',
+    name: 'Fiat 500',
+    seats: 4,
+    transmission: t('rates.automatic'),
+    image: '/cars/fiat500.jpg',
+    color: '#ce4028',
+    automaticNote: true,
+  },
+  {
+    category: 'E',
+    name: 'Fiat Doblò',
+    seats: 7,
+    transmission: t('rates.manual'),
+    image: '/cars/doblo.jpg',
+    color: '#1f4f80',
+  },
+])
+
+// Messaggio WhatsApp localizzato per lingua
+const waBaseMessage = computed(() => {
+  const messages = {
+    it: 'Ciao%2C%20vorrei%20un%20preventivo%20per%20il%20noleggio%20di%20una%20',
+    en: 'Hello%2C%20I%20would%20like%20a%20quote%20for%20renting%20a%20',
+    es: 'Hola%2C%20me%20gustar%C3%ADa%20un%20presupuesto%20para%20alquilar%20un%20',
+  }
+  return messages[locale.value] || messages.it
+})
+
+// Link WhatsApp generico (senza modello specifico)
+const waGenericLink = computed(() => {
+  const messages = {
+    it: 'Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20auto',
+    en: 'Hello%2C%20I%20would%20like%20information%20about%20car%20rental',
+    es: 'Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20coches',
+  }
+  return `https://wa.me/393400743137?text=${messages[locale.value] || messages.it}`
+})
+
+const waCarLink = (carName) =>
+  `https://wa.me/393400743137?text=${waBaseMessage.value}${encodeURIComponent(carName)}`
 
 onMounted(() => {
   setTimeout(() => {
@@ -44,6 +120,77 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- ░░ FLOTTA ░░ -->
+    <section class="section-wrap bg-white">
+      <div class="container container--wide">
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('rates.fleetTag') }}</p>
+        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('rates.fleetTitle') }}</h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('rates.fleetSubtitle') }}</p>
+
+        <div class="cars-grid">
+          <article
+            v-for="(car, i) in cars"
+            :key="car.name"
+            class="car-card observe"
+            :style="{ '--card-color': car.color, '--delay': i * 0.08 + 0.15 + 's' }"
+          >
+            <!-- badge categoria -->
+            <div class="car-category" :style="{ background: car.color }">
+              {{ car.category }}
+            </div>
+
+            <!-- immagine -->
+            <div class="car-img-wrap">
+              <img
+                :src="car.image"
+                :alt="car.name"
+                class="car-img"
+                loading="lazy"
+                @error="(e) => (e.target.style.display = 'none')"
+              />
+            </div>
+
+            <!-- contenuto -->
+            <div class="car-body">
+              <h3 class="car-name">{{ car.name }}</h3>
+
+              <div class="car-badges">
+                <span v-if="car.automaticNote" class="badge badge--auto">
+                  {{ t('rates.automatic') }}
+                </span>
+              </div>
+
+              <ul class="car-specs">
+                <li class="spec-item">
+                  <span class="spec-icon">👥</span>
+                  <span class="spec-label">{{ car.seats }} {{ t('rates.seats') }}</span>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-icon">⚙️</span>
+                  <span class="spec-label">{{ car.transmission }}</span>
+                </li>
+              </ul>
+
+              <a
+                :href="waCarLink(car.name)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="car-cta"
+              >
+                <span>{{ t('rates.requestQuote') }}</span>
+                <span class="cta-arrow">→</span>
+              </a>
+            </div>
+
+            <div class="card-underline" aria-hidden="true"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ░░ CANALI DI CONTATTO ░░ -->
     <section class="section-wrap bg-light">
       <div class="container">
@@ -61,13 +208,8 @@ onMounted(() => {
           <div class="qr-text">
             <h3 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h3>
             <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
-            <a
-              href="https://wa.me/393400743137"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="wa-cta"
-            >
-              <span>Apri WhatsApp</span>
+            <a :href="waGenericLink" target="_blank" rel="noopener noreferrer" class="wa-cta">
+              <span>{{ t('rates.openWhatsapp') }}</span>
               <span class="cta-arrow">→</span>
             </a>
           </div>
@@ -210,9 +352,12 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* ─── SEZIONE ───────────────────────────────────────────────────── */
+/* ─── SEZIONI ───────────────────────────────────────────────────── */
 .section-wrap {
   padding: 5.5rem 2rem 6.5rem;
+}
+.bg-white {
+  background: #fff;
 }
 .bg-light {
   background: #f4f6f9;
@@ -221,6 +366,9 @@ onMounted(() => {
 .container {
   max-width: 900px;
   margin: 0 auto;
+}
+.container--wide {
+  max-width: 1180px;
 }
 
 .section-intro {
@@ -250,7 +398,192 @@ onMounted(() => {
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: #6a7a8a;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* ─── GRIGLIA AUTO ──────────────────────────────────────────────── */
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* ─── CARD AUTO ─────────────────────────────────────────────────── */
+.car-card {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 4px 20px rgba(14, 45, 78, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.car-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(14, 45, 78, 0.13);
+  border-color: var(--card-color);
+}
+
+.car-category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.car-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  background: #f4f6f9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.car-card:hover .car-img {
+  transform: scale(1.05);
+}
+.car-img-fallback {
+  position: absolute;
+  font-size: 5rem;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.car-body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.car-name {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #0e2d4e;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+.car-card:hover .car-name {
+  color: var(--card-color);
+}
+
+.car-badges {
+  min-height: 1.5rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge--auto {
+  background: linear-gradient(135deg, rgba(206, 64, 40, 0.1), rgba(206, 64, 40, 0.06));
+  color: #ce4028;
+  border: 1px solid rgba(206, 64, 40, 0.2);
+}
+
+.car-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.spec-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.spec-label {
+  font-size: 0.88rem;
+  color: #5a6a7a;
+  font-weight: 500;
+}
+
+.car-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 0.85rem 1.25rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+.car-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+}
+.cta-arrow {
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.car-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+.card-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--card-color),
+    color-mix(in srgb, var(--card-color) 50%, white)
+  );
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.car-card:hover .card-underline {
+  width: 100%;
 }
 
 /* ─── QR BLOCK ──────────────────────────────────────────────────── */
@@ -335,9 +668,6 @@ onMounted(() => {
 .wa-cta:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
-}
-.cta-arrow {
-  transition: transform 0.3s ease;
 }
 .wa-cta:hover .cta-arrow {
   transform: translateX(4px);
@@ -510,6 +840,12 @@ onMounted(() => {
 }
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 860px) {
   .qr-block {
     grid-template-columns: 1fr;
@@ -534,6 +870,9 @@ onMounted(() => {
   }
   .section-wrap {
     padding: 3.5rem 1.25rem 5rem;
+  }
+  .cars-grid {
+    grid-template-columns: 1fr;
   }
   .qr-block {
     padding: 2rem 1.5rem;

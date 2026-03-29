@@ -69,6 +69,7 @@ const translations = {
     rates: {
       heroTag: 'Prezzi Imbattibili',
       heroTitle: 'Le Nostre',
+      openWhatsapp: 'Apri WhatsApp',
       heroSubtitle: 'Tariffe',
       heroDescription:
         'Prezzi trasparenti e competitivi per ogni esigenza. Nessun costo nascosto, massima flessibilità!',
@@ -113,6 +114,13 @@ const translations = {
       additionalDriver: 'Conducente aggiuntivo',
       snowChains: 'Catene da neve',
       ctaTitle: 'Hai bisogno di un preventivo personalizzato?',
+      fleetTag: 'La Nostra Flotta',
+      fleetTitle: 'Le Nostre Auto',
+      fleetSubtitle: 'Scegli il veicolo più adatto alle tue esigenze di viaggio in Sardegna',
+      manual: 'Manuale',
+      automatic: 'Automatico',
+      seats: 'posti',
+      requestQuote: 'Richiedi Preventivo',
       ctaSubtitle: 'Contattaci per offerte su misura, soluzioni aziendali e preventivi per gruppi',
       requestQuote: 'Richiedi Preventivo',
       happyClients: 'Clienti Felici',
@@ -315,7 +323,7 @@ const translations = {
   en: {
     // Header
     header: {
-      schedule: 'Mon-Sat: 8:30 AM - 7:00 PM | Sun: 8:30 AM - 12:30 PM',
+      schedule: 'Mon-Sat: 8:30 AM - 1:00 PM / 4:00 PM 7:00 PM | Sun: 8:30 AM - 12:30 PM',
     },
     // Navigation
     nav: {
@@ -377,6 +385,7 @@ const translations = {
       heroTag: 'Unbeatable Prices',
       heroTitle: 'Our',
       heroSubtitle: 'Rates',
+      openWhatsapp: 'Open WhatsApp',
       heroDescription:
         'Transparent and competitive prices for every need. No hidden costs, maximum flexibility!',
       transparentPrices: 'Transparent prices',
@@ -419,6 +428,13 @@ const translations = {
       additionalDriver: 'Additional driver',
       snowChains: 'Snow chains',
       ctaTitle: 'Need a custom quote?',
+      fleetTag: 'Our Fleet',
+      fleetTitle: 'Our Cars',
+      fleetSubtitle: 'Choose the vehicle that best suits your travel needs in Sardinia',
+      manual: 'Manual',
+      automatic: 'Automatic',
+      seats: 'seats',
+      requestQuote: 'Request Quote',
       ctaSubtitle: 'Contact us for tailored offers, corporate solutions and group quotes',
       requestQuote: 'Request Quote',
       happyClients: 'Happy Clients',
@@ -450,7 +466,7 @@ const translations = {
       channelsTag: 'Contact Channels',
       channelsTitle: 'How Would You Like to Contact Us?',
       phone: 'Phone',
-      phoneSchedule: 'Mon-Sat: 8:30 AM - 7:00 PM | Sun: 8:30 AM - 12:30 PM',
+      phoneSchedule: 'Mon-Sat: 8:30 AM - 1:00 PM / 4:00 PM 7:00 PM | Sun: 8:30 AM - 12:30 PM',
       email: 'Email',
       emailResponse: 'Response within 24h',
       whatsapp: 'WhatsApp',
@@ -618,7 +634,7 @@ const translations = {
   es: {
     // Header
     header: {
-      schedule: 'Lun - Sáb: 08:30 - 19:00 | Dom: 08:30 - 12:30',
+      schedule: 'Lun - Sáb: 08:30 - 13:00 / 16:00 - 19:00 | Dom: 08:30 - 12:30',
     },
     // Navegación
     nav: {
@@ -679,6 +695,7 @@ const translations = {
     rates: {
       heroTag: 'Precios Inmejorables',
       heroTitle: 'Nuestras',
+      openWhatsapp: 'Abrir WhatsApp',
       heroSubtitle: 'Tarifas',
       heroDescription:
         'Precios transparentes y competitivos para cada necesidad. ¡Sin costos ocultos, máxima flexibilidad!',
@@ -723,6 +740,13 @@ const translations = {
       additionalDriver: 'Conductor adicional',
       snowChains: 'Cadenas de nieve',
       ctaTitle: '¿Necesitas un presupuesto personalizado?',
+      fleetTag: 'Nuestra Flota',
+      fleetTitle: 'Nuestros Coches',
+      fleetSubtitle: 'Elige el vehículo que mejor se adapte a tus necesidades de viaje en Cerdeña',
+      manual: 'Manual',
+      automatic: 'Automático',
+      seats: 'plazas',
+      requestQuote: 'Solicitar Presupuesto',
       ctaSubtitle:
         'Contáctanos para ofertas a medida, soluciones empresariales y presupuestos para grupos',
       requestQuote: 'Solicitar Presupuesto',
@@ -756,7 +780,7 @@ const translations = {
       channelsTag: 'Canales de Contacto',
       channelsTitle: '¿Cómo Prefieres Contactarnos?',
       phone: 'Teléfono',
-      phoneSchedule: 'Lun - Sáb: 08:30 - 19:00 | Dom: 08:30 - 12:30',
+      phoneSchedule: 'Lun - Sáb: 08:30 - 13:00 / 16:00 - 19:00 | Dom: 08:30 - 12:30',
       email: 'Email',
       emailResponse: 'Respuesta en 24h',
       whatsapp: 'WhatsApp',

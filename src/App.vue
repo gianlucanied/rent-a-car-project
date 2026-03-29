@@ -293,7 +293,17 @@ const socialLinks = {
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copy">{{ t('footer.copyright') }}</p>
+        <div class="footer-bottom-content">
+          <p class="footer-copy">{{ t('footer.copyright') }}</p>
+          <a
+            href="https://www.instagram.com/gianlucanied"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-credits"
+          >
+            Design by <span>@gianlucanied</span>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
@@ -824,9 +834,50 @@ const socialLinks = {
 }
 
 .footer-bottom {
-  display: flex;
-  justify-content: center;
   padding: 1.5rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.footer-credits {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.03em;
+}
+
+.footer-credits span {
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-credits:hover {
+  color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.footer-credits:hover span {
+  color: #ce4028; /* Colore rosso coordinato col tuo brand */
+}
+
+/* Responsive adjustment */
+@media (min-width: 600px) {
+  .footer-bottom-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .footer-copy {
   font-size: 0.8rem;
