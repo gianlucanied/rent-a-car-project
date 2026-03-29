@@ -83,17 +83,6 @@ onMounted(() => {
   <main class="home-page">
     <!-- ░░ HERO ░░ -->
     <section class="page-hero">
-      <div class="hero-lines" aria-hidden="true">
-        <span v-for="n in 8" :key="n" class="diag-line" :style="{ '--i': n }"></span>
-      </div>
-      <div class="hero-blob blob-1" aria-hidden="true"></div>
-      <div class="hero-blob blob-2" aria-hidden="true"></div>
-
-      <!-- auto flottanti -->
-      <div class="floating-car car-1" aria-hidden="true">🚗</div>
-      <div class="floating-car car-2" aria-hidden="true">🚙</div>
-      <div class="floating-car car-3" aria-hidden="true">🚘</div>
-
       <div class="hero-inner" :class="{ visible: isVisible }">
         <h1 class="hero-title">
           <span class="title-block">{{ t('home.heroTitle') }}</span>
@@ -117,8 +106,6 @@ onMounted(() => {
           </div>
         </div>
       </div>
-
-      <div class="hero-deco-num" aria-hidden="true">01</div>
     </section>
 
     <!-- ░░ CHI SIAMO ░░ -->
@@ -255,7 +242,6 @@ onMounted(() => {
             class="step-card observe"
             :style="{ '--delay': i * 0.12 + 0.15 + 's' }"
           >
-            <!-- connettore -->
             <div v-if="i < steps.length - 1" class="step-connector" aria-hidden="true"></div>
 
             <div class="step-badge">
@@ -287,104 +273,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0e2d4e;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('/jumbo1.jpg') center center / cover no-repeat;
   overflow: hidden;
-}
-
-.hero-lines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.diag-line {
-  position: absolute;
-  left: calc(var(--i) * 13% - 10%);
-  top: -20%;
-  width: 1px;
-  height: 160%;
-  background: rgba(255, 255, 255, 0.035);
-  transform: rotate(20deg);
-  transform-origin: top center;
-}
-
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-}
-.blob-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(31, 79, 128, 0.65) 0%, transparent 70%);
-  top: -160px;
-  left: -120px;
-  animation: blobDrift 22s ease-in-out infinite alternate;
-}
-.blob-2 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(206, 64, 40, 0.5) 0%, transparent 70%);
-  bottom: -100px;
-  right: 5%;
-  animation: blobDrift 28s ease-in-out infinite alternate-reverse;
-}
-@keyframes blobDrift {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(40px, 30px) scale(1.08);
-  }
-}
-
-/* auto flottanti */
-.floating-car {
-  position: absolute;
-  font-size: 4rem;
-  opacity: 0.07;
-  filter: blur(2px);
-  animation: carFloat 22s ease-in-out infinite;
-}
-.car-1 {
-  top: 18%;
-  left: 8%;
-  animation-delay: 0s;
-}
-.car-2 {
-  top: 58%;
-  right: 10%;
-  animation-delay: 8s;
-}
-.car-3 {
-  bottom: 18%;
-  left: 48%;
-  animation-delay: 16s;
-}
-@keyframes carFloat {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(28px, -28px) rotate(4deg);
-  }
-  66% {
-    transform: translate(-18px, 18px) rotate(-4deg);
-  }
-}
-
-.hero-deco-num {
-  position: absolute;
-  right: 3rem;
-  bottom: 4rem;
-  font-size: clamp(8rem, 18vw, 18rem);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
-  letter-spacing: -0.06em;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
 }
 
 /* contenuto hero */
@@ -403,31 +295,6 @@ onMounted(() => {
 .hero-inner.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.hero-tag-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-.hero-eyebrow {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #e6583f;
-}
-.hero-divider {
-  color: rgba(255, 255, 255, 0.2);
-}
-.hero-brand {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
 }
 
 .hero-title {
@@ -512,14 +379,14 @@ onMounted(() => {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
   backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
   transform: translateY(-3px);
 }
 
@@ -527,10 +394,10 @@ onMounted(() => {
 .hero-stats {
   display: inline-flex;
   gap: 0;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 .stat-item {
@@ -548,7 +415,7 @@ onMounted(() => {
   top: 20%;
   bottom: 20%;
   width: 1px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
 }
 .stat-number {
   font-size: 2.2rem;
@@ -562,30 +429,7 @@ onMounted(() => {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* scroll hint */
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 2;
-}
-.scroll-line {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.25);
-}
-.scroll-text {
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ─── SEZIONI ───────────────────────────────────────────────────── */
@@ -654,7 +498,6 @@ onMounted(() => {
   gap: 2rem;
 }
 
-/* highlight box con barra laterale */
 .about-highlight {
   display: flex;
   align-items: stretch;
@@ -674,11 +517,6 @@ onMounted(() => {
   gap: 1.25rem;
   padding: 1.5rem 1.75rem;
 }
-.ah-icon {
-  font-size: 2.5rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
 .ah-title {
   font-size: 1.3rem;
   font-weight: 800;
@@ -696,7 +534,6 @@ onMounted(() => {
   line-height: 1.85;
 }
 
-/* features grid 2 colonne */
 .features-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -806,6 +643,14 @@ onMounted(() => {
   left: 0;
   animation: blobDrift 24s ease-in-out infinite alternate-reverse;
 }
+@keyframes blobDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
 .about-card {
   position: relative;
   z-index: 1;
@@ -817,11 +662,6 @@ onMounted(() => {
   text-align: center;
   width: 100%;
   max-width: 320px;
-}
-.about-card-icon {
-  font-size: 4rem;
-  margin-bottom: 1.25rem;
-  animation: carFloat 5s ease-in-out infinite;
 }
 .about-card-title {
   font-size: 1.3rem;
@@ -923,7 +763,6 @@ onMounted(() => {
   gap: 1.5rem;
 }
 
-/* card base (stessa logica ConditionsView) */
 .service-card,
 .feat-card {
   position: relative;
@@ -1061,7 +900,6 @@ onMounted(() => {
   box-shadow: 0 18px 48px rgba(14, 45, 78, 0.1);
 }
 
-/* connettore orizzontale tra step */
 .step-connector {
   position: absolute;
   top: 58px;
@@ -1186,12 +1024,6 @@ onMounted(() => {
   .steps-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-  .hero-deco-num {
-    display: none;
-  }
-  .hero-scroll-hint {
-    display: none;
   }
 }
 

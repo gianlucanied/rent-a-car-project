@@ -43,12 +43,6 @@ onMounted(() => {
   <main class="conditions-page">
     <!-- ░░ HERO ░░ -->
     <section class="page-hero">
-      <div class="hero-lines" aria-hidden="true">
-        <span v-for="n in 8" :key="n" class="diag-line" :style="{ '--i': n }"></span>
-      </div>
-      <div class="hero-blob blob-1" aria-hidden="true"></div>
-      <div class="hero-blob blob-2" aria-hidden="true"></div>
-
       <div class="hero-inner">
         <div class="hero-tag-row">
           <span class="hero-eyebrow">{{ t('conditions.label') }}</span>
@@ -63,8 +57,6 @@ onMounted(() => {
           <span class="scroll-line"></span>
         </div>
       </div>
-
-      <div class="hero-deco-num" aria-hidden="true">08</div>
     </section>
 
     <!-- ░░ GRID CONDIZIONI ░░ -->
@@ -160,69 +152,10 @@ onMounted(() => {
   display: flex;
   align-items: flex-end;
   padding: 9rem 3rem 5rem;
-  background: #0e2d4e;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('/jumbo4.jpg') center center / cover no-repeat;
   overflow: hidden;
-}
-
-.hero-lines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.diag-line {
-  position: absolute;
-  left: calc(var(--i) * 13% - 10%);
-  top: -20%;
-  width: 1px;
-  height: 160%;
-  background: rgba(255, 255, 255, 0.04);
-  transform: rotate(20deg);
-  transform-origin: top center;
-}
-
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-.blob-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(31, 79, 128, 0.7) 0%, transparent 70%);
-  top: -120px;
-  left: -80px;
-  animation: blobDrift 20s ease-in-out infinite alternate;
-}
-.blob-2 {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(206, 64, 40, 0.55) 0%, transparent 70%);
-  bottom: -80px;
-  right: 5%;
-  animation: blobDrift 26s ease-in-out infinite alternate-reverse;
-}
-@keyframes blobDrift {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(40px, 30px) scale(1.08);
-  }
-}
-
-.hero-deco-num {
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: clamp(7rem, 15vw, 14rem);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.04);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
 }
 
 .hero-inner {
@@ -266,14 +199,16 @@ onMounted(() => {
   color: #fff;
   line-height: 1.05;
   letter-spacing: -0.03em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.7;
   max-width: 520px;
   margin-bottom: 3rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-scroll-hint {
@@ -285,7 +220,7 @@ onMounted(() => {
   display: block;
   width: 40px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* ─── SEZIONE CONDIZIONI ────────────────────────────────────────── */
@@ -634,9 +569,6 @@ onMounted(() => {
   }
   .condition-card.span-wide {
     grid-column: span 2;
-  }
-  .hero-deco-num {
-    display: none;
   }
 }
 

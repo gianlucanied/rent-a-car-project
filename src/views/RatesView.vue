@@ -27,12 +27,6 @@ onMounted(() => {
   <main class="rates-page">
     <!-- ░░ HERO ░░ -->
     <section class="page-hero">
-      <div class="hero-lines" aria-hidden="true">
-        <span v-for="n in 8" :key="n" class="diag-line" :style="{ '--i': n }"></span>
-      </div>
-      <div class="hero-blob blob-1" aria-hidden="true"></div>
-      <div class="hero-blob blob-2" aria-hidden="true"></div>
-
       <div class="hero-inner" :class="{ visible: isVisible }">
         <div class="hero-tag-row">
           <span class="hero-eyebrow">{{ t('rates.heroTag') }}</span>
@@ -48,8 +42,6 @@ onMounted(() => {
           <span class="scroll-line"></span>
         </div>
       </div>
-
-      <div class="hero-deco-num" aria-hidden="true">02</div>
     </section>
 
     <!-- ░░ CANALI DI CONTATTO ░░ -->
@@ -128,69 +120,10 @@ onMounted(() => {
   display: flex;
   align-items: flex-end;
   padding: 9rem 3rem 5.5rem;
-  background: #0e2d4e;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('/jumbo2.jpg') center center / cover no-repeat;
   overflow: hidden;
-}
-
-.hero-lines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.diag-line {
-  position: absolute;
-  left: calc(var(--i) * 13% - 10%);
-  top: -20%;
-  width: 1px;
-  height: 160%;
-  background: rgba(255, 255, 255, 0.04);
-  transform: rotate(20deg);
-  transform-origin: top center;
-}
-
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-.blob-1 {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(31, 79, 128, 0.7) 0%, transparent 70%);
-  top: -130px;
-  left: -80px;
-  animation: blobDrift 20s ease-in-out infinite alternate;
-}
-.blob-2 {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(206, 64, 40, 0.5) 0%, transparent 70%);
-  bottom: -80px;
-  right: 5%;
-  animation: blobDrift 26s ease-in-out infinite alternate-reverse;
-}
-@keyframes blobDrift {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(40px, 30px) scale(1.08);
-  }
-}
-
-.hero-deco-num {
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: clamp(7rem, 15vw, 14rem);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.04);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
 }
 
 .hero-inner {
@@ -242,6 +175,7 @@ onMounted(() => {
   color: #fff;
   line-height: 1.05;
   letter-spacing: -0.03em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 .title-accent {
   display: block;
@@ -257,10 +191,11 @@ onMounted(() => {
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.75;
   max-width: 560px;
   margin-bottom: 3rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-scroll-hint {
@@ -272,13 +207,7 @@ onMounted(() => {
   display: block;
   width: 40px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.28);
-}
-.scroll-text {
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* ─── SEZIONE ───────────────────────────────────────────────────── */
@@ -323,12 +252,6 @@ onMounted(() => {
   margin-bottom: 0.75rem;
   padding-bottom: 0.75rem;
 }
-.section-sub {
-  font-size: 1.05rem;
-  color: #6a7a8a;
-  line-height: 1.7;
-  margin-bottom: 3.5rem;
-}
 
 /* ─── QR BLOCK ──────────────────────────────────────────────────── */
 .qr-block {
@@ -368,18 +291,13 @@ onMounted(() => {
   left: -30px;
   animation: blobDrift 24s ease-in-out infinite alternate-reverse;
 }
-
-.qr-icon-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+@keyframes blobDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
 }
 
 .qr-title {
@@ -593,9 +511,6 @@ onMounted(() => {
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .hero-deco-num {
-    display: none;
-  }
   .qr-block {
     grid-template-columns: 1fr;
     gap: 2rem;
