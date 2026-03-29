@@ -67,7 +67,6 @@ onMounted(() => {
           <div class="qr-blob qr-blob-2" aria-hidden="true"></div>
 
           <div class="qr-text">
-            <div class="qr-icon-wrap" aria-hidden="true">💬</div>
             <h3 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h3>
             <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
             <a
@@ -76,7 +75,6 @@ onMounted(() => {
               rel="noopener noreferrer"
               class="wa-cta"
             >
-              <span>💬</span>
               <span>Apri WhatsApp</span>
               <span class="cta-arrow">→</span>
             </a>

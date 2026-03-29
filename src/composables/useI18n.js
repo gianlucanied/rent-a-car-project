@@ -38,7 +38,7 @@ const translations = {
         'Autovetture senza conducente delle migliori marche presenti nel mercato nazionale, con assistenza di personale altamente specializzato',
       aboutFeature2Title: 'Consegna Flessibile',
       aboutFeature2Text:
-        "La consegna e la ripresa dell'autovettura vengono eseguite a domicilio senza ulteriori supplementi, anche fuori orario di ufficio e nei giorni festivi",
+        "La consegna e la ripresa dell'autovettura vengono eseguite a domicilio senza ulteriori supplementi, anche fuori orario di ufficio e nei giorni festivi entro i confini dell'area di Alghero",
       aboutFeature3Title: 'Pagamenti Sicuri',
       aboutFeature3Text:
         'Convenzione con le maggiori carte di credito: Visa e MasterCard per la tua massima comodità',
@@ -121,7 +121,7 @@ const translations = {
     // Footer
     footer: {
       tagline:
-        'Il tuo partner di fiducia per il noleggio auto in Sardegna. Servizi professionali ad Alghero e in tutta la regione.',
+        'Il tuo partner di fiducia per il noleggio auto in Sardegna. Servizi professionali ad Alghero.',
       navigation: 'Navigazione',
       contactsTitle: 'Contatti',
       openingHours: 'Orari di Apertura',
@@ -152,7 +152,7 @@ const translations = {
       qrCodeTitle: 'Scansiona e Chatta su WhatsApp',
       qrCodeDescription:
         'Inquadra il QR code con la fotocamera del tuo smartphone per iniziare una conversazione immediata con noi su WhatsApp!',
-      scanNow: '📱 Scansiona Ora',
+      scanNow: 'Scansiona Ora',
       locationTag: 'Dove Siamo',
       locationTitle: '📍 La Nostra Sede',
       locationSubtitle: 'Vieni a trovarci ad Alghero, Sardegna',
@@ -456,7 +456,7 @@ const translations = {
       qrCodeTitle: 'Scan and Chat on WhatsApp',
       qrCodeDescription:
         'Frame the QR code with your smartphone camera to start an immediate conversation with us on WhatsApp!',
-      scanNow: '📱 Scan Now',
+      scanNow: 'Scan Now',
       locationTag: 'Where We Are',
       locationTitle: '📍 Our Location',
       locationSubtitle: 'Visit us in Alghero, Sardinia',
@@ -761,7 +761,7 @@ const translations = {
       qrCodeTitle: 'Escanea y Chatea en WhatsApp',
       qrCodeDescription:
         '¡Escanea el código QR con la cámara de tu smartphone para iniciar una conversación inmediata con nosotros en WhatsApp!',
-      scanNow: '📱 Escanea Ahora',
+      scanNow: 'Escanea Ahora',
       locationTag: 'Dónde Estamos',
       locationTitle: '📍 Nuestra Sede',
       locationSubtitle: 'Visítanos en Alghero, Cerdeña',

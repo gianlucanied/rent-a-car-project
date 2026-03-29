@@ -87,7 +87,7 @@ onMounted(() => {
         <div class="conditions-note observe">
           <div class="note-bar" aria-hidden="true"></div>
           <div class="note-content">
-            <span class="note-label">ℹ️ Nota</span>
+            <span class="note-label">Nota</span>
             <p>{{ t('conditions.note') }}</p>
           </div>
         </div>

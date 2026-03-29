@@ -32,15 +32,15 @@ const contactMethods = computed(() => [
 ])
 
 const locationInfo = computed(() => [
-  { icon: '📍', label: t('contacts.addressFull'), value: t('contacts.addressDetails'), html: true },
+  { icon: '', label: t('contacts.addressFull'), value: t('contacts.addressDetails'), html: true },
   {
-    icon: '🕒',
+    icon: '',
     label: t('contacts.openingHoursTitle'),
     value: t('contacts.openingHoursDetails'),
     html: true,
   },
   {
-    icon: '🚗',
+    icon: '',
     label: t('contacts.premiumServices'),
     value: t('contacts.premiumDetails'),
     html: true,

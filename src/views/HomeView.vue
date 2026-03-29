@@ -23,7 +23,7 @@ const services = computed(() => [
 ])
 
 const stats = computed(() => [
-  { number: '10+', label: t('home.yearsExperience') },
+  { number: '20+', label: t('home.yearsExperience') },
   { number: '24/7', label: t('home.assistance') },
 ])
 
@@ -95,12 +95,6 @@ onMounted(() => {
       <div class="floating-car car-3" aria-hidden="true">🚘</div>
 
       <div class="hero-inner" :class="{ visible: isVisible }">
-        <div class="hero-tag-row">
-          <span class="hero-eyebrow">Alghero · Sardegna</span>
-          <span class="hero-divider">—</span>
-          <span class="hero-brand">Rent a Car Express</span>
-        </div>
-
         <h1 class="hero-title">
           <span class="title-block">{{ t('home.heroTitle') }}</span>
           <span class="title-accent">{{ t('home.heroSubtitle') }}</span>
@@ -112,7 +106,6 @@ onMounted(() => {
             <span class="btn-arrow">→</span>
           </RouterLink>
           <RouterLink to="/contacts" class="btn-secondary">
-            <span>📞</span>
             <span class="btn-text">{{ t('home.contactUs') }}</span>
           </RouterLink>
         </div>
@@ -184,7 +177,6 @@ onMounted(() => {
             <div class="about-deco-blob blob-a" aria-hidden="true"></div>
             <div class="about-deco-blob blob-b" aria-hidden="true"></div>
             <div class="about-card">
-              <div class="about-card-icon">🚗</div>
               <h4 class="about-card-title">{{ t('home.aboutImageTitle') }}</h4>
               <p class="about-card-sub">{{ t('home.aboutImageSubtitle') }}</p>
               <div class="about-card-stats">
@@ -391,7 +383,7 @@ onMounted(() => {
   z-index: 2;
   text-align: center;
   max-width: 860px;
-  padding: 2rem 2rem 6rem;
+  padding: 4rem 2rem 6rem;
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -467,7 +459,6 @@ onMounted(() => {
   gap: 0.75rem;
   padding: 1.1rem 2.25rem;
   border-radius: 50px;
-  font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
   transition:

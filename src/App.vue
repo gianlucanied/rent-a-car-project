@@ -338,7 +338,6 @@ const socialLinks = {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.78rem;
-  font-weight: 500;
   color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   letter-spacing: 0.02em;
@@ -368,7 +367,6 @@ const socialLinks = {
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.72rem;
-  font-weight: 700;
   letter-spacing: 0.08em;
   transition: all 0.25s ease;
 }
@@ -423,7 +421,6 @@ const socialLinks = {
   align-items: center;
   padding: 0.65rem 1rem;
   color: #3a5068;
-  font-weight: 600;
   font-size: 0.93rem;
   text-decoration: none;
   border-radius: 8px;
