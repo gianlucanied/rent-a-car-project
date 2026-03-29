@@ -118,17 +118,17 @@ const socialLinks = {
 
     <div class="mobile-menu" :class="{ open: mobileMenuOpen }">
       <nav class="mobile-nav">
-        <RouterLink to="/" class="mob-item" @click="closeMobileMenu"
-          ><span>🏠</span> {{ t('nav.home') }}</RouterLink
+        <RouterLink to="/" class="mob-item" @click="closeMobileMenu">
+          {{ t('nav.home') }}</RouterLink
         >
-        <RouterLink to="/rates" class="mob-item" @click="closeMobileMenu"
-          ><span>💰</span> {{ t('nav.rates') }}</RouterLink
+        <RouterLink to="/rates" class="mob-item" @click="closeMobileMenu">
+          {{ t('nav.rates') }}</RouterLink
         >
-        <RouterLink to="/contacts" class="mob-item" @click="closeMobileMenu"
-          ><span>📞</span> {{ t('nav.contacts') }}</RouterLink
+        <RouterLink to="/contacts" class="mob-item" @click="closeMobileMenu">
+          {{ t('nav.contacts') }}</RouterLink
         >
-        <RouterLink to="/conditions" class="mob-item" @click="closeMobileMenu"
-          ><span>📋</span> {{ t('nav.conditions') }}</RouterLink
+        <RouterLink to="/conditions" class="mob-item" @click="closeMobileMenu">
+          {{ t('nav.conditions') }}</RouterLink
         >
       </nav>
       <div class="mob-lang">
