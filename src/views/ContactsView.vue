@@ -47,17 +47,6 @@ const locationInfo = computed(() => [
   },
 ])
 
-const faqs = computed(() => [
-  { q: t('faq.q1'), a: t('faq.a1') },
-  { q: t('faq.q2'), a: t('faq.a2') },
-  { q: t('faq.q3'), a: t('faq.a3') },
-  { q: t('faq.q4'), a: t('faq.a4') },
-  { q: t('faq.q5'), a: t('faq.a5') },
-  { q: t('faq.q6'), a: t('faq.a6') },
-  { q: t('faq.q7'), a: t('faq.a7') },
-  { q: t('faq.q8'), a: t('faq.a8') },
-])
-
 const isVisible = ref(false)
 
 onMounted(() => {
@@ -141,43 +130,6 @@ onMounted(() => {
             <div class="card-arrow" aria-hidden="true">→</div>
             <div class="card-underline" aria-hidden="true"></div>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░ FAQ ░░ -->
-    <section class="section-wrap bg-white">
-      <div class="container">
-        <div class="section-intro observe">
-          <span class="intro-dash">—</span>
-          <p class="intro-text">{{ t('faq.sectionLabel') }}</p>
-        </div>
-        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('faq.sectionTitle') }}</h2>
-        <p class="section-sub observe" style="--delay: 0.1s">{{ t('faq.sectionSubtitle') }}</p>
-
-        <div class="faq-list">
-          <details v-for="(faq, i) in faqs" :key="i" class="faq-item">
-            <summary class="faq-question">
-              <span class="faq-num" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
-              <span class="faq-q-text">{{ faq.q }}</span>
-              <span class="faq-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </span>
-            </summary>
-            <div class="faq-answer">
-              <p>{{ faq.a }}</p>
-            </div>
-          </details>
         </div>
       </div>
     </section>
@@ -394,12 +346,6 @@ onMounted(() => {
   height: 1px;
   background: rgba(255, 255, 255, 0.28);
 }
-.scroll-text {
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.32);
-}
 
 /* ─── SEZIONI ───────────────────────────────────────────────────── */
 .section-wrap {
@@ -461,7 +407,7 @@ onMounted(() => {
   margin-top: 2.5rem;
 }
 
-/* ─── CARD BASE (condivisa metodi) ─────────────────────────────── */
+/* ─── CARD BASE ─────────────────────────────────────────────────── */
 .method-card {
   position: relative;
   background: #fff;
@@ -598,124 +544,6 @@ onMounted(() => {
   width: 100%;
 }
 
-/* ─── QR BLOCK ──────────────────────────────────────────────────── */
-.qr-block {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4rem;
-  align-items: center;
-  background: #fff;
-  border-radius: 20px;
-  padding: 3.5rem 4rem;
-  border: 1px solid rgba(31, 79, 128, 0.08);
-  box-shadow: 0 8px 40px rgba(14, 45, 78, 0.08);
-  overflow: hidden;
-}
-
-.qr-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-}
-.qr-blob-1 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(37, 211, 102, 0.18) 0%, transparent 70%);
-  top: -80px;
-  right: -60px;
-  animation: blobDrift 18s ease-in-out infinite alternate;
-}
-.qr-blob-2 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(31, 79, 128, 0.12) 0%, transparent 70%);
-  bottom: -60px;
-  left: -40px;
-  animation: blobDrift 24s ease-in-out infinite alternate-reverse;
-}
-
-.qr-icon-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
-}
-
-.qr-title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 900;
-  color: #0e2d4e;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-.qr-desc {
-  font-size: 1rem;
-  color: #6a7a8a;
-  line-height: 1.75;
-  max-width: 440px;
-}
-
-.qr-image-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  position: relative;
-  z-index: 1;
-}
-.qr-frame {
-  padding: 1.5rem;
-  background: #fff;
-  border-radius: 20px;
-  border: 2px solid #25d366;
-  box-shadow: 0 10px 40px rgba(37, 211, 102, 0.15);
-  transition:
-    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.35s ease;
-}
-.qr-frame:hover {
-  transform: scale(1.04);
-  box-shadow: 0 16px 50px rgba(37, 211, 102, 0.25);
-}
-.qr-img {
-  display: block;
-  width: 240px;
-  height: 240px;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-.qr-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.7rem 1.75rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  border-radius: 50px;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
-  animation: pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-
 /* ─── MAPPA ─────────────────────────────────────────────────────── */
 .map-wrapper {
   display: grid;
@@ -757,7 +585,6 @@ onMounted(() => {
   border-color: rgba(31, 79, 128, 0.2);
 }
 
-/* riuso barra laterale gradiente dalla pagina conditions */
 .note-bar {
   width: 4px;
   flex-shrink: 0;
@@ -791,115 +618,6 @@ onMounted(() => {
   line-height: 1.65;
 }
 
-/* ─── FAQ ───────────────────────────────────────────────────────── */
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.faq-item {
-  background: #f4f6f9;
-  border-radius: 14px;
-  border: 1px solid rgba(31, 79, 128, 0.07);
-  overflow: hidden;
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-.faq-item:hover {
-  border-color: rgba(31, 79, 128, 0.2);
-  box-shadow: 0 6px 24px rgba(14, 45, 78, 0.08);
-}
-.faq-item[open] {
-  background: #fff;
-  border-color: rgba(31, 79, 128, 0.18);
-  box-shadow: 0 8px 30px rgba(14, 45, 78, 0.09);
-}
-
-/* rimuove il triangolino nativo */
-.faq-item summary {
-  list-style: none;
-}
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-question {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.4rem 1.75rem;
-  cursor: pointer;
-  user-select: none;
-  border-left: 4px solid rgba(31, 79, 128, 0.1);
-  transition: border-color 0.3s ease;
-}
-.faq-item:hover .faq-question {
-  border-left-color: rgba(31, 79, 128, 0.3);
-}
-.faq-item[open] .faq-question {
-  border-left-color: #ce4028;
-}
-
-.faq-num {
-  font-size: 1.6rem;
-  font-weight: 900;
-  line-height: 1;
-  color: rgba(31, 79, 128, 0.1);
-  letter-spacing: -0.04em;
-  flex-shrink: 0;
-  transition: color 0.3s ease;
-}
-.faq-item:hover .faq-num,
-.faq-item[open] .faq-num {
-  color: rgba(31, 79, 128, 0.18);
-}
-
-.faq-q-text {
-  flex: 1;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0e2d4e;
-  line-height: 1.4;
-  transition: color 0.3s ease;
-}
-.faq-item:hover .faq-q-text,
-.faq-item[open] .faq-q-text {
-  color: #1f4f80;
-}
-
-.faq-icon {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(31, 79, 128, 0.07);
-  justify-content: center;
-  color: #1f4f80;
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease,
-    color 0.3s ease;
-}
-.faq-item[open] .faq-icon {
-  background: #ce4028;
-  color: #fff;
-  transform: rotate(180deg);
-}
-
-.faq-answer {
-  padding: 0 1.75rem 1.5rem;
-  padding-left: calc(1.75rem + 1.6rem + 1rem);
-}
-.faq-answer p {
-  font-size: 0.93rem;
-  color: #5a6a7a;
-  line-height: 1.8;
-}
-
 /* ─── SCROLL ANIMATION ──────────────────────────────────────────── */
 .observe {
   opacity: 0;
@@ -921,20 +639,6 @@ onMounted(() => {
   .map-frame {
     height: 380px;
   }
-  .qr-block {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 2.5rem;
-    text-align: center;
-  }
-  .qr-desc {
-    margin: 0 auto;
-  }
-  .qr-image-col {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
 }
 
 @media (max-width: 860px) {
@@ -953,13 +657,6 @@ onMounted(() => {
   }
   .section-wrap {
     padding: 3.5rem 1.25rem 5rem;
-  }
-  .qr-block {
-    padding: 2rem 1.5rem;
-  }
-  .qr-img {
-    width: 190px;
-    height: 190px;
   }
   .map-frame {
     height: 300px;

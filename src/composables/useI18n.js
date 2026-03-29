@@ -15,13 +15,14 @@ const translations = {
       home: 'Home',
       rates: 'Tariffe',
       contacts: 'Contatti',
-      conditions: 'Condizioni di noleggio',
+      conditions: 'Condizioni di noleggio | FAQ',
     },
     // Pagina Home
     home: {
       heroTitle: 'Rent a Car Express',
       heroSubtitle: 'Alghero - Sardegna',
       discoverRates: 'Scopri le Tariffe',
+      reviewsBtn: 'Leggi le recensioni su Google',
       contactUs: 'Contattaci',
       yearsExperience: 'Anni di Esperienza',
       assistance: 'Assistenza',
@@ -277,12 +278,12 @@ const translations = {
       q7: 'Posso portare il veicolo fuori dalla Sardegna?',
       a7: "No, l'utilizzo è consentito esclusivamente in Sardegna. Il superamento di questo limite comporta la decadenza di tutte le coperture assicurative.",
       q8: 'Cosa devo portare al momento del ritiro del veicolo?',
-      a8: "Patente di guida valida, documento d'identità, carta di credito intestata al conducente e codice fiscale.",
+      a8: 'Per il ritiro del veicolo è necessario esibire la patente di guida in corso di validità, un documento d’identità, il codice fiscale e una carta di credito intestata al conducente. Si precisa che tali documenti devono essere presentati esclusivamente in formato originale e fisico; non sarà pertanto possibile accettare fotografie, scansioni o copie digitali.',
     },
     // Pagina Condizioni
     conditions: {
       label: 'Noleggio',
-      heroTitle: 'Condizioni di Noleggio',
+      heroTitle: 'Condizioni di Noleggio | FAQ',
       heroSubtitle: 'Tutto quello che devi sapere prima di noleggiare il tuo veicolo con noi.',
       paymentTitle: 'Pagamento',
       paymentText:
@@ -321,7 +322,7 @@ const translations = {
       home: 'Home',
       rates: 'Rates',
       contacts: 'Contacts',
-      conditions: 'Rental conditions',
+      conditions: 'Rental conditions | FAQ',
     },
     // Home Page
     home: {
@@ -330,6 +331,7 @@ const translations = {
       discoverRates: 'Discover Rates',
       contactUs: 'Contact Us',
       yearsExperience: 'Years of Experience',
+      reviewsBtn: 'Read reviews on Google',
       assistance: 'Assistance',
       scroll: 'Scroll',
       aboutLabel: 'Our Story',
@@ -580,12 +582,12 @@ const translations = {
       q7: 'Can I take the vehicle outside Sardinia?',
       a7: 'No, use of the vehicle is permitted exclusively within Sardinia. Exceeding this limit results in the loss of all insurance coverage.',
       q8: 'What do I need to bring when picking up the vehicle?',
-      a8: "A valid driving licence, identity document, credit card in the driver's name and tax code.",
+      a8: "To pick up the vehicle, you will need to present a valid driver's license, an identity document, your tax code, and a credit card in the driver's name. Please note that these documents must be presented exclusively in their original, physical format; photographs, scans, or digital copies will not be accepted.",
     },
     // Conditions Page
     conditions: {
       label: 'Rental',
-      heroTitle: 'Rental Terms & Conditions',
+      heroTitle: 'Rental Terms & Conditions | FAQ',
       heroSubtitle: 'Everything you need to know before renting a vehicle with us.',
       paymentTitle: 'Payment',
       paymentText:
@@ -623,7 +625,7 @@ const translations = {
       home: 'Inicio',
       rates: 'Tarifas',
       contacts: 'Contactos',
-      conditions: 'Condiciones de alquiler',
+      conditions: 'Condiciones de alquiler | FAQ',
     },
     // Página de Inicio
     home: {
@@ -633,6 +635,7 @@ const translations = {
       contactUs: 'Contáctanos',
       yearsExperience: 'Años de Experiencia',
       assistance: 'Asistencia',
+      reviewsBtn: 'Leer reseñas en Google',
       scroll: 'Desplázate',
       aboutLabel: 'Nuestra Historia',
       aboutTitle: 'Quiénes Somos',
@@ -888,12 +891,12 @@ const translations = {
       q7: '¿Puedo llevar el vehículo fuera de Cerdeña?',
       a7: 'No, el uso del vehículo está permitido exclusivamente en Cerdeña. Superar este límite conlleva la pérdida de todas las coberturas del seguro.',
       q8: '¿Qué debo llevar al recoger el vehículo?',
-      a8: 'Carnet de conducir válido, documento de identidad, tarjeta de crédito a nombre del conductor y código fiscal.',
+      a8: 'Para recoger el vehículo, deberá presentar una licencia de conducir válida, un documento de identidad, su número de identificación fiscal y una tarjeta de crédito a nombre del conductor. Tenga en cuenta que estos documentos deben presentarse exclusivamente en su formato físico original; no se aceptarán fotografías, escaneos ni copias digitales.',
     },
     // Página Condiciones
     conditions: {
       label: 'Alquiler',
-      heroTitle: 'Condiciones de Alquiler',
+      heroTitle: 'Condiciones de Alquiler | FAQ',
       heroSubtitle: 'Todo lo que necesitas saber antes de alquilar un vehículo con nosotros.',
       paymentTitle: 'Pago',
       paymentText:

@@ -185,6 +185,16 @@ onMounted(() => {
                   <span class="acs-label">{{ stat.label }}</span>
                 </div>
               </div>
+              <a
+                href="https://www.google.com/maps/place/Rent+a+Car+Express/@40.5612062,8.322062,17z/data=!4m8!3m7!1s0x12dcf1e8e5a5417b:0xcad2d464f17cbf02!8m2!3d40.5612062!4d8.322062!9m1!1b1!16s%2Fg%2F1td3bmyt?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="reviews-btn"
+              >
+                <span class="reviews-btn-stars">★★★★★</span>
+                <span class="reviews-btn-text">{{ t('home.reviewsBtn') }}</span>
+                <span class="reviews-btn-arrow">→</span>
+              </a>
             </div>
           </div>
         </div>
@@ -862,6 +872,48 @@ onMounted(() => {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #6a7a8a;
+}
+
+/* ─── BOTTONE RECENSIONI ────────────────────────────────────────── */
+.reviews-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 50px;
+  background: #f4f6f9;
+  border: 1px solid rgba(31, 79, 128, 0.12);
+  text-decoration: none;
+  transition:
+    background 0.28s ease,
+    border-color 0.28s ease,
+    transform 0.28s ease;
+}
+.reviews-btn:hover {
+  background: #fff;
+  border-color: #1f4f80;
+  transform: translateY(-2px);
+}
+.reviews-btn-stars {
+  color: #f5a623;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+.reviews-btn-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0e2d4e;
+}
+.reviews-btn-arrow {
+  font-size: 0.85rem;
+  color: #1f4f80;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.reviews-btn:hover .reviews-btn-arrow {
+  transform: translateX(4px);
 }
 
 /* ─── PERCHÉ NOI ────────────────────────────────────────────────── */

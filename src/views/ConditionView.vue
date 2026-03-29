@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useI18n } from '../composables/useI18n'
 
 const { t } = useI18n()
@@ -14,6 +14,17 @@ const conditions = [
   { icon: '', key: 'extension', color: '#ce4028', span: 'normal' },
   { icon: '', key: 'documents', color: '#1f4f80', span: 'normal' },
 ]
+
+const faqs = computed(() => [
+  { q: t('faq.q1'), a: t('faq.a1') },
+  { q: t('faq.q2'), a: t('faq.a2') },
+  { q: t('faq.q3'), a: t('faq.a3') },
+  { q: t('faq.q4'), a: t('faq.a4') },
+  { q: t('faq.q5'), a: t('faq.a5') },
+  { q: t('faq.q6'), a: t('faq.a6') },
+  { q: t('faq.q7'), a: t('faq.a7') },
+  { q: t('faq.q8'), a: t('faq.a8') },
+])
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -90,6 +101,43 @@ onMounted(() => {
             <span class="note-label">Nota</span>
             <p>{{ t('conditions.note') }}</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ FAQ ░░ -->
+    <section class="section-wrap bg-white">
+      <div class="container">
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('faq.sectionLabel') }}</p>
+        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('faq.sectionTitle') }}</h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('faq.sectionSubtitle') }}</p>
+
+        <div class="faq-list">
+          <details v-for="(faq, i) in faqs" :key="i" class="faq-item">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
+              <span class="faq-q-text">{{ faq.q }}</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>{{ faq.a }}</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -239,14 +287,8 @@ onMounted(() => {
   height: 1px;
   background: rgba(255, 255, 255, 0.3);
 }
-.scroll-text {
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-}
 
-/* ─── SEZIONE ──────────────────────────────────────────────────── */
+/* ─── SEZIONE CONDIZIONI ────────────────────────────────────────── */
 .conditions-section {
   padding: 5rem 2rem 7rem;
   background: #f4f6f9;
@@ -260,18 +302,49 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
   padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(31, 79, 128, 0.1);
+}
+.intro-dash {
+  font-size: 1.2rem;
+  color: #ce4028;
+  font-weight: 700;
+}
+.intro-text {
+  font-size: 0.88rem;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .intro-index {
   font-size: 1.2rem;
   color: #ce4028;
   font-weight: 700;
 }
-.intro-text {
-  font-size: 0.9rem;
-  color: #888;
-  letter-spacing: 0.05em;
+
+/* ─── SEZIONE GENERICA ──────────────────────────────────────────── */
+.section-wrap {
+  padding: 5.5rem 2rem 6.5rem;
+}
+.bg-white {
+  background: #fff;
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: #0e2d4e;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: #6a7a8a;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 3rem;
 }
 
 /* ─── GRIGLIA ──────────────────────────────────────────────────── */
@@ -381,7 +454,6 @@ onMounted(() => {
   line-height: 1.8;
 }
 
-/* linea colorata inferiore */
 .card-underline {
   position: absolute;
   bottom: 0;
@@ -434,7 +506,115 @@ onMounted(() => {
   line-height: 1.75;
 }
 
-/* ─── ANIMAZIONI SCROLL ────────────────────────────────────────── */
+/* ─── FAQ ───────────────────────────────────────────────────────── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: #f4f6f9;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 79, 128, 0.07);
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.faq-item:hover {
+  border-color: rgba(31, 79, 128, 0.2);
+  box-shadow: 0 6px 24px rgba(14, 45, 78, 0.08);
+}
+.faq-item[open] {
+  background: #fff;
+  border-color: rgba(31, 79, 128, 0.18);
+  box-shadow: 0 8px 30px rgba(14, 45, 78, 0.09);
+}
+
+.faq-item summary {
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 1.75rem;
+  cursor: pointer;
+  user-select: none;
+  border-left: 4px solid rgba(31, 79, 128, 0.1);
+  transition: border-color 0.3s ease;
+}
+.faq-item:hover .faq-question {
+  border-left-color: rgba(31, 79, 128, 0.3);
+}
+.faq-item[open] .faq-question {
+  border-left-color: #ce4028;
+}
+
+.faq-num {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(31, 79, 128, 0.1);
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+.faq-item:hover .faq-num,
+.faq-item[open] .faq-num {
+  color: rgba(31, 79, 128, 0.18);
+}
+
+.faq-q-text {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0e2d4e;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+.faq-item:hover .faq-q-text,
+.faq-item[open] .faq-q-text {
+  color: #1f4f80;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(31, 79, 128, 0.07);
+  justify-content: center;
+  color: #1f4f80;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+.faq-item[open] .faq-icon {
+  background: #ce4028;
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.75rem 1.5rem;
+  padding-left: calc(1.75rem + 1.6rem + 1rem);
+}
+.faq-answer p {
+  font-size: 0.93rem;
+  color: #5a6a7a;
+  line-height: 1.8;
+}
+
+/* ─── SCROLL ANIMATION ──────────────────────────────────────────── */
 .observe {
   opacity: 0;
   transform: translateY(22px);
@@ -472,6 +652,9 @@ onMounted(() => {
     grid-column: span 1;
   }
   .conditions-section {
+    padding: 3.5rem 1.25rem 5rem;
+  }
+  .section-wrap {
     padding: 3.5rem 1.25rem 5rem;
   }
   .card-num {
