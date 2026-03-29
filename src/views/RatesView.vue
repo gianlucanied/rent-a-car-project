@@ -482,7 +482,6 @@ onMounted(() => {
 
 .car-name {
   font-size: 1.2rem;
-  font-weight: 900;
   color: #0e2d4e;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -530,7 +529,6 @@ onMounted(() => {
 .spec-label {
   font-size: 0.88rem;
   color: #5a6a7a;
-  font-weight: 500;
 }
 
 .car-cta {
@@ -544,7 +542,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #25d366, #128c7e);
   color: #fff;
   font-size: 0.88rem;
-  font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
   transition:
@@ -650,7 +647,6 @@ onMounted(() => {
   padding: 0.85rem 1.75rem;
   background: linear-gradient(135deg, #25d366, #128c7e);
   color: #fff;
-  font-weight: 700;
   font-size: 0.95rem;
   border-radius: 50px;
   text-decoration: none;
@@ -703,7 +699,6 @@ onMounted(() => {
   padding: 0.55rem 1.4rem;
   background: linear-gradient(135deg, #25d366, #128c7e);
   color: #fff;
-  font-weight: 700;
   font-size: 0.85rem;
   border-radius: 50px;
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
@@ -799,7 +794,6 @@ onMounted(() => {
   padding: 0.85rem 1.75rem;
   background: linear-gradient(135deg, #1f4f80, #2d5f8f);
   color: #fff;
-  font-weight: 700;
   font-size: 0.95rem;
   border-radius: 50px;
   text-decoration: none;

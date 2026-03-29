@@ -62,8 +62,6 @@ onMounted(() => {
     <!-- ░░ GRID CONDIZIONI ░░ -->
     <section class="conditions-section">
       <div class="container">
-        <div class="section-intro observe"></div>
-
         <div class="conditions-grid">
           <article
             v-for="(condition, index) in conditions"
