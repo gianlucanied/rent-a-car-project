@@ -35,12 +35,6 @@ const locationInfo = computed(() => [
   { icon: '', label: t('contacts.addressFull'), value: t('contacts.addressDetails'), html: true },
   {
     icon: '',
-    label: t('contacts.openingHoursTitle'),
-    value: t('contacts.openingHoursDetails'),
-    html: true,
-  },
-  {
-    icon: '',
     label: t('contacts.premiumServices'),
     value: t('contacts.premiumDetails'),
     html: true,
@@ -193,8 +187,8 @@ onMounted(() => {
   align-items: flex-end;
   padding: 9rem 3rem 5.5rem;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/jumbo3.jpg') center center / cover no-repeat;
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url('/jumbo3.webp') center center / cover no-repeat;
   overflow: hidden;
 }
 

@@ -151,8 +151,8 @@ onMounted(() => {
   align-items: flex-end;
   padding: 9rem 3rem 5rem;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/jumbo5.jpg') center center / cover no-repeat;
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url('/jumbo5.webp') center center / cover no-repeat;
   overflow: hidden;
 }
 

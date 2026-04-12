@@ -28,7 +28,7 @@ const cars = computed(() => [
     name: 'Citroën C3',
     seats: 5,
     transmission: t('rates.manual'),
-    image: '/cars/c3.jpg',
+    image: '/cars/citroen-c3.webp',
     color: '#1f4f80',
   },
   {
@@ -36,7 +36,7 @@ const cars = computed(() => [
     name: 'Hyundai i10',
     seats: 5,
     transmission: t('rates.automatic'),
-    image: '/cars/i10.jpg',
+    image: '/cars/i10.webp',
     color: '#ce4028',
     automaticNote: true,
   },
@@ -257,8 +257,8 @@ onMounted(() => {
   align-items: flex-end;
   padding: 9rem 3rem 5.5rem;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/jumbo2.jpg') center center / cover no-repeat;
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url('/jumbo2.webp') center center / cover no-repeat;
   overflow: hidden;
 }
 

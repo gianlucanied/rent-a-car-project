@@ -274,8 +274,8 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/jumbo1.jpg') center center / cover no-repeat;
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url('/jumbo1.webp') center center / cover no-repeat;
   overflow: hidden;
 }
 
@@ -314,7 +314,7 @@ onMounted(() => {
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  background: linear-gradient(90deg, #e6583f 0%, #ffa07a 100%);
+  background: #e6583f;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
