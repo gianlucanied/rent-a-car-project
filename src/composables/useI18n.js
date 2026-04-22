@@ -99,6 +99,19 @@ const translations = {
       premiumName: 'Premium',
       premiumFeature1: 'SUV e auto di lusso',
       premiumFeature2: 'Full optional',
+      returnTag: 'Informazioni Importanti',
+      returnTitle: 'Consegna del Veicolo',
+      returnSubtitle:
+        "Prima di partire, tieni a mente queste condizioni fondamentali per la restituzione dell'auto.",
+      returnOfficeTitle: 'Restituzione presso il nostro ufficio',
+      returnOfficeDesc:
+        "Al termine del noleggio, il veicolo deve essere riconsegnato presso la nostra sede ad Alghero. Non è possibile lasciare l'auto in luoghi diversi dall'ufficio.",
+      returnOfficeAddress: 'Via Sebastiano Satta, 52 — 07041 Alghero (SS)',
+      returnSardiniaTitle: 'Utilizzo esclusivo in Sardegna',
+      returnSardiniaDesc:
+        'È espressamente vietato portare il veicolo al di fuori del territorio della Regione Sardegna. La violazione di questo limite comporta la decadenza di tutte le coperture assicurative.',
+      returnSardiniaOnly: 'Solo Sardegna',
+
       premiumFeature3: 'Cambio automatico',
       premiumFeature4: 'Assicurazione kasko',
       premiumFeature5: 'Km illimitati',
@@ -409,6 +422,18 @@ const translations = {
       comfortFeature2: 'Automatic climate',
       comfortFeature3: 'Automatic transmission',
       comfortFeature4: 'Premium insurance',
+      returnTag: 'Important Information',
+      returnTitle: 'Vehicle Return',
+      returnSubtitle: 'Before you go, keep these essential return conditions in mind.',
+      returnOfficeTitle: 'Return to our office',
+      returnOfficeDesc:
+        'At the end of the rental period, the vehicle must be returned to our office in Alghero. Leaving the car at any other location is not permitted.',
+      returnOfficeAddress: 'Via Sebastiano Satta, 52 — 07041 Alghero (SS)',
+      returnSardiniaTitle: 'Sardinia use only',
+      returnSardiniaDesc:
+        'Taking the vehicle outside the territory of the Sardinia Region is strictly prohibited. Violation of this limit results in the loss of all insurance coverage.',
+      returnSardiniaOnly: 'Sardinia Only',
+
       comfortFeature5: 'Unlimited km',
       comfortFeature6: 'GPS included',
       premiumName: 'Premium',
@@ -726,6 +751,19 @@ const translations = {
       premiumFeature1: 'SUVs y coches de lujo',
       premiumFeature2: 'Extras completos',
       premiumFeature3: 'Cambio automático',
+      returnTag: 'Información Importante',
+      returnTitle: 'Devolución del Vehículo',
+      returnSubtitle:
+        'Antes de salir, ten en cuenta estas condiciones esenciales para la devolución del coche.',
+      returnOfficeTitle: 'Devolución en nuestra oficina',
+      returnOfficeDesc:
+        'Al finalizar el alquiler, el vehículo debe devolverse en nuestra sede de Alghero. No está permitido dejar el coche en otro lugar.',
+      returnOfficeAddress: 'Via Sebastiano Satta, 52 — 07041 Alghero (SS)',
+      returnSardiniaTitle: 'Uso exclusivo en Cerdeña',
+      returnSardiniaDesc:
+        'Está expresamente prohibido llevar el vehículo fuera del territorio de la Región de Cerdeña. El incumplimiento de este límite conlleva la pérdida de todas las coberturas del seguro.',
+      returnSardiniaOnly: 'Solo Cerdeña',
+
       premiumFeature4: 'Seguro todo riesgo',
       premiumFeature5: 'Km ilimitados',
       premiumFeature6: 'GPS y sillas incluidas',

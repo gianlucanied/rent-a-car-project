@@ -185,8 +185,58 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- ░░ CANALI DI CONTATTO ░░ -->
+    <!-- ░░ CONDIZIONI DI CONSEGNA ░░ -->
     <section class="section-wrap bg-light">
+      <div class="container">
+        <div class="section-intro observe">
+          <span class="intro-dash">—</span>
+          <p class="intro-text">{{ t('rates.returnTag') }}</p>
+        </div>
+        <h2 class="section-heading observe" style="--delay: 0.05s">
+          {{ t('rates.returnTitle') }}
+        </h2>
+        <p class="section-sub observe" style="--delay: 0.1s">{{ t('rates.returnSubtitle') }}</p>
+
+        <div class="return-rules">
+          <!-- Regola 1: restituzione in ufficio -->
+          <div class="rule-block observe" style="--delay: 0.15s">
+            <div class="rule-icon-col" aria-hidden="true">
+              <div class="rule-icon-wrap rule-icon-wrap--blue">
+                <span>📍</span>
+              </div>
+              <div class="rule-connector" aria-hidden="true"></div>
+            </div>
+            <div class="rule-body">
+              <h3 class="rule-title">{{ t('rates.returnOfficeTitle') }}</h3>
+              <p class="rule-desc">{{ t('rates.returnOfficeDesc') }}</p>
+              <div class="rule-address">
+                <span class="address-pin" aria-hidden="true">▸</span>
+                <span>{{ t('rates.returnOfficeAddress') }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Regola 2: no uscita dalla Sardegna -->
+          <div class="rule-block observe" style="--delay: 0.22s">
+            <div class="rule-icon-col" aria-hidden="true">
+              <div class="rule-icon-wrap rule-icon-wrap--red">
+                <span>🚫</span>
+              </div>
+            </div>
+            <div class="rule-body">
+              <h3 class="rule-title">{{ t('rates.returnSardiniaTitle') }}</h3>
+              <p class="rule-desc">{{ t('rates.returnSardiniaDesc') }}</p>
+              <!-- <div class="rule-badge">
+                <span>{{ t('rates.returnSardiniaOnly') }}</span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ CANALI DI CONTATTO ░░ -->
+    <section class="section-wrap bg-white">
       <div class="container">
         <div class="section-intro observe">
           <span class="intro-dash">—</span>
@@ -577,6 +627,137 @@ onMounted(() => {
   width: 100%;
 }
 
+/* ─── CONDIZIONI DI CONSEGNA ────────────────────────────────────── */
+.return-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rule-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  border: 1px solid rgba(31, 79, 128, 0.08);
+  box-shadow: 0 4px 20px rgba(14, 45, 78, 0.06);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.rule-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(14, 45, 78, 0.1);
+}
+
+.rule-icon-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
+}
+
+.rule-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.rule-block:hover .rule-icon-wrap {
+  transform: scale(1.1) rotate(4deg);
+}
+.rule-icon-wrap--blue {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #1f4f80 14%, white),
+    color-mix(in srgb, #1f4f80 7%, white)
+  );
+}
+.rule-icon-wrap--red {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ce4028 14%, white),
+    color-mix(in srgb, #ce4028 7%, white)
+  );
+}
+
+.rule-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 24px;
+  background: linear-gradient(180deg, rgba(31, 79, 128, 0.18) 0%, transparent 100%);
+  margin-top: 0.5rem;
+}
+
+.rule-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rule-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0e2d4e;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.rule-desc {
+  font-size: 0.93rem;
+  color: #6a7a8a;
+  line-height: 1.75;
+  max-width: 580px;
+}
+
+.rule-address {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  background: color-mix(in srgb, #1f4f80 8%, white);
+  border: 1px solid rgba(31, 79, 128, 0.15);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f4f80;
+  width: fit-content;
+  margin-top: 0.25rem;
+}
+.address-pin {
+  font-size: 0.7rem;
+  color: #ce4028;
+}
+
+.rule-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ce4028 10%, white),
+    color-mix(in srgb, #ce4028 5%, white)
+  );
+  border: 1px solid rgba(206, 64, 40, 0.2);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ce4028;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-top: 0.25rem;
+}
+
 /* ─── QR BLOCK ──────────────────────────────────────────────────── */
 .qr-block {
   position: relative;
@@ -880,6 +1061,14 @@ onMounted(() => {
   }
   .email-address {
     font-size: 0.82rem;
+  }
+  .rule-block {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+  .rule-address,
+  .rule-badge {
+    font-size: 0.78rem;
   }
 }
 </style>
