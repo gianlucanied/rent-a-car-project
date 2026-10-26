@@ -27,23 +27,6 @@ const socialLinks = {
     <div class="header-top">
       <div class="top-inner">
         <div class="top-contacts">
-          <a href="tel:+39079985937" class="top-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-              ></path>
-            </svg>
-            +39 079985937
-          </a>
-          <span class="top-sep" aria-hidden="true">·</span>
           <span class="top-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -237,22 +220,6 @@ const socialLinks = {
                 stroke-width="2"
               >
                 <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                ></path>
-              </svg>
-              <a href="tel:+39079985937">+39 079 985937</a>
-            </li>
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
                   d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
                 ></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
@@ -273,6 +240,32 @@ const socialLinks = {
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
               <span>{{ t('footer.address') }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-col-legal">
+          <h4 class="footer-col-title">{{ t('footer.legalInfoTitle') }}</h4>
+          <ul class="footer-legal-list">
+            <li>
+              <span class="legal-label">{{ t('footer.companyNameLabel') }}</span>
+              <span class="legal-value">{{ t('footer.companyNameValue') }}</span>
+            </li>
+            <li>
+              <span class="legal-label">{{ t('footer.registeredOfficeLabel') }}</span>
+              <span class="legal-value">{{ t('footer.registeredOfficeValue') }}</span>
+            </li>
+            <li>
+              <span class="legal-label">{{ t('footer.vatLabel') }}</span>
+              <span class="legal-value">{{ t('footer.vatValue') }}</span>
+            </li>
+            <li>
+              <span class="legal-label">{{ t('footer.fiscalCodeLabel') }}</span>
+              <span class="legal-value">{{ t('footer.fiscalCodeValue') }}</span>
+            </li>
+            <li>
+              <span class="legal-label">{{ t('footer.pecLabel') }}</span>
+              <a :href="'mailto:' + t('footer.pecValue')" class="legal-value legal-link">{{ t('footer.pecValue') }}</a>
             </li>
           </ul>
         </div>
@@ -635,8 +628,8 @@ const socialLinks = {
 }
 .footer-body {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1.4fr 1.2fr;
-  gap: 3.5rem;
+  grid-template-columns: 1.6fr 0.9fr 1.2fr 1.1fr 1.2fr;
+  gap: 3rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -833,6 +826,36 @@ const socialLinks = {
   font-weight: 700;
 }
 
+.footer-legal-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.footer-legal-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.footer-legal-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.legal-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+.legal-value {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .footer-bottom {
   padding: 1.5rem 0 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -885,6 +908,12 @@ const socialLinks = {
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1280px) {
+  .footer-body {
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 2.5rem;
+  }
+}
 @media (max-width: 1024px) {
   .footer-body {
     grid-template-columns: 1fr 1fr;

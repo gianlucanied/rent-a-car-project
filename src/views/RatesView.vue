@@ -40,47 +40,19 @@ const cars = computed(() => [
     color: '#ce4028',
     automaticNote: true,
   },
-  {
-    category: 'D',
-    name: 'Fiat 500',
-    seats: 4,
-    transmission: t('rates.automatic'),
-    image: '/cars/fiat500.jpg',
-    color: '#ce4028',
-    automaticNote: true,
-  },
-  {
-    category: 'E',
-    name: 'Fiat Doblò',
-    seats: 7,
-    transmission: t('rates.manual'),
-    image: '/cars/doblo.jpg',
-    color: '#1f4f80',
-  },
 ])
 
-// Messaggio WhatsApp localizzato per lingua
-const waBaseMessage = computed(() => {
-  const messages = {
-    it: 'Ciao%2C%20vorrei%20un%20preventivo%20per%20il%20noleggio%20di%20una%20',
-    en: 'Hello%2C%20I%20would%20like%20a%20quote%20for%20renting%20a%20',
-    es: 'Hola%2C%20me%20gustar%C3%ADa%20un%20presupuesto%20para%20alquilar%20un%20',
-  }
-  return messages[locale.value] || messages.it
-})
+// Email di richiesta preventivo localizzata per lingua
+const quoteEmail = {
+  it: { subject: 'Richiesta preventivo', body: 'Ciao, vorrei un preventivo per il noleggio di una ' },
+  en: { subject: 'Quote request', body: 'Hello, I would like a quote for renting a ' },
+  es: { subject: 'Solicitud de presupuesto', body: 'Hola, me gustaría un presupuesto para alquilar un ' },
+}
 
-// Link WhatsApp generico (senza modello specifico)
-const waGenericLink = computed(() => {
-  const messages = {
-    it: 'Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20auto',
-    en: 'Hello%2C%20I%20would%20like%20information%20about%20car%20rental',
-    es: 'Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20coches',
-  }
-  return `https://wa.me/393400743137?text=${messages[locale.value] || messages.it}`
-})
-
-const waCarLink = (carName) =>
-  `https://wa.me/393400743137?text=${waBaseMessage.value}${encodeURIComponent(carName)}`
+const emailCarLink = (carName) => {
+  const { subject, body } = quoteEmail[locale.value] || quoteEmail.it
+  return `mailto:info@rentacarexpress.it?subject=${encodeURIComponent(`${subject} - ${carName}`)}&body=${encodeURIComponent(body + carName)}`
+}
 
 onMounted(() => {
   setTimeout(() => {
@@ -168,12 +140,7 @@ onMounted(() => {
                 </li>
               </ul>
 
-              <a
-                :href="waCarLink(car.name)"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="car-cta"
-              >
+              <a :href="emailCarLink(car.name)" class="car-cta">
                 <span>{{ t('rates.requestQuote') }}</span>
                 <span class="cta-arrow">→</span>
               </a>
@@ -243,28 +210,6 @@ onMounted(() => {
           <p class="intro-text">{{ t('contacts.channelsTag') }}</p>
         </div>
         <h2 class="section-heading observe" style="--delay: 0.05s">{{ t('rates.ctaTitle') }}</h2>
-
-        <!-- ── QR WHATSAPP ── -->
-        <div class="qr-block observe" style="--delay: 0.15s">
-          <div class="qr-blob qr-blob-1" aria-hidden="true"></div>
-          <div class="qr-blob qr-blob-2" aria-hidden="true"></div>
-
-          <div class="qr-text">
-            <h3 class="qr-title">{{ t('contacts.qrCodeTitle') }}</h3>
-            <p class="qr-desc">{{ t('contacts.qrCodeDescription') }}</p>
-            <a :href="waGenericLink" target="_blank" rel="noopener noreferrer" class="wa-cta">
-              <span>{{ t('rates.openWhatsapp') }}</span>
-              <span class="cta-arrow">→</span>
-            </a>
-          </div>
-
-          <div class="qr-image-col">
-            <div class="qr-frame">
-              <img src="/src/assets/qrcode.jpg" alt="QR Code WhatsApp" class="qr-img" />
-            </div>
-            <span class="qr-badge">{{ t('contacts.scanNow') }}</span>
-          </div>
-        </div>
 
         <!-- ── EMAIL ── -->
         <div class="email-block observe" style="--delay: 0.2s">
@@ -589,18 +534,18 @@ onMounted(() => {
   margin-top: auto;
   padding: 0.85rem 1.25rem;
   border-radius: 50px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg, #1f4f80, #2d5f8f);
   color: #fff;
   font-size: 0.88rem;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 16px rgba(31, 79, 128, 0.25);
   transition:
     transform 0.28s ease,
     box-shadow 0.28s ease;
 }
 .car-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 8px 24px rgba(31, 79, 128, 0.35);
 }
 .cta-arrow {
   transition: transform 0.25s ease;
@@ -758,143 +703,6 @@ onMounted(() => {
   margin-top: 0.25rem;
 }
 
-/* ─── QR BLOCK ──────────────────────────────────────────────────── */
-.qr-block {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 3.5rem;
-  align-items: center;
-  background: #fff;
-  border-radius: 20px;
-  padding: 3rem 3.5rem;
-  border: 1px solid rgba(31, 79, 128, 0.08);
-  box-shadow: 0 8px 40px rgba(14, 45, 78, 0.08);
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-}
-
-.qr-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-.qr-blob-1 {
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(37, 211, 102, 0.15) 0%, transparent 70%);
-  top: -80px;
-  right: -50px;
-  animation: blobDrift 18s ease-in-out infinite alternate;
-}
-.qr-blob-2 {
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle, rgba(31, 79, 128, 0.1) 0%, transparent 70%);
-  bottom: -50px;
-  left: -30px;
-  animation: blobDrift 24s ease-in-out infinite alternate-reverse;
-}
-@keyframes blobDrift {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(40px, 30px) scale(1.08);
-  }
-}
-
-.qr-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #0e2d4e;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.85rem;
-}
-.qr-desc {
-  font-size: 0.95rem;
-  color: #6a7a8a;
-  line-height: 1.75;
-  max-width: 400px;
-  margin-bottom: 1.75rem;
-}
-
-.wa-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.75rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
-  font-size: 0.95rem;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-.wa-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
-}
-.wa-cta:hover .cta-arrow {
-  transform: translateX(4px);
-}
-
-.qr-image-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
-  z-index: 1;
-}
-.qr-frame {
-  padding: 1.25rem;
-  background: #fff;
-  border-radius: 16px;
-  border: 2px solid #25d366;
-  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.15);
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-.qr-frame:hover {
-  transform: scale(1.04);
-  box-shadow: 0 14px 42px rgba(37, 211, 102, 0.25);
-}
-.qr-img {
-  display: block;
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.qr-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 1.4rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
-  font-size: 0.85rem;
-  border-radius: 50px;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
-  animation: pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-
 /* ─── EMAIL BLOCK ───────────────────────────────────────────────── */
 .email-block {
   display: flex;
@@ -1015,22 +823,6 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 860px) {
-  .qr-block {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2.5rem;
-    text-align: center;
-  }
-  .qr-desc {
-    margin: 0 auto 1.5rem;
-  }
-  .qr-image-col {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
 
 @media (max-width: 600px) {
   .page-hero {
@@ -1042,13 +834,6 @@ onMounted(() => {
   }
   .cars-grid {
     grid-template-columns: 1fr;
-  }
-  .qr-block {
-    padding: 2rem 1.5rem;
-  }
-  .qr-img {
-    width: 160px;
-    height: 160px;
   }
   .email-body {
     flex-direction: column;

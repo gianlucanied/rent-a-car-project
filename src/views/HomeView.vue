@@ -108,6 +108,17 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- ░░ AVVISO CHIUSURA ░░ -->
+    <section class="closed-strip">
+      <div class="closed-banner" role="status">
+        <span class="closed-dot" aria-hidden="true"></span>
+        <div class="closed-text">
+          <strong class="closed-title">{{ t('home.closedTitle') }}</strong>
+          <span class="closed-sub">{{ t('home.closedText') }}</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ░░ CHI SIAMO ░░ -->
     <section class="section-wrap bg-white">
       <div class="container">
@@ -295,6 +306,59 @@ onMounted(() => {
 .hero-inner.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* banner chiusura stagionale */
+.closed-strip {
+  background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(206, 64, 40, 0.25);
+}
+.closed-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1180px;
+  width: 100%;
+  text-align: center;
+}
+.closed-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  animation: closedPulse 2s ease-out infinite;
+}
+@keyframes closedPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
+  }
+}
+.closed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.closed-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.closed-sub {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: #fff;
 }
 
 .hero-title {
@@ -1028,6 +1092,13 @@ onMounted(() => {
 }
 
 @media (max-width: 600px) {
+  .closed-strip {
+    padding: 2.25rem 1.25rem;
+  }
+  .closed-banner {
+    flex-direction: column;
+    gap: 1rem;
+  }
   .page-hero {
     min-height: 100svh;
   }

@@ -6,28 +6,12 @@ const { t } = useI18n()
 
 const contactMethods = computed(() => [
   {
-    icon: '📞',
-    title: t('contacts.phone'),
-    value: '+39 079 98 5937',
-    description: t('contacts.phoneSchedule'),
-    link: 'tel:+39079985937',
-    color: '#1f4f80',
-  },
-  {
     icon: '📧',
     title: t('contacts.email'),
     value: 'info@rentacarexpress.it',
     description: t('contacts.emailResponse'),
     link: 'mailto:info@rentacarexpress.it',
     color: '#ce4028',
-  },
-  {
-    icon: '💬',
-    title: t('contacts.whatsapp'),
-    value: '+39 340 074 3137',
-    description: t('contacts.whatsappAssistance'),
-    link: 'https://wa.me/393400743137',
-    color: '#1f4f80',
   },
 ])
 
@@ -331,7 +315,7 @@ onMounted(() => {
 /* ─── GRIGLIA METODI ────────────────────────────────────────────── */
 .methods-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 520px);
   gap: 1.5rem;
   margin-top: 2.5rem;
 }
