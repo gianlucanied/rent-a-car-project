@@ -308,6 +308,10 @@ onMounted(() => {
   transform: translateY(0);
 }
 
+.home-page {
+  overflow-x: hidden;
+}
+
 /* banner chiusura stagionale */
 .closed-strip {
   background: linear-gradient(135deg, #ce4028 0%, #e6583f 100%);

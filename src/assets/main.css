@@ -1,0 +1,7 @@
+/* Evita lo scroll orizzontale causato da elementi decorativi che escono dallo schermo.
+   "clip" (a differenza di "hidden") non rompe l'header sticky. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
